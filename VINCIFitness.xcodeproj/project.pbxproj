@@ -7,21 +7,120 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		45897146122B1DB93F6A35D1 /* Pods_VINCIFitness.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BACBFF1148007B3897BD9AEE /* Pods_VINCIFitness.framework */; };
+		481683691D9B70A700151CAE /* SecondProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481683671D9B70A700151CAE /* SecondProfileViewController.swift */; };
+		4816836A1D9B70A700151CAE /* SecondProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 481683681D9B70A700151CAE /* SecondProfileViewController.xib */; };
+		4816836D1D9E09A600151CAE /* ActivityProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4816836B1D9E09A500151CAE /* ActivityProfileViewController.swift */; };
+		4816836E1D9E09A600151CAE /* ActivityProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4816836C1D9E09A500151CAE /* ActivityProfileViewController.xib */; };
+		481683711D9EB89E00151CAE /* PartuicipatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4816836F1D9EB89D00151CAE /* PartuicipatorCell.swift */; };
+		481683721D9EB89E00151CAE /* PartuicipatorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 481683701D9EB89D00151CAE /* PartuicipatorCell.xib */; };
+		484147051D73BEF300662095 /* AddActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484147031D73BEF300662095 /* AddActivityViewController.swift */; };
+		484147061D73BEF300662095 /* AddActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 484147041D73BEF300662095 /* AddActivityViewController.xib */; };
+		484147081D73BF2F00662095 /* MapAutoCompleteTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484147071D73BF2F00662095 /* MapAutoCompleteTextField.swift */; };
+		4841470B1D73D49B00662095 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484147091D73D49B00662095 /* SearchTableViewCell.swift */; };
+		4841470C1D73D49B00662095 /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4841470A1D73D49B00662095 /* SearchTableViewCell.xib */; };
+		4841470E1D7522CA00662095 /* DatePickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4841470D1D7522CA00662095 /* DatePickerTextField.swift */; };
+		484147121D75290F00662095 /* TimePickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484147111D75290F00662095 /* TimePickerTextField.swift */; };
+		484147141D924BB300662095 /* PopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 484147131D924BB300662095 /* PopupView.xib */; };
+		484147161D924C6A00662095 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484147151D924C6A00662095 /* PopupView.swift */; };
+		484580941D94DC5200FCF314 /* ActivityListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484580921D94DC5200FCF314 /* ActivityListViewController.swift */; };
+		484580951D94DC5200FCF314 /* ActivityListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 484580931D94DC5200FCF314 /* ActivityListViewController.xib */; };
+		484580981D94DF8800FCF314 /* ActivityListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484580961D94DF8800FCF314 /* ActivityListCell.swift */; };
+		484580991D94DF8800FCF314 /* ActivityListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 484580971D94DF8800FCF314 /* ActivityListCell.xib */; };
+		4845809B1D94E20E00FCF314 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4845809A1D94E20E00FCF314 /* APIService.swift */; };
+		4845809D1D94E2F600FCF314 /* APIServiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4845809C1D94E2F600FCF314 /* APIServiceController.swift */; };
+		4845F02F1D711F0D00652308 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4845F02E1D711F0D00652308 /* Activity.swift */; };
+		4845F0311D711F7100652308 /* Maker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4845F0301D711F7100652308 /* Maker.swift */; };
+		4845F0331D71203400652308 /* MakerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4845F0321D71203400652308 /* MakerController.swift */; };
+		486EBE201DA0AC4000347F39 /* ActivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486EBE1F1DA0AC4000347F39 /* ActivityController.swift */; };
+		486EBE231DA0B84A00347F39 /* PageControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486EBE211DA0B84A00347F39 /* PageControlViewController.swift */; };
+		486EBE241DA0B84A00347F39 /* PageControlViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 486EBE221DA0B84A00347F39 /* PageControlViewController.xib */; };
+		486EBE271DA0BCCA00347F39 /* SignUpPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486EBE251DA0BCCA00347F39 /* SignUpPageViewController.swift */; };
+		486EBE281DA0BCCA00347F39 /* SignUpPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 486EBE261DA0BCCA00347F39 /* SignUpPageViewController.xib */; };
 		4875527D1D61B7BB00754DAA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4875527C1D61B7BB00754DAA /* AppDelegate.swift */; };
-		4875527F1D61B7BB00754DAA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4875527E1D61B7BB00754DAA /* ViewController.swift */; };
-		487552821D61B7BB00754DAA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 487552801D61B7BB00754DAA /* Main.storyboard */; };
 		487552841D61B7BB00754DAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 487552831D61B7BB00754DAA /* Assets.xcassets */; };
 		487552871D61B7BB00754DAA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 487552851D61B7BB00754DAA /* LaunchScreen.storyboard */; };
+		487552941D61C01100754DAA /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487552921D61C01100754DAA /* MapViewController.swift */; };
+		487552951D61C01100754DAA /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 487552931D61C01100754DAA /* MapViewController.xib */; };
+		487552981D61C06400754DAA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 487552971D61C06400754DAA /* MapKit.framework */; };
+		4875529A1D61C06B00754DAA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 487552991D61C06B00754DAA /* CoreLocation.framework */; };
+		4875529D1D61C14000754DAA /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4875529B1D61C14000754DAA /* ProfileViewController.swift */; };
+		4875529E1D61C14000754DAA /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4875529C1D61C14000754DAA /* ProfileViewController.xib */; };
+		487552A21D61CE5100754DAA /* OnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487552A01D61CE5100754DAA /* OnboardViewController.swift */; };
+		487552A31D61CE5100754DAA /* OnboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 487552A11D61CE5100754DAA /* OnboardViewController.xib */; };
+		487552A51D61CF3600754DAA /* ColorExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487552A41D61CF3600754DAA /* ColorExtention.swift */; };
+		487552A81D630DEE00754DAA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487552A61D630DEE00754DAA /* LoginViewController.swift */; };
+		487552A91D630DEE00754DAA /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 487552A71D630DEE00754DAA /* LoginViewController.xib */; };
+		487552AC1D631E5C00754DAA /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487552AA1D631E5C00754DAA /* SignupViewController.swift */; };
+		487552AD1D631E5C00754DAA /* SignupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 487552AB1D631E5C00754DAA /* SignupViewController.xib */; };
+		487552B01D633FFB00754DAA /* ValidateEmailTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487552AF1D633FFB00754DAA /* ValidateEmailTextField.swift */; };
+		487552B51D6352D700754DAA /* SignupProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487552B31D6352D700754DAA /* SignupProfileViewController.swift */; };
+		487552B61D6352D700754DAA /* SignupProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 487552B41D6352D700754DAA /* SignupProfileViewController.xib */; };
+		487552B81D63C3E100754DAA /* ValidatePasswordField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487552B71D63C3E100754DAA /* ValidatePasswordField.swift */; };
+		487552BA1D63C65200754DAA /* ConfirmPasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487552B91D63C65200754DAA /* ConfirmPasswordTextField.swift */; };
+		487552BD1D63C98800754DAA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487552BC1D63C98800754DAA /* User.swift */; };
+		487552C01D63CB3B00754DAA /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487552BF1D63CB3B00754DAA /* UserController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A90B4367FED51A0C77D253B /* Pods-VINCIFitness.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VINCIFitness.release.xcconfig"; path = "Pods/Target Support Files/Pods-VINCIFitness/Pods-VINCIFitness.release.xcconfig"; sourceTree = "<group>"; };
+		481683671D9B70A700151CAE /* SecondProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondProfileViewController.swift; sourceTree = "<group>"; };
+		481683681D9B70A700151CAE /* SecondProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SecondProfileViewController.xib; sourceTree = "<group>"; };
+		4816836B1D9E09A500151CAE /* ActivityProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityProfileViewController.swift; sourceTree = "<group>"; };
+		4816836C1D9E09A500151CAE /* ActivityProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityProfileViewController.xib; sourceTree = "<group>"; };
+		4816836F1D9EB89D00151CAE /* PartuicipatorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartuicipatorCell.swift; sourceTree = "<group>"; };
+		481683701D9EB89D00151CAE /* PartuicipatorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PartuicipatorCell.xib; sourceTree = "<group>"; };
+		484147031D73BEF300662095 /* AddActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddActivityViewController.swift; sourceTree = "<group>"; };
+		484147041D73BEF300662095 /* AddActivityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddActivityViewController.xib; sourceTree = "<group>"; };
+		484147071D73BF2F00662095 /* MapAutoCompleteTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapAutoCompleteTextField.swift; sourceTree = "<group>"; };
+		484147091D73D49B00662095 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		4841470A1D73D49B00662095 /* SearchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
+		4841470D1D7522CA00662095 /* DatePickerTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerTextField.swift; sourceTree = "<group>"; };
+		484147111D75290F00662095 /* TimePickerTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePickerTextField.swift; sourceTree = "<group>"; };
+		484147131D924BB300662095 /* PopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopupView.xib; sourceTree = "<group>"; };
+		484147151D924C6A00662095 /* PopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
+		484580921D94DC5200FCF314 /* ActivityListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityListViewController.swift; sourceTree = "<group>"; };
+		484580931D94DC5200FCF314 /* ActivityListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityListViewController.xib; sourceTree = "<group>"; };
+		484580961D94DF8800FCF314 /* ActivityListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityListCell.swift; sourceTree = "<group>"; };
+		484580971D94DF8800FCF314 /* ActivityListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityListCell.xib; sourceTree = "<group>"; };
+		4845809A1D94E20E00FCF314 /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		4845809C1D94E2F600FCF314 /* APIServiceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIServiceController.swift; sourceTree = "<group>"; };
+		4845F02E1D711F0D00652308 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
+		4845F0301D711F7100652308 /* Maker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Maker.swift; sourceTree = "<group>"; };
+		4845F0321D71203400652308 /* MakerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakerController.swift; sourceTree = "<group>"; };
+		486EBE1F1DA0AC4000347F39 /* ActivityController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityController.swift; sourceTree = "<group>"; };
+		486EBE211DA0B84A00347F39 /* PageControlViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageControlViewController.swift; sourceTree = "<group>"; };
+		486EBE221DA0B84A00347F39 /* PageControlViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageControlViewController.xib; sourceTree = "<group>"; };
+		486EBE251DA0BCCA00347F39 /* SignUpPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpPageViewController.swift; sourceTree = "<group>"; };
+		486EBE261DA0BCCA00347F39 /* SignUpPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpPageViewController.xib; sourceTree = "<group>"; };
 		487552791D61B7BB00754DAA /* VINCIFitness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VINCIFitness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4875527C1D61B7BB00754DAA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4875527E1D61B7BB00754DAA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		487552811D61B7BB00754DAA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		487552831D61B7BB00754DAA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		487552861D61B7BB00754DAA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		487552881D61B7BB00754DAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		487552921D61C01100754DAA /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		487552931D61C01100754DAA /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		487552971D61C06400754DAA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		487552991D61C06B00754DAA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		4875529B1D61C14000754DAA /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		4875529C1D61C14000754DAA /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		487552A01D61CE5100754DAA /* OnboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardViewController.swift; sourceTree = "<group>"; };
+		487552A11D61CE5100754DAA /* OnboardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnboardViewController.xib; sourceTree = "<group>"; };
+		487552A41D61CF3600754DAA /* ColorExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorExtention.swift; sourceTree = "<group>"; };
+		487552A61D630DEE00754DAA /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		487552A71D630DEE00754DAA /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		487552AA1D631E5C00754DAA /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		487552AB1D631E5C00754DAA /* SignupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignupViewController.xib; sourceTree = "<group>"; };
+		487552AF1D633FFB00754DAA /* ValidateEmailTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidateEmailTextField.swift; sourceTree = "<group>"; };
+		487552B31D6352D700754DAA /* SignupProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupProfileViewController.swift; sourceTree = "<group>"; };
+		487552B41D6352D700754DAA /* SignupProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignupProfileViewController.xib; sourceTree = "<group>"; };
+		487552B71D63C3E100754DAA /* ValidatePasswordField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatePasswordField.swift; sourceTree = "<group>"; };
+		487552B91D63C65200754DAA /* ConfirmPasswordTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmPasswordTextField.swift; sourceTree = "<group>"; };
+		487552BC1D63C98800754DAA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		487552BF1D63CB3B00754DAA /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
+		48A430381DAE8C930031A106 /* VINCIFitness.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VINCIFitness.entitlements; sourceTree = "<group>"; };
+		BACBFF1148007B3897BD9AEE /* Pods_VINCIFitness.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VINCIFitness.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BDC81D3A13EA7DFB4D3143DB /* Pods-VINCIFitness.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VINCIFitness.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VINCIFitness/Pods-VINCIFitness.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +128,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4875529A1D61C06B00754DAA /* CoreLocation.framework in Frameworks */,
+				487552981D61C06400754DAA /* MapKit.framework in Frameworks */,
+				45897146122B1DB93F6A35D1 /* Pods_VINCIFitness.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		484147001D73BE6700662095 /* Activity Views */ = {
+			isa = PBXGroup;
+			children = (
+				484147031D73BEF300662095 /* AddActivityViewController.swift */,
+				484147041D73BEF300662095 /* AddActivityViewController.xib */,
+				484580921D94DC5200FCF314 /* ActivityListViewController.swift */,
+				484580931D94DC5200FCF314 /* ActivityListViewController.xib */,
+				4816836B1D9E09A500151CAE /* ActivityProfileViewController.swift */,
+				4816836C1D9E09A500151CAE /* ActivityProfileViewController.xib */,
+			);
+			name = "Activity Views";
+			sourceTree = "<group>";
+		};
 		487552701D61B7BB00754DAA = {
 			isa = PBXGroup;
 			children = (
+				487552991D61C06B00754DAA /* CoreLocation.framework */,
+				487552971D61C06400754DAA /* MapKit.framework */,
 				4875527B1D61B7BB00754DAA /* VINCIFitness */,
 				4875527A1D61B7BB00754DAA /* Products */,
+				4D24ED1C327A86807D7D0C23 /* Pods */,
+				48F339FFB32CD2A0BFB1E3EB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +173,112 @@
 		4875527B1D61B7BB00754DAA /* VINCIFitness */ = {
 			isa = PBXGroup;
 			children = (
+				48A430381DAE8C930031A106 /* VINCIFitness.entitlements */,
+				484147001D73BE6700662095 /* Activity Views */,
+				487552BE1D63CB2600754DAA /* Model Controllers */,
+				487552BB1D63C97A00754DAA /* Models */,
+				487552AE1D633FAE00754DAA /* Customized UI Element */,
+				4875529F1D61CC6900754DAA /* OnboardingViews */,
+				487552961D61C01800754DAA /* TabView */,
 				4875527C1D61B7BB00754DAA /* AppDelegate.swift */,
-				4875527E1D61B7BB00754DAA /* ViewController.swift */,
-				487552801D61B7BB00754DAA /* Main.storyboard */,
+				487552A41D61CF3600754DAA /* ColorExtention.swift */,
 				487552831D61B7BB00754DAA /* Assets.xcassets */,
 				487552851D61B7BB00754DAA /* LaunchScreen.storyboard */,
 				487552881D61B7BB00754DAA /* Info.plist */,
+				4845809A1D94E20E00FCF314 /* APIService.swift */,
 			);
 			path = VINCIFitness;
+			sourceTree = "<group>";
+		};
+		487552961D61C01800754DAA /* TabView */ = {
+			isa = PBXGroup;
+			children = (
+				487552921D61C01100754DAA /* MapViewController.swift */,
+				487552931D61C01100754DAA /* MapViewController.xib */,
+				4875529B1D61C14000754DAA /* ProfileViewController.swift */,
+				4875529C1D61C14000754DAA /* ProfileViewController.xib */,
+			);
+			name = TabView;
+			sourceTree = "<group>";
+		};
+		4875529F1D61CC6900754DAA /* OnboardingViews */ = {
+			isa = PBXGroup;
+			children = (
+				487552A01D61CE5100754DAA /* OnboardViewController.swift */,
+				487552A11D61CE5100754DAA /* OnboardViewController.xib */,
+				487552A61D630DEE00754DAA /* LoginViewController.swift */,
+				487552A71D630DEE00754DAA /* LoginViewController.xib */,
+				487552AA1D631E5C00754DAA /* SignupViewController.swift */,
+				487552AB1D631E5C00754DAA /* SignupViewController.xib */,
+				487552B31D6352D700754DAA /* SignupProfileViewController.swift */,
+				487552B41D6352D700754DAA /* SignupProfileViewController.xib */,
+				481683671D9B70A700151CAE /* SecondProfileViewController.swift */,
+				481683681D9B70A700151CAE /* SecondProfileViewController.xib */,
+				486EBE211DA0B84A00347F39 /* PageControlViewController.swift */,
+				486EBE221DA0B84A00347F39 /* PageControlViewController.xib */,
+			);
+			name = OnboardingViews;
+			sourceTree = "<group>";
+		};
+		487552AE1D633FAE00754DAA /* Customized UI Element */ = {
+			isa = PBXGroup;
+			children = (
+				484147111D75290F00662095 /* TimePickerTextField.swift */,
+				487552AF1D633FFB00754DAA /* ValidateEmailTextField.swift */,
+				487552B71D63C3E100754DAA /* ValidatePasswordField.swift */,
+				487552B91D63C65200754DAA /* ConfirmPasswordTextField.swift */,
+				484147071D73BF2F00662095 /* MapAutoCompleteTextField.swift */,
+				484147091D73D49B00662095 /* SearchTableViewCell.swift */,
+				4841470A1D73D49B00662095 /* SearchTableViewCell.xib */,
+				4841470D1D7522CA00662095 /* DatePickerTextField.swift */,
+				484147131D924BB300662095 /* PopupView.xib */,
+				484147151D924C6A00662095 /* PopupView.swift */,
+				484580961D94DF8800FCF314 /* ActivityListCell.swift */,
+				484580971D94DF8800FCF314 /* ActivityListCell.xib */,
+				4816836F1D9EB89D00151CAE /* PartuicipatorCell.swift */,
+				481683701D9EB89D00151CAE /* PartuicipatorCell.xib */,
+				486EBE251DA0BCCA00347F39 /* SignUpPageViewController.swift */,
+				486EBE261DA0BCCA00347F39 /* SignUpPageViewController.xib */,
+			);
+			name = "Customized UI Element";
+			sourceTree = "<group>";
+		};
+		487552BB1D63C97A00754DAA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				487552BC1D63C98800754DAA /* User.swift */,
+				4845F02E1D711F0D00652308 /* Activity.swift */,
+				4845F0301D711F7100652308 /* Maker.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		487552BE1D63CB2600754DAA /* Model Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				487552BF1D63CB3B00754DAA /* UserController.swift */,
+				4845F0321D71203400652308 /* MakerController.swift */,
+				4845809C1D94E2F600FCF314 /* APIServiceController.swift */,
+				486EBE1F1DA0AC4000347F39 /* ActivityController.swift */,
+			);
+			name = "Model Controllers";
+			sourceTree = "<group>";
+		};
+		48F339FFB32CD2A0BFB1E3EB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BACBFF1148007B3897BD9AEE /* Pods_VINCIFitness.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4D24ED1C327A86807D7D0C23 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BDC81D3A13EA7DFB4D3143DB /* Pods-VINCIFitness.debug.xcconfig */,
+				3A90B4367FED51A0C77D253B /* Pods-VINCIFitness.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +288,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4875528B1D61B7BB00754DAA /* Build configuration list for PBXNativeTarget "VINCIFitness" */;
 			buildPhases = (
+				9EECD05E515EF3B251D3F2C9 /* [CP] Check Pods Manifest.lock */,
 				487552751D61B7BB00754DAA /* Sources */,
 				487552761D61B7BB00754DAA /* Frameworks */,
 				487552771D61B7BB00754DAA /* Resources */,
+				C72C05175E37281C464F346B /* [CP] Embed Pods Frameworks */,
+				4606F585788E0D6A2A6AC75B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -96,6 +316,13 @@
 				TargetAttributes = {
 					487552781D61B7BB00754DAA = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = KJK6U8D573;
+						LastSwiftMigration = 0800;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -123,34 +350,119 @@
 			buildActionMask = 2147483647;
 			files = (
 				487552871D61B7BB00754DAA /* LaunchScreen.storyboard in Resources */,
+				484147141D924BB300662095 /* PopupView.xib in Resources */,
+				487552A31D61CE5100754DAA /* OnboardViewController.xib in Resources */,
+				484580951D94DC5200FCF314 /* ActivityListViewController.xib in Resources */,
+				4816836E1D9E09A600151CAE /* ActivityProfileViewController.xib in Resources */,
+				487552A91D630DEE00754DAA /* LoginViewController.xib in Resources */,
+				486EBE241DA0B84A00347F39 /* PageControlViewController.xib in Resources */,
+				484147061D73BEF300662095 /* AddActivityViewController.xib in Resources */,
+				484580991D94DF8800FCF314 /* ActivityListCell.xib in Resources */,
+				487552951D61C01100754DAA /* MapViewController.xib in Resources */,
+				4816836A1D9B70A700151CAE /* SecondProfileViewController.xib in Resources */,
+				4875529E1D61C14000754DAA /* ProfileViewController.xib in Resources */,
+				487552AD1D631E5C00754DAA /* SignupViewController.xib in Resources */,
+				487552B61D6352D700754DAA /* SignupProfileViewController.xib in Resources */,
+				481683721D9EB89E00151CAE /* PartuicipatorCell.xib in Resources */,
 				487552841D61B7BB00754DAA /* Assets.xcassets in Resources */,
-				487552821D61B7BB00754DAA /* Main.storyboard in Resources */,
+				4841470C1D73D49B00662095 /* SearchTableViewCell.xib in Resources */,
+				486EBE281DA0BCCA00347F39 /* SignUpPageViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4606F585788E0D6A2A6AC75B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VINCIFitness/Pods-VINCIFitness-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9EECD05E515EF3B251D3F2C9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C72C05175E37281C464F346B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VINCIFitness/Pods-VINCIFitness-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		487552751D61B7BB00754DAA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4875527F1D61B7BB00754DAA /* ViewController.swift in Sources */,
+				487552B01D633FFB00754DAA /* ValidateEmailTextField.swift in Sources */,
+				4845809B1D94E20E00FCF314 /* APIService.swift in Sources */,
+				4841470E1D7522CA00662095 /* DatePickerTextField.swift in Sources */,
+				481683711D9EB89E00151CAE /* PartuicipatorCell.swift in Sources */,
+				484580981D94DF8800FCF314 /* ActivityListCell.swift in Sources */,
+				487552A81D630DEE00754DAA /* LoginViewController.swift in Sources */,
+				484147081D73BF2F00662095 /* MapAutoCompleteTextField.swift in Sources */,
+				4845F0311D711F7100652308 /* Maker.swift in Sources */,
+				4845F02F1D711F0D00652308 /* Activity.swift in Sources */,
+				4845F0331D71203400652308 /* MakerController.swift in Sources */,
+				487552AC1D631E5C00754DAA /* SignupViewController.swift in Sources */,
+				486EBE271DA0BCCA00347F39 /* SignUpPageViewController.swift in Sources */,
+				487552B81D63C3E100754DAA /* ValidatePasswordField.swift in Sources */,
+				487552A51D61CF3600754DAA /* ColorExtention.swift in Sources */,
+				4845809D1D94E2F600FCF314 /* APIServiceController.swift in Sources */,
+				487552C01D63CB3B00754DAA /* UserController.swift in Sources */,
+				484147161D924C6A00662095 /* PopupView.swift in Sources */,
+				4841470B1D73D49B00662095 /* SearchTableViewCell.swift in Sources */,
+				481683691D9B70A700151CAE /* SecondProfileViewController.swift in Sources */,
+				4875529D1D61C14000754DAA /* ProfileViewController.swift in Sources */,
+				4816836D1D9E09A600151CAE /* ActivityProfileViewController.swift in Sources */,
+				484147051D73BEF300662095 /* AddActivityViewController.swift in Sources */,
+				484580941D94DC5200FCF314 /* ActivityListViewController.swift in Sources */,
 				4875527D1D61B7BB00754DAA /* AppDelegate.swift in Sources */,
+				486EBE231DA0B84A00347F39 /* PageControlViewController.swift in Sources */,
+				486EBE201DA0AC4000347F39 /* ActivityController.swift in Sources */,
+				484147121D75290F00662095 /* TimePickerTextField.swift in Sources */,
+				487552A21D61CE5100754DAA /* OnboardViewController.swift in Sources */,
+				487552BD1D63C98800754DAA /* User.swift in Sources */,
+				487552941D61C01100754DAA /* MapViewController.swift in Sources */,
+				487552B51D6352D700754DAA /* SignupProfileViewController.swift in Sources */,
+				487552BA1D63C65200754DAA /* ConfirmPasswordTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		487552801D61B7BB00754DAA /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				487552811D61B7BB00754DAA /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		487552851D61B7BB00754DAA /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -247,23 +559,35 @@
 		};
 		4875528C1D61B7BB00754DAA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BDC81D3A13EA7DFB4D3143DB /* Pods-VINCIFitness.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = VINCIFitness/VINCIFitness.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = VINCIFitness/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = SwiftHelloWorld.VINCIFitness;
+				PRODUCT_BUNDLE_IDENTIFIER = SiqingXu.VINCIFitness;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		4875528D1D61B7BB00754DAA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3A90B4367FED51A0C77D253B /* Pods-VINCIFitness.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = VINCIFitness/VINCIFitness.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = VINCIFitness/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = SwiftHelloWorld.VINCIFitness;
+				PRODUCT_BUNDLE_IDENTIFIER = SiqingXu.VINCIFitness;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -286,6 +610,7 @@
 				4875528D1D61B7BB00754DAA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

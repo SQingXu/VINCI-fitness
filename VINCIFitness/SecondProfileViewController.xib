@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SecondProfileViewController" customModule="VINCIFitness" customModuleProvider="target">
+            <connections>
+                <outlet property="birthdayTextField" destination="cOp-Jb-2Gf" id="ayp-PK-Py4"/>
+                <outlet property="birthdayView" destination="M18-RI-j99" id="udv-0L-r7j"/>
+                <outlet property="doneButton" destination="3Gc-Yq-pd3" id="uQG-94-wQC"/>
+                <outlet property="mapView" destination="BbG-7u-zMj" id="cEj-us-bUo"/>
+                <outlet property="searchingField" destination="aIK-OS-NmZ" id="tds-vl-6QS"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aIK-OS-NmZ" customClass="MapAutoCompleteTextField" customModule="VINCIFitness" customModuleProvider="target">
+                    <rect key="frame" x="190" y="80" width="220" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="220" id="86x-Nb-N9F"/>
+                        <constraint firstAttribute="height" constant="40" id="sml-mD-7ir"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BbG-7u-zMj" userLabel="MapView">
+                    <rect key="frame" x="190" y="120" width="220" height="2"/>
+                    <color key="backgroundColor" red="0.92156862750000001" green="0.1843137255" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="2" id="cxc-IF-jZI"/>
+                        <constraint firstAttribute="width" constant="220" id="eYo-2e-n9N"/>
+                    </constraints>
+                </view>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cOp-Jb-2Gf" userLabel="BirthDay Text Field" customClass="DatePickerTextField" customModule="VINCIFitness" customModuleProvider="target">
+                    <rect key="frame" x="190" y="180" width="220" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="dK2-gD-r7e"/>
+                        <constraint firstAttribute="width" constant="220" id="jSy-3F-D9q"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M18-RI-j99" userLabel="BirthdayView">
+                    <rect key="frame" x="190" y="220" width="220" height="2"/>
+                    <color key="backgroundColor" red="0.92156862750000001" green="0.1843137255" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="2" id="2uZ-td-4lb"/>
+                        <constraint firstAttribute="width" constant="220" id="zJB-6N-VqN"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Gc-Yq-pd3">
+                    <rect key="frame" x="281.5" y="520" width="37" height="30"/>
+                    <state key="normal" title="Done"/>
+                    <connections>
+                        <action selector="donePressed:" destination="-1" eventType="touchUpInside" id="Nd3-DU-Oa2"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="cOp-Jb-2Gf" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="9qL-Dx-8CP"/>
+                <constraint firstItem="BbG-7u-zMj" firstAttribute="top" secondItem="aIK-OS-NmZ" secondAttribute="bottom" id="BRn-Xh-ixf"/>
+                <constraint firstItem="aIK-OS-NmZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="CwT-4H-XS1"/>
+                <constraint firstItem="cOp-Jb-2Gf" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-100" id="EO5-d6-8B3"/>
+                <constraint firstItem="aIK-OS-NmZ" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-200" id="Ipf-s4-4bG"/>
+                <constraint firstItem="M18-RI-j99" firstAttribute="top" secondItem="cOp-Jb-2Gf" secondAttribute="bottom" id="KJ4-fu-DuX"/>
+                <constraint firstAttribute="bottom" secondItem="3Gc-Yq-pd3" secondAttribute="bottom" constant="50" id="Knv-VT-AOC"/>
+                <constraint firstItem="BbG-7u-zMj" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="M7c-LA-uRC"/>
+                <constraint firstItem="M18-RI-j99" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="h4l-hr-HWh"/>
+                <constraint firstItem="3Gc-Yq-pd3" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="pp4-Xo-2gN"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="PartuicipatorCell" customModule="VINCIFitness" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Umu-bQ-r7X">
+                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Umu-bQ-r7X" secondAttribute="trailing" id="3J9-1d-FZW"/>
+                <constraint firstAttribute="bottom" secondItem="Umu-bQ-r7X" secondAttribute="bottom" id="GQC-DW-gyR"/>
+                <constraint firstItem="Umu-bQ-r7X" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Pg8-Ku-z1C"/>
+                <constraint firstItem="Umu-bQ-r7X" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="QOT-pP-Hi0"/>
+            </constraints>
+            <connections>
+                <outlet property="profileImageView" destination="Umu-bQ-r7X" id="Lel-x6-x4A"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+</document>
