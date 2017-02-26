@@ -1,6 +1,0 @@
-framework module Pods_VINCIFitness {
-  umbrella header "Pods-VINCIFitness-umbrella.h"
-
-  export *
-  module * { export * }
-}
