@@ -51,7 +51,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         self.hideKeyboardWhenTapped()
         
     }
-
+    
     @IBAction func loginFacebookPressed(_ sender: UIButton) {
         login()
     }
@@ -68,15 +68,24 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                 print("log in cancelled by user")
             }
             else{
-                 let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, first_name,last_name, picture.type(large),email,gender,age_range"])
+                let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, first_name,last_name, picture.type(large),email,gender,age_range"])
                 graphRequest.start(completionHandler: {(connection, result, error) -> Void in
                     if error == nil{
                         let data:[String:AnyObject] = result as! [String : AnyObject]
                         //print(result)
                         //print(data["email"])
-                        self.apiService.createMutableAnonRequest(URL(string:"https://vinci-server.herokuapp.com/login-app"), method: "POST", parameters: ["email":data["email"]! as AnyObject,"pass":data["id"]! as AnyObject], requestCompletionFunction: {responseCode, json in
+                        self.apiService.createMutableAnonRequest(URL(string:"https://vincilive.herokuapp.com/login"), method: "POST", parameters: ["email":data["email"]! as AnyObject,"pass":data["id"]! as AnyObject], requestCompletionFunction: {responseCode, json in
                             self.activityIndicator.isHidden = true
                             self.activityIndicator.stopAnimating()
+                            
+                            print("THE USER HAS PRESSED LOGIN3")
+                            print("THE USER HAS PRESSED LOGIN3")
+                            print("THE USER HAS PRESSED LOGIN3")
+                            print("THE USER HAS PRESSED LOGIN3")
+                            print("THE USER HAS PRESSED LOGIN3")
+                            print("THE USER HAS PRESSED LOGIN3")
+                            
+                            
                             if responseCode/100 == 2{
                                 //set user default
                                 UserDefaults.standard.set(data["email"] as! String, forKey: "email")
@@ -116,7 +125,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                                 self.loginFailed()
                             }
                         })
-
+                        
                     }else{
                         //print(error)
                     }
@@ -129,67 +138,76 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func loginPressed(_ sender: UIButton) {
-//        self.dismiss(animated: true, completion: nil)
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        let application = UIApplication.shared
-//        let window = application.keyWindow
-//        window?.rootViewController = appDelegate.initTabBarController()
+        //        self.dismiss(animated: true, completion: nil)
+        //        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        //        let application = UIApplication.shared
+        //        let window = application.keyWindow
+        //        window?.rootViewController = appDelegate.initTabBarController()
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
-        apiService.createMutableAnonRequest(URL(string:"https://vinci-server.herokuapp.com/login-app"), method: "POST", parameters: ["email":emailTextField.text! as AnyObject,"pass":passwordTextField.text! as AnyObject], requestCompletionFunction: {responseCode, json in
+        
+        
+        print("THE USER HAS PRESSED LOGIN")
+        print("THE USER HAS PRESSED LOGIN")
+        print("THE USER HAS PRESSED LOGIN")
+        print("THE USER HAS PRESSED LOGIN")
+        print("THE USER HAS PRESSED LOGIN")
+        print(emailTextField.text!)
+        print(passwordTextField.text!)
+        
+        
+        apiService.createMutableAnonRequest(URL(string:"https://vincilive.herokuapp.com/login"), method: "POST", parameters: ["email":emailTextField.text! as AnyObject,"pass":passwordTextField.text! as AnyObject], requestCompletionFunction: {responseCode, json in
+            print(json)
             if responseCode/100 == 2{
                 self.activityIndicator.isHidden = true
                 self.activityIndicator.stopAnimating()
-                if json["userId"].stringValue != ""{
-                    self.dismiss(animated: true, completion: nil)
-                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                    let application = UIApplication.shared
-                    let window = application.keyWindow
-                    print(json["userId"].stringValue)
-                    //set user default
-                    UserDefaults.standard.set(self.emailTextField.text!, forKey: "email")
-                    UserDefaults.standard.set(self.passwordTextField.text!, forKey: "password")
-                    UserController.sharedInstance.currentUser.userId = json["userId"].stringValue
-                    UserController.sharedInstance.currentUser.emailAddress = self.emailTextField.text!
-                    UserController.sharedInstance.viewedUser = UserController.sharedInstance.currentUser
-                    APIServiceController.sharedInstance.loadCurrentInfo()
-                    window?.rootViewController = appDelegate.initTabBarController()
-                }else{
-                    self.loginFailed()
-                }
                 
+                
+                self.dismiss(animated: true, completion: nil)
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                let application = UIApplication.shared
+                let window = application.keyWindow
+                print(json["userId"].stringValue)
+                //set user default
+                UserDefaults.standard.set(self.emailTextField.text!, forKey: "email")
+                UserDefaults.standard.set(self.passwordTextField.text!, forKey: "password")
+                UserController.sharedInstance.currentUser.userId = json["userId"].stringValue
+                UserController.sharedInstance.currentUser.emailAddress = self.emailTextField.text!
+                UserController.sharedInstance.viewedUser = UserController.sharedInstance.currentUser
+                APIServiceController.sharedInstance.loadCurrentInfo()
+                window?.rootViewController = appDelegate.initTabBarController()
             }else{
-               self.loginFailed()
+                self.loginFailed()
             }
         })
-
-//        apiService.executeRequest(request, requestCompletionFunction: {responseCode, json in
-//            if responseCode/100 == 2{
-//                if json["userId"].stringValue != ""{
-//                    self.dismiss(animated: true, completion: nil)
-//                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//                    let application = UIApplication.shared
-//                    let window = application.keyWindow
-//                    print(json["userId"].stringValue)
-//                    UserController.sharedInstance.currentUser.userId = json["userId"].stringValue
-//                    UserController.sharedInstance.currentUser.emailAddress = self.emailTextField.text!
-//                    UserController.sharedInstance.viewedUser = UserController.sharedInstance.currentUser
-//                    APIServiceController.sharedInstance.loadCurrentInfo()
-//                    window?.rootViewController = appDelegate.initTabBarController()
-//                }else{
-//                    self.loginFailed()
-//                }
-//
-//            }else{
-//                print(responseCode)
-//                let alert = UIAlertController(title: "Login Failed", message: "Email or password Incorrect", preferredStyle: .alert)
-//                let alertAction = UIAlertAction(title: "Dismiss", style: .default, handler: nil)
-//                alert.addAction(alertAction)
-//                self.present(alert, animated: true, completion: nil)
-//                print("error")
-//            }
-//        })
-
+        
+        //        apiService.executeRequest(request, requestCompletionFunction: {responseCode, json in
+        //            if responseCode/100 == 2{
+        //                if json["userId"].stringValue != ""{
+        //                    self.dismiss(animated: true, completion: nil)
+        //                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        //                    let application = UIApplication.shared
+        //                    let window = application.keyWindow
+        //                    print(json["userId"].stringValue)
+        //                    UserController.sharedInstance.currentUser.userId = json["userId"].stringValue
+        //                    UserController.sharedInstance.currentUser.emailAddress = self.emailTextField.text!
+        //                    UserController.sharedInstance.viewedUser = UserController.sharedInstance.currentUser
+        //                    APIServiceController.sharedInstance.loadCurrentInfo()
+        //                    window?.rootViewController = appDelegate.initTabBarController()
+        //                }else{
+        //                    self.loginFailed()
+        //                }
+        //
+        //            }else{
+        //                print(responseCode)
+        //                let alert = UIAlertController(title: "Login Failed", message: "Email or password Incorrect", preferredStyle: .alert)
+        //                let alertAction = UIAlertAction(title: "Dismiss", style: .default, handler: nil)
+        //                alert.addAction(alertAction)
+        //                self.present(alert, animated: true, completion: nil)
+        //                print("error")
+        //            }
+        //        })
+        
     }
     func loginFailed(){
         let alert = UIAlertController(title: "Login Failed", message: "Email or password Incorrect", preferredStyle: .alert)
@@ -199,7 +217,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         activityIndicator.isHidden = true
         activityIndicator.stopAnimating()
         print("error")
-
+        
     }
     
     

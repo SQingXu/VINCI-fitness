@@ -95,7 +95,7 @@ class MapViewController: UIViewController,GMSMapViewDelegate{
     }
     func getActivities(){
         let apiService = APIService()
-        apiService.createMutableAnonRequest(URL(string:"https://vinci-server.herokuapp.com/map/app-data"), method: "GET", parameters: nil,requestCompletionFunction: {responseCode, json in
+        apiService.createMutableAnonRequest(URL(string:"https://vincilive.herokuapp.com/map/get-data"), method: "POST", parameters: nil,requestCompletionFunction: {responseCode, json in
             if responseCode/100 == 2{
                 //print(json)
                 var updatedArray = [Maker]()

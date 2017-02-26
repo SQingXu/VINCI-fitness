@@ -15,9 +15,9 @@ class APIServiceController{
     let apiService = APIService()
     var dateFormatter = DateFormatter()
     func getActivities(){
-        apiService.createMutableAnonRequest(URL(string:"https:vinci-server.herokuapp.com/map/app-data"), method: "GET", parameters: nil, requestCompletionFunction: {responseCode, json in
+        apiService.createMutableAnonRequest(URL(string:"https://vincilive.herokuapp.com/map/get-data"), method: "POST", parameters: ["range":"30" as AnyObject,"lat":"35.8" as AnyObject,"lng":"-78.775" as AnyObject], requestCompletionFunction: {responseCode, json in
             if responseCode/100 == 2{
-                //print(json)
+                print(json)
                 var updatedArray = [Maker]()
                 for (_,maker) in json["markerArray"]{
                     let newMaker = Maker()
@@ -60,55 +60,64 @@ class APIServiceController{
                 print("error")
             }
         })
-//        apiService.executeRequest(request, requestCompletionFunction: {responseCode, json in
-//            if responseCode/100 == 2{
-//                //print(json)
-//                var updatedArray = [Maker]()
-//                for (_,maker) in json["markerArray"]{
-//                    let newMaker = Maker()
-//                    newMaker.placeName = maker["address"].stringValue
-//                    let latitude = Double(maker["position"]["lat"].stringValue)
-//                    if latitude != nil{
-//                        newMaker.position.latitude = latitude!
-//                    }
-//                    let longitude = Double(maker["position"]["lng"].stringValue)
-//                    if longitude != nil{
-//                        newMaker.position.longitude = longitude!
-//                    }
-//                    var boolValue = false
-//                    var matchedMarker:Maker = Maker()
-//                    for almarker in updatedArray{
-//                        if (almarker.placeName == newMaker.placeName) && (almarker.position.latitude == newMaker.position.latitude)&&(almarker.position.longitude == newMaker.position.longitude){
-//                            boolValue = true
-//                            matchedMarker = almarker
-//                            break
-//                        }
-//                    }
-//                    if !boolValue{
-//                        let newActivity = Activity()
-//                        newActivity.name = maker["title"].stringValue
-//                        newMaker.activityList.append(newActivity)
-//                        updatedArray.append(newMaker)
-//                    }else{
-//                        let newActivity = Activity()
-//                        newActivity.name = maker["title"].stringValue
-//                        matchedMarker.activityList.append(newActivity)
-//                    }
-//                    print(maker["address"].stringValue)
-//                    
-//                }
-//                MakerController.sharedInstance.currentMakers = updatedArray
-//                print(json)
-//                print(responseCode)
-//            }
-//            else {
-//                print(responseCode)
-//                print("error")
-//            }
-//        })
+        //        apiService.executeRequest(request, requestCompletionFunction: {responseCode, json in
+        //            if responseCode/100 == 2{
+        //                //print(json)
+        //                var updatedArray = [Maker]()
+        //                for (_,maker) in json["markerArray"]{
+        //                    let newMaker = Maker()
+        //                    newMaker.placeName = maker["address"].stringValue
+        //                    let latitude = Double(maker["position"]["lat"].stringValue)
+        //                    if latitude != nil{
+        //                        newMaker.position.latitude = latitude!
+        //                    }
+        //                    let longitude = Double(maker["position"]["lng"].stringValue)
+        //                    if longitude != nil{
+        //                        newMaker.position.longitude = longitude!
+        //                    }
+        //                    var boolValue = false
+        //                    var matchedMarker:Maker = Maker()
+        //                    for almarker in updatedArray{
+        //                        if (almarker.placeName == newMaker.placeName) && (almarker.position.latitude == newMaker.position.latitude)&&(almarker.position.longitude == newMaker.position.longitude){
+        //                            boolValue = true
+        //                            matchedMarker = almarker
+        //                            break
+        //                        }
+        //                    }
+        //                    if !boolValue{
+        //                        let newActivity = Activity()
+        //                        newActivity.name = maker["title"].stringValue
+        //                        newMaker.activityList.append(newActivity)
+        //                        updatedArray.append(newMaker)
+        //                    }else{
+        //                        let newActivity = Activity()
+        //                        newActivity.name = maker["title"].stringValue
+        //                        matchedMarker.activityList.append(newActivity)
+        //                    }
+        //                    print(maker["address"].stringValue)
+        //
+        //                }
+        //                MakerController.sharedInstance.currentMakers = updatedArray
+        //                print(json)
+        //                print(responseCode)
+        //            }
+        //            else {
+        //                print(responseCode)
+        //                print("error")
+        //            }
+        //        })
     }
     func login(_ email: String, password: String){
-        apiService.createMutableAnonRequest(URL(string:"https://vinci-server.herokuapp.com/login-app"), method: "POST", parameters: ["email":"vincifitness@vincifitness.com" as AnyObject,"pass":"Vinci!Fit1" as AnyObject], requestCompletionFunction: {responseCode, json in
+        apiService.createMutableAnonRequest(URL(string:"https://vincilive.herokuapp.com/login"), method: "POST", parameters: ["email":"nicdavid@live.unc.edu" as AnyObject,"pass":"" as AnyObject], requestCompletionFunction: {responseCode, json in
+            
+            print("THE USER HAS PRESSED LOGIN2")
+            print("THE USER HAS PRESSED LOGIN2")
+            print("THE USER HAS PRESSED LOGIN2")
+            print("THE USER HAS PRESSED LOGIN2")
+            print("THE USER HAS PRESSED LOGIN2")
+            print("THE USER HAS PRESSED LOGIN2")
+            
+            
             if responseCode/100 == 2{
                 print(json)
                 print(responseCode)
@@ -130,8 +139,8 @@ class APIServiceController{
                 print("error")
             }
         })
-
-
+        
+        
     }
     func updatePersonalInfo(userId:String){
         if UserController.sharedInstance.userIds.contains(userId){
@@ -230,7 +239,7 @@ class APIServiceController{
                 
             }
         })
-
+        
     }
     func joinActivity(_ eventId: String){
         let userId = UserController.sharedInstance.currentUser.userId
@@ -242,11 +251,11 @@ class APIServiceController{
             }
             
         })
-
+        
     }
     
     func addActivity(_ activity: Activity, completeClosure: @escaping ()->Void ){
-        let userId = UserController.sharedInstance.currentUser.userId
+        //        let userId = UserController.sharedInstance.currentUser.userId
         let title = activity.name
         let address = activity.fullAddress
         let description = activity.description
@@ -255,7 +264,11 @@ class APIServiceController{
         let endTime = dateFormatter.string(from: activity.endTime as Date)
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let date = dateFormatter.string(from: activity.date as Date)
-        apiService.createHeaderRequest(URL(string: "https://vinci-server.herokuapp.com/map/app-create"), method: "POST", parameters: ["userId": userId as AnyObject,"title": title as AnyObject, "description": description as AnyObject, "address": address as AnyObject, "date":date as AnyObject, "startTime":startTime as AnyObject, "endTime": endTime as AnyObject, "privacy": "public" as AnyObject, "inviteeEmail": "" as AnyObject], requestCompletionFunction: {responseCode, json in
+        apiService.createHeaderRequest(URL(string: "https://vincilive.herokuapp.com/map/create"), method: "POST", parameters: ["title": title as AnyObject, "description": description as AnyObject, "address": address as AnyObject, "date":date as AnyObject, "startTime":startTime as AnyObject, "endTime": endTime as AnyObject, "eventPrivacy": "public" as AnyObject, "inviteeEmail": "" as AnyObject, "tag": "Social" as AnyObject], requestCompletionFunction: {responseCode, json in
+            
+            print(json)
+            print(responseCode)
+            
             if responseCode/100 == 2{
                 print("create activity successfully")
                 completeClosure()
@@ -265,16 +278,16 @@ class APIServiceController{
                 print(json)
             }
         })
-
-//        apiService.executeRequest(request, requestCompletionFunction: {responseCode, json in
-//            if responseCode/100 == 2{
-//                print("create activity successfully")
-//                print(json)
-//            }else{
-//                print("error")
-//                print(json)
-//            }
-//        })
+        
+        //        apiService.executeRequest(request, requestCompletionFunction: {responseCode, json in
+        //            if responseCode/100 == 2{
+        //                print("create activity successfully")
+        //                print(json)
+        //            }else{
+        //                print("error")
+        //                print(json)
+        //            }
+        //        })
     }
     
 }

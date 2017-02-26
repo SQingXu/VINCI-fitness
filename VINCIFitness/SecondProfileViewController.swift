@@ -32,7 +32,7 @@ class SecondProfileViewController: UIViewController,UITableViewDelegate, UITable
     var birthday:Date?
     let dateFormatter = DateFormatter()
     var tap:UITapGestureRecognizer = UITapGestureRecognizer()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         activityIndicator.isHidden = true
@@ -45,8 +45,8 @@ class SecondProfileViewController: UIViewController,UITableViewDelegate, UITable
         searchingField.placeholder = "Home Address"
         birthdayTextField.placeholder = "Birthday"
         self.tap = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
-//        var label = UILabel()
-//        label.lineBreakMode = .ByWordWrapping
+        //        var label = UILabel()
+        //        label.lineBreakMode = .ByWordWrapping
         
         showResultTable = false
         mapView.backgroundColor = UIColor.vinciRed()
@@ -54,7 +54,7 @@ class SecondProfileViewController: UIViewController,UITableViewDelegate, UITable
         let mainScreenSize = UIScreen.main.bounds
         birthdayTextField.delegate = self
         searchingField.delegate = self
-
+        
         //set up result table
         resultTable.register(UINib(nibName: "SearchTableViewCell", bundle: nil), forCellReuseIdentifier: "resultCell")
         resultTable.rowHeight = 45
@@ -101,7 +101,7 @@ class SecondProfileViewController: UIViewController,UITableViewDelegate, UITable
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return resultArray.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let newCell = tableView.dequeueReusableCell(withIdentifier: "resultCell") as! SearchTableViewCell
         newCell.addressLabel.text = NSMutableAttributedString(attributedString: resultArray[(indexPath as NSIndexPath).row].attributedPrimaryText).string
@@ -136,7 +136,7 @@ class SecondProfileViewController: UIViewController,UITableViewDelegate, UITable
         self.view.frame = self.view.frame.offsetBy(dx: 0,  dy: movement)
         UIView.commitAnimations()
     }
-
+    
     func hideResultTableView(){
         var frame = resultTable.frame
         frame.size.height = 0
@@ -185,12 +185,12 @@ class SecondProfileViewController: UIViewController,UITableViewDelegate, UITable
             self.present(alert, animated: true, completion: nil)
             
         }else{
-        UserController.sharedInstance.currentUser.homeAddressFull = fullString
-        UserController.sharedInstance.currentUser.birthday = birthday!
-        let currentUser = UserController.sharedInstance.currentUser
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let birthdayString = dateFormatter.string(from: currentUser.birthday as Date)
-        let apiService = APIService()
+            UserController.sharedInstance.currentUser.homeAddressFull = fullString
+            UserController.sharedInstance.currentUser.birthday = birthday!
+            let currentUser = UserController.sharedInstance.currentUser
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            let birthdayString = dateFormatter.string(from: currentUser.birthday as Date)
+            let apiService = APIService()
             doneButton.isEnabled = false
             activityIndicator.isHidden = false
             activityIndicator.startAnimating()
@@ -198,7 +198,14 @@ class SecondProfileViewController: UIViewController,UITableViewDelegate, UITable
                 responseCode, json1 in
                 if responseCode/100 == 2{
                     //log in with information
-                    apiService.createMutableAnonRequest(URL(string:"https://vinci-server.herokuapp.com/login-app"), method: "POST", parameters: ["email":currentUser.emailAddress as AnyObject,"pass":currentUser.password as AnyObject], requestCompletionFunction: {responseCode, json2 in
+                    apiService.createMutableAnonRequest(URL(string:"https://vincilive.herokuapp.com/login"), method: "POST", parameters: ["email":currentUser.emailAddress as AnyObject,"pass":currentUser.password as AnyObject], requestCompletionFunction: {responseCode, json2 in
+                        print("THE USER HAS PRESSED LOGIN6")
+                        print("THE USER HAS PRESSED LOGIN6")
+                        print("THE USER HAS PRESSED LOGIN6")
+                        print("THE USER HAS PRESSED LOGIN6")
+                        print("THE USER HAS PRESSED LOGIN6")
+                        print("THE USER HAS PRESSED LOGIN6")
+                        
                         if responseCode/100 == 2{
                             if json2["userId"].stringValue != ""{
                                 print(json2["userId"].stringValue)
@@ -207,20 +214,20 @@ class SecondProfileViewController: UIViewController,UITableViewDelegate, UITable
                                 //upload image profile
                                 if currentUser.imageData != nil{
                                     //user did select a image as profile
-                                let imageData = UIImageJPEGRepresentation(currentUser.imageData!,0.5)
-                                Alamofire.upload(multipartFormData:{multipartFormData in
-                                    multipartFormData.append(imageData!, withName: "profilePic", fileName: "this_is_a_file", mimeType: "image/jpeg")
-                                    multipartFormData.append(json2["userId"].stringValue.data(using: String.Encoding.utf8)!, withName: "userId")
+                                    let imageData = UIImageJPEGRepresentation(currentUser.imageData!,0.5)
+                                    Alamofire.upload(multipartFormData:{multipartFormData in
+                                        multipartFormData.append(imageData!, withName: "profilePic", fileName: "this_is_a_file", mimeType: "image/jpeg")
+                                        multipartFormData.append(json2["userId"].stringValue.data(using: String.Encoding.utf8)!, withName: "userId")
                                     }, to: "https://vinci-server.herokuapp.com/profile/app/upload-profile", encodingCompletion: {
                                         
                                         encodingResult in
                                         
                                         switch encodingResult {
                                         case .success(let upload, _, _):
-//                                            print("s")
+                                            //                                            print("s")
                                             upload.responseJSON {
                                                 response in
-//                                              serialization
+                                                //                                              serialization
                                                 
                                                 if let JSON = response.result.value {
                                                     print("json: \(JSON)")
@@ -254,12 +261,12 @@ class SecondProfileViewController: UIViewController,UITableViewDelegate, UITable
                                                                 
                                                             }
                                                         })
-
+                                                        
                                                     }else{
                                                         print("uploading bio error")
                                                         self.loginFailed()
                                                     }
-                                                
+                                                    
                                                 })
                                             }
                                         case .failure(let encodingError):
@@ -267,7 +274,7 @@ class SecondProfileViewController: UIViewController,UITableViewDelegate, UITable
                                             print("error in encoding")
                                             self.loginFailed()
                                         }
-                                })
+                                    })
                                 }else{
                                     //user did not select a picture
                                     apiService.createMutableAnonRequest(URL(string:"https://vinci-server.herokuapp.com/profile/app-upload-bio"), method: "POST", parameters: ["bio":currentUser.bio as AnyObject,"userId":currentUser.userId as AnyObject], requestCompletionFunction: {responseCode, json3 in
@@ -301,16 +308,16 @@ class SecondProfileViewController: UIViewController,UITableViewDelegate, UITable
                             self.loginFailed()
                         }
                     })
-
+                    
                 }else{
                     print(responseCode)
                     print("register error")
                     self.loginFailed()
                 }
             })
-
+            
         }
-
+        
     }
     
     func loginFailed(){
@@ -319,6 +326,6 @@ class SecondProfileViewController: UIViewController,UITableViewDelegate, UITable
         alert.addAction(alertAction)
         self.present(alert, animated: true, completion: nil)
     }
-
-
+    
+    
 }
