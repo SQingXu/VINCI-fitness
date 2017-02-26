@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SecondProfileViewController" customModule="VINCIFitness" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="x8n-WH-g56" id="0mo-iH-NzO"/>
+                <outlet property="bioLabel" destination="W6H-mD-kC3" id="iU3-JV-zWp"/>
+                <outlet property="bioTextView" destination="Alt-wZ-heP" id="Qff-O8-zDa"/>
                 <outlet property="birthdayTextField" destination="cOp-Jb-2Gf" id="ayp-PK-Py4"/>
                 <outlet property="birthdayView" destination="M18-RI-j99" id="udv-0L-r7j"/>
                 <outlet property="doneButton" destination="3Gc-Yq-pd3" id="uQG-94-wQC"/>
@@ -17,11 +22,10 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aIK-OS-NmZ" customClass="MapAutoCompleteTextField" customModule="VINCIFitness" customModuleProvider="target">
-                    <rect key="frame" x="190" y="80" width="220" height="40"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="220" id="86x-Nb-N9F"/>
                         <constraint firstAttribute="height" constant="40" id="sml-mD-7ir"/>
@@ -30,15 +34,13 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BbG-7u-zMj" userLabel="MapView">
-                    <rect key="frame" x="190" y="120" width="220" height="2"/>
-                    <color key="backgroundColor" red="0.92156862750000001" green="0.1843137255" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.92156862750000001" green="0.1843137255" blue="0.21960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="2" id="cxc-IF-jZI"/>
                         <constraint firstAttribute="width" constant="220" id="eYo-2e-n9N"/>
                     </constraints>
                 </view>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cOp-Jb-2Gf" userLabel="BirthDay Text Field" customClass="DatePickerTextField" customModule="VINCIFitness" customModuleProvider="target">
-                    <rect key="frame" x="190" y="180" width="220" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="dK2-gD-r7e"/>
                         <constraint firstAttribute="width" constant="220" id="jSy-3F-D9q"/>
@@ -47,24 +49,46 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M18-RI-j99" userLabel="BirthdayView">
-                    <rect key="frame" x="190" y="220" width="220" height="2"/>
-                    <color key="backgroundColor" red="0.92156862750000001" green="0.1843137255" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.92156862750000001" green="0.1843137255" blue="0.21960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="2" id="2uZ-td-4lb"/>
                         <constraint firstAttribute="width" constant="220" id="zJB-6N-VqN"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Gc-Yq-pd3">
-                    <rect key="frame" x="281.5" y="520" width="37" height="30"/>
-                    <state key="normal" title="Done"/>
+                    <color key="backgroundColor" red="0.92156862750000001" green="0.1843137255" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="140" id="Khz-RV-dSW"/>
+                        <constraint firstAttribute="height" constant="40" id="Wcq-hh-15M"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="Done">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
                     <connections>
                         <action selector="donePressed:" destination="-1" eventType="touchUpInside" id="Nd3-DU-Oa2"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W6H-mD-kC3">
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.92156862750000001" green="0.1843137255" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Alt-wZ-heP">
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="120" id="pFc-ul-tpN"/>
+                        <constraint firstAttribute="width" constant="220" id="qUY-Nr-Sw1"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="x8n-WH-g56"/>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="cOp-Jb-2Gf" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="9qL-Dx-8CP"/>
+                <constraint firstItem="Alt-wZ-heP" firstAttribute="top" secondItem="W6H-mD-kC3" secondAttribute="bottom" constant="5" id="Apq-83-7pT"/>
                 <constraint firstItem="BbG-7u-zMj" firstAttribute="top" secondItem="aIK-OS-NmZ" secondAttribute="bottom" id="BRn-Xh-ixf"/>
                 <constraint firstItem="aIK-OS-NmZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="CwT-4H-XS1"/>
                 <constraint firstItem="cOp-Jb-2Gf" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-100" id="EO5-d6-8B3"/>
@@ -72,7 +96,12 @@
                 <constraint firstItem="M18-RI-j99" firstAttribute="top" secondItem="cOp-Jb-2Gf" secondAttribute="bottom" id="KJ4-fu-DuX"/>
                 <constraint firstAttribute="bottom" secondItem="3Gc-Yq-pd3" secondAttribute="bottom" constant="50" id="Knv-VT-AOC"/>
                 <constraint firstItem="BbG-7u-zMj" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="M7c-LA-uRC"/>
+                <constraint firstItem="3Gc-Yq-pd3" firstAttribute="top" secondItem="x8n-WH-g56" secondAttribute="bottom" constant="40" id="NVP-gS-a68"/>
+                <constraint firstItem="x8n-WH-g56" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ekZ-r6-oZU"/>
+                <constraint firstItem="W6H-mD-kC3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="-110" id="gfu-RE-Uy3"/>
                 <constraint firstItem="M18-RI-j99" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="h4l-hr-HWh"/>
+                <constraint firstItem="Alt-wZ-heP" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="mhF-Lt-JbF"/>
+                <constraint firstItem="W6H-mD-kC3" firstAttribute="top" secondItem="M18-RI-j99" secondAttribute="bottom" constant="60" id="oBu-ai-jlw"/>
                 <constraint firstItem="3Gc-Yq-pd3" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="pp4-Xo-2gN"/>
             </constraints>
         </view>

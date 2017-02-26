@@ -43,8 +43,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabViewController.viewControllers = viewControllers
         
         //set up tab bar item
-        let mapTabItem = UITabBarItem(title: "Map", image: nil, selectedImage: nil)
-        let profileTabItem = UITabBarItem(title: "Profile", image: nil, selectedImage: nil)
+        let map_gray_image = resizeImage(image: UIImage(named: "map_icon_gray.png")!, newWidth: 40)
+        let map_red_image = resizeImage(image: UIImage(named: "map_icon_red.png")!, newWidth: 40)
+        let profile_gray_image = resizeImage(image: UIImage(named:"profile_icon_gray.png")!, newWidth: 45)
+        let profile_red_image = resizeImage(image: UIImage(named:"profile_icon_red.png")!, newWidth: 45)
+        
+        let mapTabItem = UITabBarItem(title: "", image: map_gray_image, selectedImage: map_red_image)
+        let profileTabItem = UITabBarItem(title: "", image: profile_gray_image, selectedImage: profile_red_image)
+        
         mapNavigationController.tabBarItem = mapTabItem
         profileNavigationController.tabBarItem = profileTabItem
         
@@ -74,7 +80,55 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    func resizeImage(image: UIImage, newWidth: CGFloat
+        ) -> UIImage {
+        
+        let scale = newWidth / image.size.width
+        let newHeight = image.size.height * scale
+        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight + 7))
+        image.draw(in: CGRect(x: 0, y: 7, width: newWidth, height: newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()?.withRenderingMode(.alwaysOriginal)
+        UIGraphicsEndImageContext()
+        
+//        let newRect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height).integral
+//        UIGraphicsBeginImageContextWithOptions(newSize, false, 0)
+//        let context = UIGraphicsGetCurrentContext()
+//        context!.interpolationQuality = .high
+//        let flipVertical =  __CGAffineTransformMake(1, 0, 0, -1, 0, newSize.height)
+//        context!.concatenate(flipVertical)
+//        context?.draw(image.cgImage!, in: newRect)
+//        let newImage = UIImage(cgImage: context!.makeImage()!)
+//        UIGraphicsEndImageContext()
+        return newImage!
+        
+        }
 
+
+
+}
+extension UIImage{
+    func maskWithColor(color: UIColor) -> UIImage? {
+        let maskImage = cgImage!
+        
+        let width = size.width
+        let height = size.height
+        let bounds = CGRect(x: 0, y: 0, width: width, height: height)
+        
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
+        let context = CGContext(data: nil, width: Int(width), height: Int(height), bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)!
+        
+        context.clip(to: bounds, mask: maskImage)
+        context.setFillColor(color.cgColor)
+        context.fill(bounds)
+        
+        if let cgImage = context.makeImage() {
+            let coloredImage = UIImage(cgImage: cgImage)
+            return coloredImage
+        } else {
+            return nil
+        }
+    }
 
 }
 

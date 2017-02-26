@@ -10,12 +10,73 @@ import UIKit
 
 class OnboardViewController: UIViewController {
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var vLabel: UILabel!
     @IBOutlet weak var signUpButton: UIButton!
+    let dateFormatter = DateFormatter()
     override func viewDidLoad() {
+        activityIndicator.isHidden = true
+        if let email = UserDefaults.standard.value(forKey: "email") as? String{
+            if let password = UserDefaults.standard.value(forKey: "password") as? String{
+                activityIndicator.isHidden = false
+                activityIndicator.startAnimating()
+                loginButton.isEnabled = false
+                signUpButton.isEnabled = false
+                UserController.sharedInstance.currentUser.emailAddress = email
+                UserController.sharedInstance.currentUser.password = password
+                let apiService = APIService()
+                apiService.createMutableAnonRequest(URL(string:"https://vinci-server.herokuapp.com/login-app"), method: "POST", parameters: ["email":email as AnyObject,"pass":password as AnyObject], requestCompletionFunction: {responseCode, json in
+                    //print(json)
+                    if responseCode/100 == 2{
+                        if json["userId"].stringValue != ""{
+                            self.dismiss(animated: true, completion: nil)
+                            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                            let application = UIApplication.shared
+                            let window = application.keyWindow
+                            print(json["userId"].stringValue)
+                            //set user default
+                            UserController.sharedInstance.currentUser.userId = json["userId"].stringValue
+                            UserController.sharedInstance.viewedUser = UserController.sharedInstance.currentUser
+                            let userId = UserController.sharedInstance.currentUser.userId
+                            apiService.createHeaderRequest(URL(string: "https://vinci-server.herokuapp.com/profile/app/" + userId), method: "GET", parameters: nil, requestCompletionFunction: {
+                                responseCode, json in
+                                self.loginButton.isEnabled = true
+                                self.signUpButton.isEnabled = true
+                                if responseCode/100 == 2{
+                                    UserController.sharedInstance.currentUser.bio = json["biography"].stringValue
+                                    UserController.sharedInstance.currentUser.profileImageURL = json["imageProfile"].stringValue
+                                    UserController.sharedInstance.currentUser.firstName = json["firstName"].stringValue
+                                    UserController.sharedInstance.currentUser.lastName = json["lastName"].stringValue
+                                    self.dateFormatter.dateFormat = "yyyy-MM-dd"
+                                    UserController.sharedInstance.currentUser.birthday = self.dateFormatter.date(from: json["birthday"].stringValue)!
+                                    UserController.sharedInstance.currentUser.homeAddressFull = json["address"].stringValue
+                                    UserController.sharedInstance.currentUser.coverImageUrl = json["imageCover"].stringValue
+                                    UserController.sharedInstance.viewedUser = UserController.sharedInstance.currentUser
+                                    self.activityIndicator.isHidden = true
+                                    self.activityIndicator.stopAnimating()
+                                    window?.rootViewController = appDelegate.initTabBarController()
+                                }else{
+                                    print("error")
+                                    
+                                }
+                            })
+
+                        }else{
+                            
+                        }
+                        
+                    }else{
+                        self.loginButton.isEnabled = true
+                        self.signUpButton.isEnabled = true
+                        self.activityIndicator.isHidden = true
+                        self.activityIndicator.stopAnimating()
+                    }
+                })
+
+            }
+        }
+        
         super.viewDidLoad()
-        vLabel.textColor = UIColor.vinciRed()
         loginButton.setTitleColor(UIColor.white, for: UIControlState())
         loginButton.backgroundColor = UIColor.vinciRed()
         loginButton.layer.cornerRadius = 5
@@ -39,16 +100,5 @@ class OnboardViewController: UIViewController {
     @IBAction func signupPressed(_ sender: UIButton) {
         self.present(SignupViewController(), animated: true, completion: nil)
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

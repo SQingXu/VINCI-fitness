@@ -47,10 +47,11 @@ class DatePickerTextField: UITextField {
         self.inputAccessoryView = keyBoardTool
         
     }
+    
     func translateDate(){
         dateFormatter.dateStyle = .medium
-        let dateString = dateFormatter.string(from: datePicker.date)
-        selectedDate = datePicker.date
+        let dateString = dateFormatter.string(from: self.datePicker.date)
+        selectedDate = self.datePicker.date
         self.text = dateString
     }
     func setMode(){

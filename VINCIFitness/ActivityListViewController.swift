@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class ActivityListViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     @IBOutlet weak var closeButton: UIButton!
@@ -23,9 +24,14 @@ class ActivityListViewController: UIViewController,UITableViewDelegate,UITableVi
         ActivityList = ActivityController.sharedInstance.currentShownActivities
         
     }
+    override func viewDidAppear(_ animated: Bool) {
+        ActivityList = ActivityController.sharedInstance.currentShownActivities
+        tableView.reloadData()
+    }
 
     @IBAction func closeButtonTapped(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
+        ActivityController.sharedInstance.profile_activity_list = false
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ActivityList.count

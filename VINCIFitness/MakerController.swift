@@ -13,4 +13,10 @@ class MakerController{
     
     var currentMakers = [Maker]()
     var currentMaker:Maker?
+    func removeParticipator(eventId: String, userId: String){
+        
+    }
+    func clearOut(){
+        currentMakers = [Maker]()
+    }
 }

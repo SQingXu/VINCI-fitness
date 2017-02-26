@@ -53,7 +53,6 @@ class APIServiceController{
                     
                 }
                 MakerController.sharedInstance.currentMakers = updatedArray
-                print(json)
                 print(responseCode)
             }
             else {
@@ -118,15 +117,6 @@ class APIServiceController{
                 print("error")
             }
         })
-//        apiService.executeRequest(request, requestCompletionFunction: {responseCode, json in
-//            if responseCode/100 == 2{
-//                print(json)
-//                print(responseCode)
-//            }else{
-//                print(responseCode)
-//                print("error")
-//            }
-//        })
         
     }
     func register(_ email: String, password: String, address: String, firstName: String, lastName: String, birthday: String){
@@ -141,16 +131,59 @@ class APIServiceController{
             }
         })
 
-//        apiService.executeRequest(request, requestCompletionFunction: {
-//            responseCode, json in
-//            if responseCode/100 == 2{
-//                print(json)
-//                print(responseCode)
-//            }else{
-//                print(responseCode)
-//                print("error")
-//            }
-//        })
+
+    }
+    func updatePersonalInfo(userId:String){
+        if UserController.sharedInstance.userIds.contains(userId){
+            for (index, key) in UserController.sharedInstance.users.enumerated(){
+                if key.userId == userId{
+                    apiService.createHeaderRequest(URL(string: "https://vinci-server.herokuapp.com/profile/app/"+userId), method: "GET", parameters: nil, requestCompletionFunction: {
+                        responseCode, json in
+                        if responseCode/100 == 2{
+                            let newUser = User(emailAddress: "")
+                            newUser.userId = userId
+                            newUser.bio = json["biography"].stringValue
+                            newUser.profileImageURL = json["imageProfile"].stringValue
+                            newUser.firstName = json["firstName"].stringValue
+                            newUser.lastName = json["lastName"].stringValue
+                            newUser.coverImageUrl = json["imageCover"].stringValue
+                            self.dateFormatter.dateFormat = "yyyy-MM-dd"
+                            newUser.birthday = self.dateFormatter.date(from: json["birthday"].stringValue)!
+                            newUser.homeAddressFull = json["address"].stringValue
+                            UserController.sharedInstance.users[index] = newUser
+                        }else{
+                            print("error")
+                            
+                        }
+                    })
+                    break
+                }
+            }
+        }else{
+            //append
+            UserController.sharedInstance.userIds.append(userId)
+            apiService.createHeaderRequest(URL(string: "https://vinci-server.herokuapp.com/profile/app/"+userId), method: "GET", parameters: nil, requestCompletionFunction: {
+                responseCode, json in
+                if responseCode/100 == 2{
+                    let newUser = User(emailAddress: "")
+                    newUser.userId = userId
+                    newUser.bio = json["biography"].stringValue
+                    newUser.profileImageURL = json["imageProfile"].stringValue
+                    newUser.firstName = json["firstName"].stringValue
+                    newUser.lastName = json["lastName"].stringValue
+                    newUser.coverImageUrl = json["imageCover"].stringValue
+                    self.dateFormatter.dateFormat = "yyyy-MM-dd"
+                    newUser.birthday = self.dateFormatter.date(from: json["birthday"].stringValue)!
+                    newUser.homeAddressFull = json["address"].stringValue
+                    UserController.sharedInstance.users.append(newUser)
+                }else{
+                    print("error")
+                    
+                }
+            })
+            
+        }
+        
     }
     
     func loadingPersonInfo(_ userId: String){
@@ -158,13 +191,13 @@ class APIServiceController{
         apiService.createHeaderRequest(URL(string: "https://vinci-server.herokuapp.com/profile/app/"+userId), method: "GET", parameters: nil, requestCompletionFunction: {
             responseCode, json in
             if responseCode/100 == 2{
-                print(json)
                 let newUser = User(emailAddress: "")
                 newUser.userId = userId
                 newUser.bio = json["biography"].stringValue
                 newUser.profileImageURL = json["imageProfile"].stringValue
                 newUser.firstName = json["firstName"].stringValue
                 newUser.lastName = json["lastName"].stringValue
+                newUser.coverImageUrl = json["imageCover"].stringValue
                 self.dateFormatter.dateFormat = "yyyy-MM-dd"
                 newUser.birthday = self.dateFormatter.date(from: json["birthday"].stringValue)!
                 newUser.homeAddressFull = json["address"].stringValue
@@ -174,26 +207,6 @@ class APIServiceController{
                 
             }
         })
-
-//        apiService.executeRequest(request, requestCompletionFunction: {
-//            responseCode, json in
-//            if responseCode/100 == 2{
-//                print(json)
-//                let newUser = User(emailAddress: "")
-//                newUser.userId = userId
-//                newUser.bio = json["biography"].stringValue
-//                newUser.profileImageURL = json["imageProfile"].stringValue
-//                newUser.firstName = json["firstName"].stringValue
-//                newUser.lastName = json["lastName"].stringValue
-//                self.dateFormatter.dateFormat = "yyyy-MM-dd"
-//                newUser.birthday = self.dateFormatter.date(from: json["birthday"].stringValue)!
-//                newUser.homeAddressFull = json["address"].stringValue
-//                UserController.sharedInstance.users.append(newUser)
-//            }else{
-//                print("error")
-//                
-//            }
-//        })
         
         
     }
@@ -209,6 +222,7 @@ class APIServiceController{
                 UserController.sharedInstance.currentUser.lastName = json["lastName"].stringValue
                 self.dateFormatter.dateFormat = "yyyy-MM-dd"
                 UserController.sharedInstance.currentUser.birthday = self.dateFormatter.date(from: json["birthday"].stringValue)!
+                UserController.sharedInstance.currentUser.coverImageUrl = json["imageCover"].stringValue
                 UserController.sharedInstance.currentUser.homeAddressFull = json["address"].stringValue
                 UserController.sharedInstance.viewedUser = UserController.sharedInstance.currentUser
             }else{
@@ -216,23 +230,6 @@ class APIServiceController{
                 
             }
         })
-//        apiService.executeRequest(request, requestCompletionFunction: {
-//            responseCode, json in
-//            if responseCode/100 == 2{
-//                print(json)
-//                UserController.sharedInstance.currentUser.bio = json["biography"].stringValue
-//                UserController.sharedInstance.currentUser.profileImageURL = json["imageProfile"].stringValue
-//                UserController.sharedInstance.currentUser.firstName = json["firstName"].stringValue
-//                UserController.sharedInstance.currentUser.lastName = json["lastName"].stringValue
-//                self.dateFormatter.dateFormat = "yyyy-MM-dd"
-//                UserController.sharedInstance.currentUser.birthday = self.dateFormatter.date(from: json["birthday"].stringValue)!
-//                UserController.sharedInstance.currentUser.homeAddressFull = json["address"].stringValue
-//                UserController.sharedInstance.viewedUser = UserController.sharedInstance.currentUser
-//            }else{
-//                print("error")
-//                
-//            }
-//        })
 
     }
     func joinActivity(_ eventId: String){
@@ -245,22 +242,15 @@ class APIServiceController{
             }
             
         })
-//        apiService.executeRequest(request, requestCompletionFunction: {responseCode, json in
-//            if responseCode/100 == 2{
-//                print(json)
-//            }else{
-//                print("error in joining activity")
-//            }
-//        
-//        })
+
     }
     
-    func addActivity(_ activity: Activity){
+    func addActivity(_ activity: Activity, completeClosure: @escaping ()->Void ){
         let userId = UserController.sharedInstance.currentUser.userId
         let title = activity.name
         let address = activity.fullAddress
         let description = activity.description
-        dateFormatter.dateFormat = "hh:mm:ss"
+        dateFormatter.dateFormat = "HH:mm:ss"
         let startTime = dateFormatter.string(from: activity.startTime as Date)
         let endTime = dateFormatter.string(from: activity.endTime as Date)
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -268,6 +258,7 @@ class APIServiceController{
         apiService.createHeaderRequest(URL(string: "https://vinci-server.herokuapp.com/map/app-create"), method: "POST", parameters: ["userId": userId as AnyObject,"title": title as AnyObject, "description": description as AnyObject, "address": address as AnyObject, "date":date as AnyObject, "startTime":startTime as AnyObject, "endTime": endTime as AnyObject, "privacy": "public" as AnyObject, "inviteeEmail": "" as AnyObject], requestCompletionFunction: {responseCode, json in
             if responseCode/100 == 2{
                 print("create activity successfully")
+                completeClosure()
                 print(json)
             }else{
                 print("error")

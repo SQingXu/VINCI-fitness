@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignupViewController" customModule="VINCIFitness" customModuleProvider="target">
@@ -25,36 +29,36 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y1Z-cO-mLa" userLabel="LeftView">
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y1Z-cO-mLa" userLabel="LeftView">
                     <rect key="frame" x="135" y="404" width="90" height="2"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="2" id="Nca-rE-s3t"/>
                         <constraint firstAttribute="width" constant="90" id="inn-BX-0ek"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LeR-LS-IPN" userLabel="RightView">
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LeR-LS-IPN" userLabel="RightView">
                     <rect key="frame" x="375" y="404" width="90" height="2"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="2" id="N3e-ji-ptB"/>
                         <constraint firstAttribute="width" constant="90" id="PAQ-sq-AG1"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XL6-ET-N5j" userLabel="RoundView">
-                    <rect key="frame" x="280" y="385" width="40" height="40"/>
+                    <rect key="frame" x="168" y="430" width="40" height="40"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GXH-Wm-68Z">
-                            <rect key="frame" x="10" y="9" width="19" height="21"/>
+                            <rect key="frame" x="10" y="10" width="19" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="GXH-Wm-68Z" firstAttribute="centerX" secondItem="XL6-ET-N5j" secondAttribute="centerX" id="3oJ-IO-g0d"/>
                         <constraint firstAttribute="height" constant="40" id="Hl9-Kx-hXM"/>
@@ -63,72 +67,72 @@
                     </constraints>
                 </view>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d46-9e-FwE" userLabel="EmailField" customClass="ValidateEmailTextField" customModule="VINCIFitness" customModuleProvider="target">
-                    <rect key="frame" x="210" y="145" width="180" height="21"/>
+                    <rect key="frame" x="78" y="162" width="220" height="24"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="180" id="DgP-Lu-XWO"/>
+                        <constraint firstAttribute="width" constant="220" id="DgP-Lu-XWO"/>
                     </constraints>
-                    <color key="textColor" red="0.92156862750000001" green="0.1843137255" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.92156862750000001" green="0.1843137255" blue="0.21960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5yr-IM-1ht" userLabel="ConfirmPasswordTextField" customClass="ConfirmPasswordTextField" customModule="VINCIFitness" customModuleProvider="target">
-                    <rect key="frame" x="210" y="259" width="180" height="21"/>
+                    <rect key="frame" x="78" y="288" width="220" height="24"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="180" id="UYe-bJ-gcR"/>
+                        <constraint firstAttribute="width" constant="220" id="UYe-bJ-gcR"/>
                     </constraints>
-                    <color key="textColor" red="0.92156862750000001" green="0.1843137255" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.92156862750000001" green="0.1843137255" blue="0.21960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                 </textField>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mMm-Tc-xbf" userLabel="EmailView">
-                    <rect key="frame" x="210" y="173" width="180" height="2"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <rect key="frame" x="77.5" y="193" width="220" height="2"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="2" id="nc1-Je-Cqk"/>
-                        <constraint firstAttribute="width" constant="180" id="uvH-iD-PBF"/>
+                        <constraint firstAttribute="width" constant="220" id="uvH-iD-PBF"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0KQ-ZD-EZi" userLabel="PasswordView">
-                    <rect key="frame" x="210" y="242" width="180" height="2"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <rect key="frame" x="77.5" y="269" width="220" height="2"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="2" id="1df-AA-Z06"/>
-                        <constraint firstAttribute="width" constant="180" id="SDE-sm-fYM"/>
+                        <constraint firstAttribute="width" constant="220" id="SDE-sm-fYM"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xqy-Za-XgS" userLabel="ConfirmPasswordView">
-                    <rect key="frame" x="210" y="287" width="180" height="2"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <rect key="frame" x="77.5" y="319" width="220" height="2"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="180" id="o8h-Io-B5G"/>
+                        <constraint firstAttribute="width" constant="220" id="o8h-Io-B5G"/>
                         <constraint firstAttribute="height" constant="2" id="pFD-Cv-qkj"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AIu-TY-7OI">
-                    <rect key="frame" x="210" y="318" width="180" height="35"/>
-                    <color key="backgroundColor" red="0.92156862750000001" green="0.1843137255" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="98" y="351" width="180" height="45"/>
+                    <color key="backgroundColor" red="0.92156862750000001" green="0.1843137255" blue="0.21960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="35" id="1GE-c8-OF1"/>
+                        <constraint firstAttribute="height" constant="45" id="1GE-c8-OF1"/>
                         <constraint firstAttribute="width" constant="180" id="9B3-6T-jRk"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
                     <state key="normal" title="Next Step">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="nextStepPressed:" destination="-1" eventType="touchUpInside" id="wOJ-Dh-jdi"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Klj-b5-Me9">
-                    <rect key="frame" x="200" y="475" width="200" height="40"/>
-                    <color key="backgroundColor" red="0.20000000000000001" green="0.50588235290000005" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="68" y="528" width="240" height="45"/>
+                    <color key="backgroundColor" red="0.20000000000000001" green="0.50588235290000005" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="5dc-Vt-sKT"/>
-                        <constraint firstAttribute="width" constant="200" id="xFC-R9-9kz"/>
+                        <constraint firstAttribute="height" constant="45" id="5dc-Vt-sKT"/>
+                        <constraint firstAttribute="width" constant="240" id="xFC-R9-9kz"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <state key="normal" title="Sign up with Facebook">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="signupFacebookPressed:" destination="-1" eventType="touchUpInside" id="ZX7-BY-KVE"/>
@@ -146,16 +150,16 @@
                     </connections>
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z0i-lt-jv9" userLabel="PasswordField" customClass="ValidatePasswordField" customModule="VINCIFitness" customModuleProvider="target">
-                    <rect key="frame" x="210" y="214" width="180" height="21"/>
+                    <rect key="frame" x="78" y="238" width="220" height="24"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="180" id="TTP-od-97T"/>
+                        <constraint firstAttribute="width" constant="220" id="TTP-od-97T"/>
                     </constraints>
-                    <color key="textColor" red="0.92156862750000001" green="0.1843137255" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.92156862750000001" green="0.1843137255" blue="0.21960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                 </textField>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Klj-b5-Me9" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" multiplier="1.65" id="20y-QK-D2K"/>
                 <constraint firstItem="0KQ-ZD-EZi" firstAttribute="top" secondItem="z0i-lt-jv9" secondAttribute="bottom" constant="7" id="2Nq-QR-Gcv"/>

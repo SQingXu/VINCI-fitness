@@ -57,7 +57,7 @@ class SignupViewController: UIViewController,UITextFieldDelegate {
         }else{
             UserController.sharedInstance.currentUser.emailAddress = emailTextField.text!
             UserController.sharedInstance.currentUser.password = passwordTextField.text!
-            self.present(SignupProfileViewController(), animated: true, completion: nil)
+            self.present(SignUpPageViewController(), animated: true, completion: nil)
         }
         
     }
@@ -82,14 +82,22 @@ class SignupViewController: UIViewController,UITextFieldDelegate {
                 let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, first_name,last_name, picture.type(large),email,gender,age_range"])
                 graphRequest.start(completionHandler: {(connection, result, error) -> Void in
                     if error == nil{
-                        print(result)
+                        //print(result)
                         let data:[String:AnyObject] = result as! [String : AnyObject]
                         //let url = result.value(forKey: "picture")?.value(forKey: "data")?.value(forKey: "url")
-                        //let url = data["picture"]?.value(forKey: "data")?.value(value(forKey: "url"))
-//                        if url != nil{
+//                        let url = data["picture"]?["data"]["url"]
+////                        if url != nil{
 //                            print(url)
 //                            UserController.sharedInstance.currentUser.profileImageURL = url as! String
 //                        }
+                        let picture:[String:AnyObject] = data["picture"] as! [String: AnyObject]
+                        let pic_data:[String:AnyObject] = picture["data"] as! [String: AnyObject]
+                        let url = pic_data["url"]
+                        if url != nil{
+                            UserController.sharedInstance.currentUser.profileImageURL = url as! String
+                            print(url)
+                        }
+                    
                         let emailString = data["email"]
                         if emailString != nil{
                             UserController.sharedInstance.currentUser.emailAddress = emailString as! String
@@ -107,6 +115,8 @@ class SignupViewController: UIViewController,UITextFieldDelegate {
                             UserController.sharedInstance.currentUser.facebookID = facebookId as! String
                             UserController.sharedInstance.currentUser.password = facebookId as! String
                         }
+                        
+                        
                         let dict = data["age_range"] as? [String:Int]
                         if dict == nil{
                             print("nil")

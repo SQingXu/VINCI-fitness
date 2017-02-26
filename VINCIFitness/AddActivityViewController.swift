@@ -12,6 +12,8 @@ import GooglePlacePicker
 import GooglePlaces
 
 class AddActivityViewController: UIViewController,UITableViewDelegate, UITableViewDataSource,UITextFieldDelegate, UITextViewDelegate{
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     var searchingField = MapAutoCompleteTextField()
     var dateField = DatePickerTextField()
     @IBOutlet weak var toView: UIView!
@@ -37,16 +39,23 @@ class AddActivityViewController: UIViewController,UITableViewDelegate, UITableVi
     var startTime = Date()
     var endTime = Date()
     var tap:UITapGestureRecognizer = UITapGestureRecognizer()
+    var cancelButton = UIBarButtonItem()
+    var doneButton = UIBarButtonItem()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         let mainScreenSize = UIScreen.main.bounds
         showResultTable = false
         //set navigation item
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.cancelPressed(_:)))
-        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.donePressed(_:)))
+        activityIndicator.isHidden = true
+        cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.cancelPressed(_:)))
+        doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.donePressed(_:)))
+        cancelButton.tintColor = UIColor.vinciRed()
+        doneButton.tintColor = UIColor.vinciRed()
         self.navigationItem.setLeftBarButton(cancelButton, animated: true)
         self.navigationItem.setRightBarButton(doneButton, animated: true)
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.tabBarController?.tabBar.isTranslucent = false
         self.tap = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         //set delegate
         searchingField.delegate = self
@@ -60,7 +69,7 @@ class AddActivityViewController: UIViewController,UITableViewDelegate, UITableVi
         
         if ActivityController.sharedInstance.editingActivity == false{
         notesLabel.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.48 * mainScreenSize.height, width: 40, height: 10)
-        descriptionField.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.5 * mainScreenSize.height, width: 0.8 * mainScreenSize.width, height: 100)
+        descriptionField.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.5 * mainScreenSize.height, width: 0.8 * mainScreenSize.width, height: 120)
         titleField.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.1 * mainScreenSize.height, width: 0.8 * mainScreenSize.width, height: 40)
         dateField.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.3 * mainScreenSize.height, width: 0.8 * mainScreenSize.width, height: 40)
         searchingField.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.2 * mainScreenSize.height, width: 0.8 * mainScreenSize.width, height: 40)
@@ -69,7 +78,7 @@ class AddActivityViewController: UIViewController,UITableViewDelegate, UITableVi
         resultTable.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.2 * mainScreenSize.height + 50, width: 0.8 * mainScreenSize.width, height: 0)
         }else{
             notesLabel.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.48 * mainScreenSize.height + 54, width: 40, height: 10)
-            descriptionField.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.5 * mainScreenSize.height + 54, width: 0.8 * mainScreenSize.width, height: 100)
+            descriptionField.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.5 * mainScreenSize.height + 54, width: 0.8 * mainScreenSize.width, height: 120)
             titleField.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.1 * mainScreenSize.height + 54, width: 0.8 * mainScreenSize.width, height: 40)
             dateField.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.3 * mainScreenSize.height + 54, width: 0.8 * mainScreenSize.width, height: 40)
             searchingField.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.2 * mainScreenSize.height + 54, width: 0.8 * mainScreenSize.width, height: 40)
@@ -127,6 +136,8 @@ class AddActivityViewController: UIViewController,UITableViewDelegate, UITableVi
         descriptionField.layer.borderWidth = 1
         descriptionField.layer.borderColor = UIColor.vinciGrey().cgColor
         descriptionField.tintColor = UIColor.vinciRed()
+        //descriptionField.font = UIFont(name: (descriptionField.font?.fontName)!, size: 17)
+        descriptionField.font = UIFont.systemFont(ofSize: 17)
         titleField.layer.borderWidth = 1
         titleField.layer.borderColor = UIColor.vinciGrey().cgColor
         titleField.borderStyle = .roundedRect
@@ -257,13 +268,50 @@ class AddActivityViewController: UIViewController,UITableViewDelegate, UITableVi
         UIView.commitAnimations()
     }
     func cancelPressed(_ sender: UIBarButtonItem){
-        self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
        //self.navigationController?.popToRootViewController(animated: true)
     }
     func donePressed(_ sender:UIBarButtonItem){
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        doneButton.isEnabled = false
+        cancelButton.isEnabled = false
         selectedDate = dateField.selectedDate as Date
         startTime = beginTimeField.selectedTime as Date
         endTime = endTimeField.selectedTime as Date
+        if (dateField.text == "" || beginTimeField.text == "" || endTimeField.text == ""){
+            let alert = UIAlertController(title: "Invalid", message: "Information you entered is incomplete", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "Dismiss", style: .default, handler: nil)
+            alert.addAction(alertAction)
+            self.present(alert, animated: true, completion: nil)
+            doneButton.isEnabled = true
+            cancelButton.isEnabled = true
+            activityIndicator.isHidden = true
+            activityIndicator.stopAnimating()
+            return
+        }
+        if (endTimeField.selectedTime.compare(beginTimeField.selectedTime) == .orderedAscending){
+            let alert = UIAlertController(title: "Invalid", message: "The time your entered is invalid", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "Dismiss", style: .default, handler: nil)
+            alert.addAction(alertAction)
+            self.present(alert, animated: true, completion: nil)
+            doneButton.isEnabled = true
+            cancelButton.isEnabled = true
+            activityIndicator.isHidden = true
+            activityIndicator.stopAnimating()
+            return
+        }
+        if (dateField.selectedDate.compare(Date()) == .orderedAscending){
+            let alert = UIAlertController(title: "Invalid", message: "The date your entered has already passed", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "Dismiss", style: .default, handler: nil)
+            alert.addAction(alertAction)
+            self.present(alert, animated: true, completion: nil)
+            doneButton.isEnabled = true
+            cancelButton.isEnabled = true
+            activityIndicator.isHidden = true
+            activityIndicator.stopAnimating()
+            return
+        }
         let newActivity = Activity()
         newActivity.date = selectedDate
         newActivity.startTime = startTime
@@ -271,37 +319,13 @@ class AddActivityViewController: UIViewController,UITableViewDelegate, UITableVi
         newActivity.description = descriptionField.text
         newActivity.name = titleField.text!
         newActivity.fullAddress = fullAddressString
-        APIServiceController.sharedInstance.addActivity(newActivity)
-        self.navigationController?.popViewController(animated: true)
-//        placeClient.lookUpPlaceID(placeID, callback: {(place:GMSPlace?, error: NSError?) -> Void in
-//            if error != nil{
-//                print("\(error?.localizedDescription)")
-//            }
-//            if let place = place{
-//                print(self.placeID)
-//                let selectedMaker = Maker()
-//                selectedMaker.placeID = self.placeID
-//                selectedMaker.position = place.coordinate
-//                selectedMaker.placeName = self.previousString
-//                MakerController.sharedInstance.currentMaker = selectedMaker
-//                var boolMatch = false
-//                for maker in MakerController.sharedInstance.currentMakers{
-//                    if maker.placeID == self.placeID{
-//                        boolMatch = true
-//                        maker.activityList.append(newActivity)
-//                        break
-//                    }
-//                }
-//                if boolMatch == false{
-//                   selectedMaker.activityList.append(newActivity)
-//                   MakerController.sharedInstance.currentMakers.append(selectedMaker)
-//                }
-//                self.navigationController?.popViewControllerAnimated(true)
-//            }else{
-//                print("no such palce found")
-//            }
-//        })
-    }
+        APIServiceController.sharedInstance.addActivity(newActivity, completeClosure: {
+            self.doneButton.isEnabled = true
+            self.cancelButton.isEnabled = true
+            self.activityIndicator.isHidden = true
+            self.activityIndicator.stopAnimating()
+            _ = self.navigationController?.popViewController(animated: true)})
+        }
     override func viewWillDisappear(_ animated: Bool) {
         ActivityController.sharedInstance.editingActivity = false
     }
@@ -312,33 +336,41 @@ class AddActivityViewController: UIViewController,UITableViewDelegate, UITableVi
     }
    
     @IBAction func finishEdPressed(_ sender: AnyObject) {
-        let selectedDate = dateField.selectedDate
-        dateFormatter.dateFormat = "hh:mm:ss"
+        dateFormatter.dateFormat = "HH:mm:ss"
         let startTime = dateFormatter.string(from: beginTimeField.selectedTime as Date)
+        print(startTime)
         let endTime = dateFormatter.string(from: endTimeField.selectedTime as Date)
+        print(endTime)
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        let date = dateFormatter.string(from: selectedDate as Date)
+        let date = dateFormatter.string(from: dateField.selectedDate as Date)
+        if (startTime == "" || endTime == "" || date == ""){
+            let alert = UIAlertController(title: "Invalid", message: "Information you entered is incorrect", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "Dismiss", style: .default, handler: nil)
+            alert.addAction(alertAction)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
         let apiService = APIService()
         apiService.createHeaderRequest(URL(string: "https://vinci-server.herokuapp.com/map/app-edit-event"), method: "POST", parameters: ["userId": UserController.sharedInstance.currentUser.userId as AnyObject,"title": titleField.text! as AnyObject, "description": descriptionField.text as AnyObject , "address": fullAddressString as AnyObject, "date":date as AnyObject, "startTime":startTime as AnyObject, "endTime": endTime as AnyObject, "privacy": "public" as AnyObject, "inviteeEmail": "" as AnyObject,"eventId":ActivityController.sharedInstance.currentActivity.activityId as AnyObject], requestCompletionFunction: {responseCode, json in
             if responseCode/100 == 2{
                 print("update activity successfully")
-                print(json)
+                ActivityController.sharedInstance.currentActivity.fullAddress = self.fullAddressString
+                ActivityController.sharedInstance.currentActivity.date = self.dateField.selectedDate
+                ActivityController.sharedInstance.currentActivity.startTime = self.beginTimeField.selectedTime
+                ActivityController.sharedInstance.currentActivity.endTime = self.endTimeField.selectedTime
+                ActivityController.sharedInstance.currentActivity.description = self.descriptionField.text
+                ActivityController.sharedInstance.currentActivity.name = self.titleField.text!
+                UserController.sharedInstance.updateCurrentUserActivity(event: ActivityController.sharedInstance.currentActivity)
                 self.dismiss(animated: true, completion: nil)
             }else{
                 print("error")
+                let alert = UIAlertController(title: "Invalid", message: "Information you entered is incorrect", preferredStyle: .alert)
+                let alertAction = UIAlertAction(title: "Dismiss", style: .default, handler: nil)
+                alert.addAction(alertAction)
+                self.present(alert, animated: true, completion: nil)
                 print(json)
             }
         })
-//        apiService.executeRequest(request, requestCompletionFunction: {responseCode, json in
-//            if responseCode/100 == 2{
-//                print("update activity successfully")
-//                print(json)
-//                self.dismiss(animated: true, completion: nil)
-//            }else{
-//                print("error")
-//                print(json)
-//            }
-//        })
 
     }
 

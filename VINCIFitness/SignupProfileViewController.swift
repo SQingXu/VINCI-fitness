@@ -10,6 +10,7 @@ import UIKit
 import ImageLoader
 import GoogleAPIClient
 import GTMOAuth2
+import Alamofire
 
 
 class SignupProfileViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate, UITextViewDelegate {
@@ -23,7 +24,7 @@ class SignupProfileViewController: UIViewController,UIPickerViewDelegate, UIPick
     let genderArray = ["Male", "Female"]
     var imagePicker = UIImagePickerController()
     @IBOutlet weak var genderTextField: UITextField!
-    @IBOutlet weak var bioTextView: UITextView!
+//    @IBOutlet weak var bioTextView: UITextView!
     @IBOutlet weak var firstNameView: UIView!
     @IBOutlet weak var ageTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
@@ -34,22 +35,16 @@ class SignupProfileViewController: UIViewController,UIPickerViewDelegate, UIPick
     @IBOutlet weak var heightView: UIView!
     @IBOutlet weak var weightView: UIView!
     @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var nextStepButton: UIButton!
+//    @IBOutlet weak var nextStepButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         genderPicker.delegate = self
         genderPicker.dataSource = self
         genderTextField.delegate = self
         ageTextField.delegate = self
+        lastNameTextField.delegate = self
+        firstNameTextField.delegate = self
         imagePicker.delegate = self
-        bioTextView.delegate = self
-        
-        if let auth = GTMOAuth2ViewControllerTouch.authForGoogleFromKeychain(
-            forName: kKeychainItemName,
-            clientID: kClientID,
-            clientSecret: nil) {
-            service.authorizer = auth
-        }
         
         
         genderTextField.inputView = genderPicker
@@ -64,16 +59,11 @@ class SignupProfileViewController: UIViewController,UIPickerViewDelegate, UIPick
         keyBoardTool.setItems([space,doneButton], animated: true)
         genderTextField.inputAccessoryView = keyBoardTool
         ageTextField.inputAccessoryView = keyBoardTool
-        bioTextView.tintColor = UIColor.vinciRed()
-        bioTextView.layer.borderColor = UIColor.vinciRed().cgColor
-        bioTextView.layer.borderWidth = 2
-        bioTextView.layer.cornerRadius = 5
-        bioTextView.textColor = UIColor.vinciRed()
         
         let gestureRec = UITapGestureRecognizer(target: self, action: #selector(self.selectImage))
         profileImageView.addGestureRecognizer(gestureRec)
         profileImageView.isUserInteractionEnabled = true
-        profileImageView.layer.cornerRadius = 60
+        profileImageView.layer.cornerRadius = 80
         profileImageView.layer.borderWidth = 2
         profileImageView.layer.borderColor = UIColor.vinciRed().cgColor
         
@@ -92,8 +82,13 @@ class SignupProfileViewController: UIViewController,UIPickerViewDelegate, UIPick
             genderTextField.text = "Female"
         }
         if currentUser.profileImageURL != ""{
-            let picurl = URL(string: currentUser.profileImageURL)
-            profileImageView.load(picurl!)
+////            let picurl = URL(string: currentUser.profileImageURL)
+////            profileImageView.load(picurl!)
+//            Alamofire.download(currentUser.profileImageURL).responseData { response in
+//                if let data = response.result.value {
+//                    self.profileImageView.image = UIImage(data: data)
+//                }
+//            }
         }
         
         self.hideKeyboardWhenTapped()
@@ -121,20 +116,13 @@ class SignupProfileViewController: UIViewController,UIPickerViewDelegate, UIPick
         ageTextField.resignFirstResponder()
         genderTextField.resignFirstResponder()
     }
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        animateViewMoving(true, moveValue: 150)
-    }
-    func textViewDidEndEditing(_ textView: UITextView) {
-        animateViewMoving(false, moveValue: 150)
-        UserController.sharedInstance.currentUser.bio = textView.text
-    }
-    
+
     //make the screen moving up when editing
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        animateViewMoving(true, moveValue: 100)
+        animateViewMoving(true, moveValue: 200)
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-        animateViewMoving(false, moveValue: 100)
+        animateViewMoving(false, moveValue: 200)
     }
     
     func animateViewMoving (_ up:Bool, moveValue :CGFloat){
@@ -149,13 +137,14 @@ class SignupProfileViewController: UIViewController,UIPickerViewDelegate, UIPick
     
     //image selector
     func selectImage(){
-        imagePicker.sourceType = .photoLibrary
+        imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
         present(imagePicker, animated: true, completion: nil)
         
     }
     override func viewWillDisappear(_ animated: Bool) {
-        UserController.sharedInstance.currentUser.bio = bioTextView.text
         UserController.sharedInstance.currentUser.age = Int(ageTextField.text!)
+        UserController.sharedInstance.currentUser.firstName = firstNameTextField.text!
+        UserController.sharedInstance.currentUser.lastName = lastNameTextField.text!
         if genderTextField.text == "Male"{
             UserController.sharedInstance.currentUser.gender = Gender.Male
         }else{
@@ -164,79 +153,43 @@ class SignupProfileViewController: UIViewController,UIPickerViewDelegate, UIPick
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage{
-            if let authorizer = service.authorizer,
-                let canAuth = authorizer.canAuthorize , canAuth {
-                let data = UIImageJPEGRepresentation(selectedImage, 1.0)
-                let file = GTLDriveFile()
-                file.name = "text1.jpg"
-                file.mimeType = "image/jpeg"
-                let uploadParameters = GTLUploadParameters(data: data!, mimeType: file.mimeType)
-                let query = GTLQueryDrive.queryForFilesCreate(withObject: file, uploadParameters: uploadParameters)
-                self.service.executeQuery(query!, completionHandler: {(ticket, insertedFile , error) -> Void in
-                    let myFile = insertedFile as? GTLDriveFile
-                    if error == nil{
-                        print(myFile?.identifier)
-                    }else{
+            UserController.sharedInstance.currentUser.imageData = selectedImage
+//            let imageData = UIImageJPEGRepresentation(selectedImage,0.5)
+//            Alamofire.upload(multipartFormData:{multipartFormData in
+//                multipartFormData.append(imageData!, withName: "profilePic", fileName: "this_is_a_file", mimeType: "image/jpeg")
+//                multipartFormData.append("e1nxesjhlax8jd".data(using: String.Encoding.utf8)!, withName: "userId")
+//                }, to: "https://vinci-server.herokuapp.com/profile/app/upload-profile", encodingCompletion: {
+//            
+//                    encodingResult in
+//                    
+//                    switch encodingResult {
+//                    case .success(let upload, _, _):
+//                        print("s")
+//                        upload.responseJSON {
+//                            response in
+//                            print(response.request)  // original URL request
+//                            print(response.response) // URL response
+//                            print(response.data)     // server data
+//                            print(response.result)   // result of response serialization
+//                            
+//                            if let JSON = response.result.value {
+//                                print("json: \(JSON)")
+//                            }
+//                        }
+//                    case .failure(let encodingError):
+//                        print(encodingError)
+//                        print("error in encoding")
+//                    }
+//            })
+            
 
-                    }
-                })
-                
-            } else {
-                self.present(
-                    self.createAuthController(),
-                    animated: true,
-                    completion: nil
-                )
-             print("not authorized")
-            }
             
             print(info[UIImagePickerControllerReferenceURL])
             profileImageView.image = selectedImage
             profileImageView.contentMode = .scaleAspectFill
             profileImageView.backgroundColor = UIColor.clear
-        }
+            }
         self.dismiss(animated: true, completion: nil)
-    }
-    @IBAction func nextStepPressed(_ sender: UIButton) {
-//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//        let application = UIApplication.sharedApplication()
-//        let window = application.keyWindow
-//        window?.rootViewController = appDelegate.initTabBarController()
-        if let authorizer = service.authorizer,
-            let canAuth = authorizer.canAuthorize , canAuth {
-            print("can auth")
-        } else {
-            self.present(
-                createAuthController(),
-                animated: true,
-                completion: nil
-            )
-        }
-        
-    }
-    
-    fileprivate func createAuthController() -> GTMOAuth2ViewControllerTouch {
-        let scopeString = scopes.joined(separator: " ")
-        return GTMOAuth2ViewControllerTouch(
-            scope: scopeString,
-            clientID: kClientID,
-            clientSecret: nil,
-            keychainItemName: kKeychainItemName,
-            delegate: self,
-            finishedSelector: #selector(SignupProfileViewController.viewController(_:finishedWithAuth:error:))
-        )
-    }
-    func viewController(_ vc : UIViewController,
-                        finishedWithAuth authResult : GTMOAuth2Authentication, error : NSError?) {
-        
-        if let error = error {
-            service.authorizer = nil
-            showAlert("Authentication Error", message: error.localizedDescription)
-            return
-        }
-        
-        service.authorizer = authResult
-        dismiss(animated: true, completion: nil)
     }
     
     // Helper for showing an alert
@@ -254,6 +207,7 @@ class SignupProfileViewController: UIViewController,UIPickerViewDelegate, UIPick
         alert.addAction(ok)
         present(alert, animated: true, completion: nil)
     }
+    
     
     
 }

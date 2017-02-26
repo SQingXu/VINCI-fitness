@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 enum Gender: String{
     case Male = "Male"
     case Female = "Female"
@@ -25,6 +26,8 @@ class User{
     var birthday = Date()
     var password = ""
     var userId = ""
+    var coverImageUrl:String = ""
+    var imageData:UIImage?
     
     var hostedActivities = [Activity]()
     var attendedActivities = [Activity]()
