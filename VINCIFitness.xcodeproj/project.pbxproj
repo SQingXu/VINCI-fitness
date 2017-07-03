@@ -316,7 +316,7 @@
 				TargetAttributes = {
 					487552781D61B7BB00754DAA = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = KJK6U8D573;
+						DevelopmentTeam = V4Q526CD3A;
 						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -400,7 +400,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		C72C05175E37281C464F346B /* [CP] Embed Pods Frameworks */ = {
@@ -571,9 +571,10 @@
 				CODE_SIGN_ENTITLEMENTS = VINCIFitness/VINCIFitness.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = V4Q526CD3A;
 				INFOPLIST_FILE = VINCIFitness/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = SiqingXu.VINCIFitness;
+				PRODUCT_BUNDLE_IDENTIFIER = OscarBrennwald.VINCIFitness;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 3.0;
@@ -589,9 +590,10 @@
 				CODE_SIGN_ENTITLEMENTS = VINCIFitness/VINCIFitness.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = V4Q526CD3A;
 				INFOPLIST_FILE = VINCIFitness/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = SiqingXu.VINCIFitness;
+				PRODUCT_BUNDLE_IDENTIFIER = OscarBrennwald.VINCIFitness;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 3.0;

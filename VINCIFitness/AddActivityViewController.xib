@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -42,22 +42,8 @@
                         <constraint firstItem="2sh-14-5bI" firstAttribute="centerX" secondItem="6ay-QQ-lYQ" secondAttribute="centerX" id="vH9-xg-AuI"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QF0-9P-lvO">
-                    <rect key="frame" x="135" y="537" width="120" height="35"/>
-                    <color key="backgroundColor" red="0.92156862750000001" green="0.1843137255" blue="0.21960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="35" id="6Ru-RT-TBN"/>
-                        <constraint firstAttribute="width" constant="120" id="e48-Qs-H0r"/>
-                    </constraints>
-                    <state key="normal" title="Cancel">
-                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </state>
-                    <connections>
-                        <action selector="cancelEdPressed:" destination="-1" eventType="touchUpInside" id="A3M-QC-gIM"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dh-6U-Fsq">
-                    <rect key="frame" x="345" y="537.5" width="120" height="35"/>
+                    <rect key="frame" x="239" y="537" width="120" height="35"/>
                     <color key="backgroundColor" red="0.92156862750000001" green="0.1843137255" blue="0.21960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="EQs-W5-Ztv"/>
@@ -73,6 +59,20 @@
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="icB-kX-URz">
                     <rect key="frame" x="177" y="323.5" width="20" height="20"/>
                 </activityIndicatorView>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QF0-9P-lvO">
+                    <rect key="frame" x="36" y="537" width="120" height="35"/>
+                    <color key="backgroundColor" red="0.92156862750000001" green="0.1843137255" blue="0.21960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="6Ru-RT-TBN"/>
+                        <constraint firstAttribute="width" constant="120" id="e48-Qs-H0r"/>
+                    </constraints>
+                    <state key="normal" title="Cancel">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="cancelEdPressed:" destination="-1" eventType="touchUpInside" id="A3M-QC-gIM"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>

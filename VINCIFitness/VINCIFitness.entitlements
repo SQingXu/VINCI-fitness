@@ -4,7 +4,7 @@
 <dict>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>$(AppIdentifierPrefix)SiqingXu.VINCIFitness</string>
+		<string>$(AppIdentifierPrefix)OscarBrennwald.VINCIFitness</string>
 	</array>
 </dict>
 </plist>
