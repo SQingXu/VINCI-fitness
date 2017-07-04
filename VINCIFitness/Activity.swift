@@ -18,4 +18,6 @@ class Activity{
     var hostId = ""
     var participatiorsIds = [String]()
     var description = ""
+    var privacy = ""
+    var invites = ""
 }

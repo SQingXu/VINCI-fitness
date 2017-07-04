@@ -38,9 +38,15 @@ class AddActivityViewController: UIViewController,UITableViewDelegate, UITableVi
     var selectedDate = Date()
     var startTime = Date()
     var endTime = Date()
+    var privacy = ""
+    var invites = ""
     var tap:UITapGestureRecognizer = UITapGestureRecognizer()
     var cancelButton = UIBarButtonItem()
     var doneButton = UIBarButtonItem()
+    var privacySwitch = UISwitch()
+    var privacyText = UILabel()
+    var inviteLabel = UILabel()
+    var inviteText = UITextView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +56,7 @@ class AddActivityViewController: UIViewController,UITableViewDelegate, UITableVi
         activityIndicator.isHidden = true
         cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.cancelPressed(_:)))
         doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.donePressed(_:)))
+        privacySwitch.addTarget(self, action: #selector(self.switchValueDidChange(_:)), for: .valueChanged)
         cancelButton.tintColor = UIColor.vinciRed()
         doneButton.tintColor = UIColor.vinciRed()
         self.navigationItem.setLeftBarButton(cancelButton, animated: true)
@@ -62,28 +69,38 @@ class AddActivityViewController: UIViewController,UITableViewDelegate, UITableVi
         resultTable.delegate = self
         resultTable.dataSource = self
         descriptionField.delegate = self
-        
+        //privacyText.delegate = self
+        inviteText.delegate = self
         //set element frame
         cancelEditingButton.backgroundColor = UIColor.vinciRed()
         finishEditingButton.backgroundColor = UIColor.vinciRed()
+        privacySwitch.onTintColor = UIColor.vinciRed()
         
         if ActivityController.sharedInstance.editingActivity == false{
-        notesLabel.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.48 * mainScreenSize.height, width: 40, height: 10)
-        descriptionField.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.5 * mainScreenSize.height, width: 0.8 * mainScreenSize.width, height: 120)
+        notesLabel.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.48 * mainScreenSize.height, width:0.8 * mainScreenSize.width, height: 10)
+        descriptionField.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.5 * mainScreenSize.height, width: 0.8 * mainScreenSize.width, height: 40)
         titleField.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.1 * mainScreenSize.height, width: 0.8 * mainScreenSize.width, height: 40)
         dateField.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.3 * mainScreenSize.height, width: 0.8 * mainScreenSize.width, height: 40)
         searchingField.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.2 * mainScreenSize.height, width: 0.8 * mainScreenSize.width, height: 40)
         beginTimeField.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.4 * mainScreenSize.height, width: 120, height: 40)
         endTimeField.frame = CGRect(x: 0.57 * mainScreenSize.width, y: 0.4 * mainScreenSize.height, width: 120, height: 40)
+        privacySwitch.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.58 * mainScreenSize.height, width: 120, height: 40)
+        privacyText.frame = CGRect(x: 0.4 * mainScreenSize.width, y: 0.58 * mainScreenSize.height, width: 120, height: 40)
+        inviteLabel.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.65 * mainScreenSize.height, width: 120, height: 10)
+        inviteText.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.67 * mainScreenSize.height, width: 0.8 * mainScreenSize.width, height: 40)
         resultTable.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.2 * mainScreenSize.height + 50, width: 0.8 * mainScreenSize.width, height: 0)
         }else{
             notesLabel.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.48 * mainScreenSize.height + 54, width: 40, height: 10)
-            descriptionField.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.5 * mainScreenSize.height + 54, width: 0.8 * mainScreenSize.width, height: 120)
+            descriptionField.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.5 * mainScreenSize.height + 54, width: 0.8 * mainScreenSize.width, height: 40)
             titleField.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.1 * mainScreenSize.height + 54, width: 0.8 * mainScreenSize.width, height: 40)
             dateField.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.3 * mainScreenSize.height + 54, width: 0.8 * mainScreenSize.width, height: 40)
             searchingField.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.2 * mainScreenSize.height + 54, width: 0.8 * mainScreenSize.width, height: 40)
             beginTimeField.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.4 * mainScreenSize.height + 54, width: 120, height: 40)
             endTimeField.frame = CGRect(x: 0.57 * mainScreenSize.width, y: 0.4 * mainScreenSize.height + 54, width: 120, height: 40)
+            privacySwitch.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.58 * mainScreenSize.height + 54, width: 120, height: 40)
+            privacyText.frame = CGRect(x: 0.4 * mainScreenSize.width, y: 0.58 * mainScreenSize.height + 54, width: 120, height: 40)
+            inviteLabel.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.65 * mainScreenSize.height + 54, width: 120, height: 10)
+            inviteText.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.67 * mainScreenSize.height + 54, width: 0.8 * mainScreenSize.width, height: 40)
             resultTable.frame = CGRect(x: 0.1 * mainScreenSize.width, y: 0.2 * mainScreenSize.height + 104, width: 0.8 * mainScreenSize.width, height: 0)
 
         }
@@ -117,6 +134,10 @@ class AddActivityViewController: UIViewController,UITableViewDelegate, UITableVi
         self.view.addSubview(endTimeField)
         self.view.addSubview(beginTimeField)
         self.view.addSubview(dateField)
+        self.view.addSubview(privacySwitch)
+        self.view.addSubview(privacyText)
+        self.view.addSubview(inviteLabel)
+        self.view.addSubview(inviteText)
         self.view.addSubview(resultTable)
         self.view.addSubview(searchingField)
         
@@ -156,6 +177,21 @@ class AddActivityViewController: UIViewController,UITableViewDelegate, UITableVi
         endTimeField.layer.borderWidth = 1
         endTimeField.layer.borderColor = UIColor.vinciGrey().cgColor
         endTimeField.borderStyle = .roundedRect
+        //privacyText.layer.borderWidth = 1
+        //privacyText.layer.borderColor = UIColor.vinciGrey().cgColor
+        privacyText.text = "Public"
+        privacyText.font = UIFont.systemFont(ofSize: 17)
+        privacyText.textColor = UIColor.vinciRed()
+        privacySwitch.setOn(true, animated: true)
+        inviteLabel.text = "Invites: "
+        inviteLabel.textColor = UIColor.vinciRed()
+        inviteLabel.font = UIFont.systemFont(ofSize: 12)
+        inviteLabel.textColor = UIColor.vinciRed()
+        inviteText.layer.borderWidth = 1
+        inviteText.layer.borderColor = UIColor.vinciGrey().cgColor
+        //inviteText.borderStyle = .roundedRect
+        
+
         
         //set up view
         toView.layer.cornerRadius = 20
@@ -178,7 +214,11 @@ class AddActivityViewController: UIViewController,UITableViewDelegate, UITableVi
             dateField.selectedDate = activity.date
             descriptionField.text = activity.description
             searchingField.text = activity.fullAddress
+            privacyText.text = activity.privacy
+            inviteText.text = activity.invites
             fullAddressString = activity.fullAddress
+            
+            
         }
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -226,6 +266,10 @@ class AddActivityViewController: UIViewController,UITableViewDelegate, UITableVi
             beginTimeField.isHidden = true
             toView.isHidden = true
             titleField.isHidden = true
+            privacySwitch.isHidden = true
+            privacyText.isHidden = true
+            inviteLabel.isHidden = true
+            inviteText.isHidden = true
             descriptionField.isHidden = true
             notesLabel.isHidden = true
         }
@@ -243,6 +287,10 @@ class AddActivityViewController: UIViewController,UITableViewDelegate, UITableVi
             beginTimeField.isHidden = false
             toView.isHidden = false
             titleField.isHidden = false
+            privacySwitch.isHidden = false
+            privacyText.isHidden = false
+            inviteLabel.isHidden = false
+            inviteText.isHidden = false
             descriptionField.isHidden = false
             notesLabel.isHidden = false
         }
@@ -252,11 +300,19 @@ class AddActivityViewController: UIViewController,UITableViewDelegate, UITableVi
     }
     func textViewDidBeginEditing(_ textView: UITextView) {
         self.hideKeyboardWhenTappedWithR(tap)
-        animateViewMoving(true, moveValue: 100)
+        animateViewMoving(true, moveValue: 200)
     }
     func textViewDidEndEditing(_ textView: UITextView) {
         self.disableKeyboardWhenTappedWithR(tap)
-        animateViewMoving(false, moveValue: 100)
+        animateViewMoving(false, moveValue: 200)
+    }
+    func switchValueDidChange(_ sender: UISwitch) {
+        if(privacySwitch.isOn){
+            privacyText.text = "Public"
+        }
+        else{
+            privacyText.text = "Private"
+        }
     }
     func animateViewMoving (_ up:Bool, moveValue :CGFloat){
         let movementDuration:TimeInterval = 0.3
@@ -279,6 +335,7 @@ class AddActivityViewController: UIViewController,UITableViewDelegate, UITableVi
         selectedDate = dateField.selectedDate as Date
         startTime = beginTimeField.selectedTime as Date
         endTime = endTimeField.selectedTime as Date
+        
         if (dateField.text == "" || beginTimeField.text == "" || endTimeField.text == ""){
             let alert = UIAlertController(title: "Invalid", message: "Information you entered is incomplete", preferredStyle: .alert)
             let alertAction = UIAlertAction(title: "Dismiss", style: .default, handler: nil)
@@ -317,6 +374,8 @@ class AddActivityViewController: UIViewController,UITableViewDelegate, UITableVi
         newActivity.startTime = startTime
         newActivity.endTime = endTime
         newActivity.description = descriptionField.text
+        newActivity.invites = inviteText.text!
+        newActivity.privacy = privacyText.text!.lowercased()
         newActivity.name = titleField.text!
         newActivity.fullAddress = fullAddressString
         APIServiceController.sharedInstance.addActivity(newActivity, completeClosure: {
@@ -351,7 +410,7 @@ class AddActivityViewController: UIViewController,UITableViewDelegate, UITableVi
             return
         }
         let apiService = APIService()
-        apiService.createHeaderRequest(URL(string: "https://vinci-server.herokuapp.com/map/app-edit-event"), method: "POST", parameters: ["userId": UserController.sharedInstance.currentUser.userId as AnyObject,"title": titleField.text! as AnyObject, "description": descriptionField.text as AnyObject , "address": fullAddressString as AnyObject, "date":date as AnyObject, "startTime":startTime as AnyObject, "endTime": endTime as AnyObject, "privacy": "public" as AnyObject, "inviteeEmail": "" as AnyObject,"eventId":ActivityController.sharedInstance.currentActivity.activityId as AnyObject], requestCompletionFunction: {responseCode, json in
+        apiService.createHeaderRequest(URL(string: "https://vincilive.herokuapp.com/map/app-edit-event"), method: "POST", parameters: ["userId": UserController.sharedInstance.currentUser.userId as AnyObject,"title": titleField.text! as AnyObject, "description": descriptionField.text as AnyObject , "address": fullAddressString as AnyObject, "date":date as AnyObject, "startTime":startTime as AnyObject, "endTime": endTime as AnyObject, "privacy": privacy as AnyObject, "inviteeEmail": inviteText.text as AnyObject,"eventId":ActivityController.sharedInstance.currentActivity.activityId as AnyObject], requestCompletionFunction: {responseCode, json in
             if responseCode/100 == 2{
                 print("update activity successfully")
                 ActivityController.sharedInstance.currentActivity.fullAddress = self.fullAddressString
@@ -360,6 +419,8 @@ class AddActivityViewController: UIViewController,UITableViewDelegate, UITableVi
                 ActivityController.sharedInstance.currentActivity.endTime = self.endTimeField.selectedTime
                 ActivityController.sharedInstance.currentActivity.description = self.descriptionField.text
                 ActivityController.sharedInstance.currentActivity.name = self.titleField.text!
+                ActivityController.sharedInstance.currentActivity.privacy = self.privacyText.text!
+                ActivityController.sharedInstance.currentActivity.invites = self.inviteText.text!
                 UserController.sharedInstance.updateCurrentUserActivity(event: ActivityController.sharedInstance.currentActivity)
                 self.dismiss(animated: true, completion: nil)
             }else{

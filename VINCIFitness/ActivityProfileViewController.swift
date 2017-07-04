@@ -140,7 +140,7 @@ class ActivityProfileViewController: UIViewController,UICollectionViewDelegate, 
         let apiService = APIService()
         let userId = UserController.sharedInstance.currentUser.userId
         joinButton.isUserInteractionEnabled = false
-        apiService.createHeaderRequest(URL(string: "https://vinci-server.herokuapp.com/map/app/unregister-event"), method: "POST", parameters: ["eventId": eventId as AnyObject, "userId": userId as AnyObject], requestCompletionFunction: {responseCode, json in
+        apiService.createHeaderRequest(URL(string: "https://vincilive.herokuapp.com/map/app/unregister-event"), method: "POST", parameters: ["eventId": eventId as AnyObject, "userId": userId as AnyObject], requestCompletionFunction: {responseCode, json in
             self.joinButton.isUserInteractionEnabled = true
             if responseCode/100 == 2{
                 print(json)
@@ -167,7 +167,7 @@ class ActivityProfileViewController: UIViewController,UICollectionViewDelegate, 
         let apiService = APIService()
         let userId = UserController.sharedInstance.currentUser.userId
         joinButton.isUserInteractionEnabled = false
-        apiService.createHeaderRequest(URL(string: "https://vinci-server.herokuapp.com/map/app/event-signup"), method: "PUT", parameters: ["eventId": eventId as AnyObject, "userId": userId as AnyObject], requestCompletionFunction: {responseCode, json in
+        apiService.createHeaderRequest(URL(string: "https://vincilive.herokuapp.com/map/app/event-signup"), method: "PUT", parameters: ["eventId": eventId as AnyObject, "userId": userId as AnyObject], requestCompletionFunction: {responseCode, json in
             self.joinButton.isUserInteractionEnabled = true
             if responseCode/100 == 2{
                 print(json)
@@ -197,7 +197,7 @@ class ActivityProfileViewController: UIViewController,UICollectionViewDelegate, 
     
     @IBAction func deletePressed(_ sender: AnyObject) {
         let apiService = APIService()
-        apiService.createHeaderRequest(URL(string: "https://vinci-server.herokuapp.com/map/app-delete-event"), method: "POST", parameters: ["eventId": activity.activityId as AnyObject], requestCompletionFunction: {responseCode, json in
+        apiService.createHeaderRequest(URL(string: "https://vincilive.herokuapp.com/map/app-delete-event"), method: "POST", parameters: ["eventId": activity.activityId as AnyObject], requestCompletionFunction: {responseCode, json in
             if responseCode/100 == 2{
                 print(json)
                 UserController.sharedInstance.removeHostedActivity(eventId: self.activity.activityId)
