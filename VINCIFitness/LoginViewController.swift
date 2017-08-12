@@ -74,11 +74,12 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                         let data:[String:AnyObject] = result as! [String : AnyObject]
                         //print(result)
                         //print(data["email"])
-                        self.apiService.createMutableAnonRequest(URL(string:"https://vinci-server.herokuapp.com/login-app"), method: "POST", parameters: ["email":data["email"]! as AnyObject,"pass":data["id"]! as AnyObject], requestCompletionFunction: {responseCode, json in
+                        self.apiService.createMutableAnonRequest(URL(string:"https://vincilive2.herokuapp.com/login"), method: "POST", parameters: ["email":data["email"]! as AnyObject,"pass":data["id"]! as AnyObject], requestCompletionFunction: {responseCode, json in
                             self.activityIndicator.isHidden = true
                             self.activityIndicator.stopAnimating()
                             if responseCode/100 == 2{
                                 //set user default
+                                print(json)
                                 UserDefaults.standard.set(data["email"] as! String, forKey: "email")
                                 UserDefaults.standard.set(data["id"] as! String, forKey: "password")
                                 if json["userId"].stringValue != ""{
@@ -136,11 +137,12 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
 //        window?.rootViewController = appDelegate.initTabBarController()
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
-        apiService.createMutableAnonRequest(URL(string:"https://vinci-server.herokuapp.com/login-app"), method: "POST", parameters: ["email":emailTextField.text! as AnyObject,"pass":passwordTextField.text! as AnyObject], requestCompletionFunction: {responseCode, json in
+        apiService.createMutableAnonRequest(URL(string:"https://vincilive2.herokuapp.com/login"), method: "POST", parameters: ["email":emailTextField.text! as AnyObject,"pass":passwordTextField.text! as AnyObject], requestCompletionFunction: {responseCode, json in
             if responseCode/100 == 2{
+                print(json)
                 self.activityIndicator.isHidden = true
                 self.activityIndicator.stopAnimating()
-                if json["userId"].stringValue != ""{
+                //if json["userId"].stringValue != ""{
                     self.dismiss(animated: true, completion: nil)
                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
                     let application = UIApplication.shared
@@ -154,9 +156,9 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                     UserController.sharedInstance.viewedUser = UserController.sharedInstance.currentUser
                     APIServiceController.sharedInstance.loadCurrentInfo()
                     window?.rootViewController = appDelegate.initTabBarController()
-                }else{
-                    self.loginFailed()
-                }
+                //}else{
+                //    self.loginFailed()
+                //}
                 
             }else{
                self.loginFailed()

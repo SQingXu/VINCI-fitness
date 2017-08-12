@@ -198,8 +198,9 @@ class SecondProfileViewController: UIViewController,UITableViewDelegate, UITable
                 responseCode, json1 in
                 if responseCode/100 == 2{
                     //log in with information
-                    apiService.createMutableAnonRequest(URL(string:"https://vinci-server.herokuapp.com/login-app"), method: "POST", parameters: ["email":currentUser.emailAddress as AnyObject,"pass":currentUser.password as AnyObject], requestCompletionFunction: {responseCode, json2 in
+                    apiService.createMutableAnonRequest(URL(string:"https://vincilive2.herokuapp.com/login"), method: "POST", parameters: ["email":currentUser.emailAddress as AnyObject,"pass":currentUser.password as AnyObject], requestCompletionFunction: {responseCode, json2 in
                         if responseCode/100 == 2{
+                            print(json2)
                             if json2["userId"].stringValue != ""{
                                 print(json2["userId"].stringValue)
                                 UserController.sharedInstance.currentUser.userId = json2["userId"].stringValue

@@ -15,7 +15,7 @@ class APIServiceController{
     let apiService = APIService()
     var dateFormatter = DateFormatter()
     func getActivities(){
-        apiService.createMutableAnonRequest(URL(string:"https://vincilive.herokuapp.com/map/app-data"), method: "GET", parameters: nil, requestCompletionFunction: {responseCode, json in
+        apiService.createMutableAnonRequest(URL(string:"https://vincilive2.herokuapp.com/map/get-data"), method: "POST", parameters: ["range":"30" as AnyObject,"lat":"35.8" as AnyObject,"lng":"-78.775" as AnyObject], requestCompletionFunction: {responseCode, json in
             if responseCode/100 == 2{
                 //print(json)
                 var updatedArray = [Maker]()
@@ -108,7 +108,7 @@ class APIServiceController{
 //        })
     }
     func login(_ email: String, password: String){
-        apiService.createMutableAnonRequest(URL(string:"https://vincilive.herokuapp.com/login-app"), method: "POST", parameters: ["email":"vincifitness@vincifitness.com" as AnyObject,"pass":"Vinci!Fit1" as AnyObject], requestCompletionFunction: {responseCode, json in
+        apiService.createMutableAnonRequest(URL(string:"https://vincilive2.herokuapp.com/login-app"), method: "POST", parameters: ["email":"vincifitness@vincifitness.com" as AnyObject,"pass":"Vinci!Fit1" as AnyObject], requestCompletionFunction: {responseCode, json in
             if responseCode/100 == 2{
                 print(json)
                 print(responseCode)
@@ -120,7 +120,7 @@ class APIServiceController{
         
     }
     func register(_ email: String, password: String, address: String, firstName: String, lastName: String, birthday: String){
-        apiService.createHeaderRequest(URL(string:"https://vincilive.herokuapp.com/profile-creation/app-submit"), method: "POST", parameters: ["email":email as AnyObject ,"password":password as AnyObject,"address":address as AnyObject,"firstName": firstName as AnyObject,"lastName":lastName as AnyObject,"birthday":birthday as AnyObject], requestCompletionFunction: {
+        apiService.createHeaderRequest(URL(string:"https://vincilive2.herokuapp.com/profile-creation/app-submit"), method: "POST", parameters: ["email":email as AnyObject ,"password":password as AnyObject,"address":address as AnyObject,"firstName": firstName as AnyObject,"lastName":lastName as AnyObject,"birthday":birthday as AnyObject], requestCompletionFunction: {
             responseCode, json in
             if responseCode/100 == 2{
                 print(json)
@@ -137,7 +137,7 @@ class APIServiceController{
         if UserController.sharedInstance.userIds.contains(userId){
             for (index, key) in UserController.sharedInstance.users.enumerated(){
                 if key.userId == userId{
-                    apiService.createHeaderRequest(URL(string: "https://vincilive.herokuapp.com/profile/app/"+userId), method: "GET", parameters: nil, requestCompletionFunction: {
+                    apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/app/"+userId), method: "GET", parameters: nil, requestCompletionFunction: {
                         responseCode, json in
                         if responseCode/100 == 2{
                             let newUser = User(emailAddress: "")
@@ -162,7 +162,7 @@ class APIServiceController{
         }else{
             //append
             UserController.sharedInstance.userIds.append(userId)
-            apiService.createHeaderRequest(URL(string: "https://vincilive.herokuapp.com/profile/app/"+userId), method: "GET", parameters: nil, requestCompletionFunction: {
+            apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/app/"+userId), method: "GET", parameters: nil, requestCompletionFunction: {
                 responseCode, json in
                 if responseCode/100 == 2{
                     let newUser = User(emailAddress: "")
@@ -188,7 +188,7 @@ class APIServiceController{
     
     func loadingPersonInfo(_ userId: String){
         UserController.sharedInstance.userIds.append(userId)
-        apiService.createHeaderRequest(URL(string: "https://vincilive.herokuapp.com/profile/app/"+userId), method: "GET", parameters: nil, requestCompletionFunction: {
+        apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/app/:id"), method: "GET", parameters: ["id": userId as AnyObject], requestCompletionFunction: {
             responseCode, json in
             if responseCode/100 == 2{
                 let newUser = User(emailAddress: "")
@@ -203,6 +203,8 @@ class APIServiceController{
                 newUser.homeAddressFull = json["address"].stringValue
                 UserController.sharedInstance.users.append(newUser)
             }else{
+                print(responseCode)
+                print(json)
                 print("error")
                 
             }
@@ -212,7 +214,7 @@ class APIServiceController{
     }
     func loadCurrentInfo(){
         let userId = UserController.sharedInstance.currentUser.userId
-        apiService.createHeaderRequest(URL(string: "https://vincilive.herokuapp.com/profile/app/" + userId), method: "GET", parameters: nil, requestCompletionFunction: {
+        apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/app/" + userId), method: "GET", parameters: nil, requestCompletionFunction: {
             responseCode, json in
             if responseCode/100 == 2{
                 print(json)
@@ -234,7 +236,7 @@ class APIServiceController{
     }
     func joinActivity(_ eventId: String){
         let userId = UserController.sharedInstance.currentUser.userId
-        apiService.createHeaderRequest(URL(string: "https://vincilive.herokuapp.com/map/event-signup"), method: "PUT", parameters: ["eventId": eventId as AnyObject, "userId": userId as AnyObject],requestCompletionFunction: {responseCode, json in
+        apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/map/event-signup"), method: "PUT", parameters: ["eventId": eventId as AnyObject, "userId": userId as AnyObject],requestCompletionFunction: {responseCode, json in
             if responseCode/100 == 2{
                 print(json)
             }else{
@@ -245,24 +247,89 @@ class APIServiceController{
 
     }
     
+    func getEvent(_ eventId:String, _ activity: Activity){
+        apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/map/get-event"), method: "Get", parameters: ["eventId": eventId as AnyObject],requestCompletionFunction: {responseCode, json in
+            if responseCode/100 == 2{
+                print(json)
+                
+                var counter = 0
+                var hostId = ""
+                for (_,userId) in json["attendeesIds"]{
+                    let Id  = userId.stringValue
+                    if counter == 0{
+                        activity.hostId = Id
+                        hostId = Id
+                    }else{
+                        activity.participatorsIds.append(Id)
+                    }
+                    print(userId.stringValue)
+                    
+                    if (!UserController.sharedInstance.userIds.contains(Id)){
+                        APIServiceController.sharedInstance.loadingPersonInfo(Id)
+                    }
+                    counter += 1
+                }
+                //user setup
+                if UserController.sharedInstance.currentUser.userId == hostId{
+                    var host_activity_matched = false
+                    for activity in UserController.sharedInstance.currentUser.hostedActivities{
+                        if activity.activityId == activity.activityId{
+                            host_activity_matched = true
+                            break
+                        }
+                    }
+                    if host_activity_matched{
+                    }else{
+                        UserController.sharedInstance.currentUser.hostedActivities.append(activity)
+                    }
+                }
+                for (_,userId) in json["attendeesIds"]{
+                    let Id = userId.stringValue
+                    if Id == UserController.sharedInstance.currentUser.userId{
+                        var attend_activity_matched = false
+                        for activity in UserController.sharedInstance.currentUser.attendedActivities{
+                            if activity.activityId == activity.activityId{
+                                attend_activity_matched = true
+                                break
+                            }
+                        }
+                        if attend_activity_matched{
+                        }else{
+                            UserController.sharedInstance.currentUser.attendedActivities.append(activity)
+                        }
+                        
+                    }
+                }
+                
+            }else{
+                print("error in getting event")
+            }
+            
+        })
+    }
+    
     func addActivity(_ activity: Activity, completeClosure: @escaping ()->Void ){
-        let userId = UserController.sharedInstance.currentUser.userId
+        //let userId = UserController.sharedInstance.currentUser.userId
         let title = activity.name
         let address = activity.fullAddress
         let description = activity.description
+        let privacy = activity.privacy
+        let invites = activity.invites
         dateFormatter.dateFormat = "HH:mm:ss"
         let startTime = dateFormatter.string(from: activity.startTime as Date)
         let endTime = dateFormatter.string(from: activity.endTime as Date)
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let date = dateFormatter.string(from: activity.date as Date)
-        apiService.createHeaderRequest(URL(string: "https://vincilive.herokuapp.com/map/app-create"), method: "POST", parameters: ["userId": userId as AnyObject,"title": title as AnyObject, "description": description as AnyObject, "address": address as AnyObject, "date":date as AnyObject, "startTime":startTime as AnyObject, "endTime": endTime as AnyObject, "privacy": "public" as AnyObject, "inviteeEmail": "" as AnyObject], requestCompletionFunction: {responseCode, json in
+        apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/map/create"), method: "POST", parameters: ["title": title as AnyObject, "description": description as AnyObject, "address": address as AnyObject, "date":date as AnyObject, "startTime":startTime as AnyObject, "endTime": endTime as AnyObject, "eventPrivacy": privacy as AnyObject, "inviteeEmail": invites as AnyObject, "eventTag": "Social" as AnyObject], requestCompletionFunction: {responseCode, json in
             if responseCode/100 == 2{
                 print("create activity successfully")
                 completeClosure()
                 print(json)
             }else{
                 print("error")
+                print(responseCode)
                 print(json)
+                completeClosure()
             }
         })
 

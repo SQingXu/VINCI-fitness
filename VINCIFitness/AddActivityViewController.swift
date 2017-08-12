@@ -374,7 +374,7 @@ class AddActivityViewController: UIViewController,UITableViewDelegate, UITableVi
         newActivity.startTime = startTime
         newActivity.endTime = endTime
         newActivity.description = descriptionField.text
-        newActivity.invites = inviteText.text!
+        newActivity.invites = inviteText.text
         newActivity.privacy = privacyText.text!.lowercased()
         newActivity.name = titleField.text!
         newActivity.fullAddress = fullAddressString
@@ -410,7 +410,7 @@ class AddActivityViewController: UIViewController,UITableViewDelegate, UITableVi
             return
         }
         let apiService = APIService()
-        apiService.createHeaderRequest(URL(string: "https://vincilive.herokuapp.com/map/app-edit-event"), method: "POST", parameters: ["userId": UserController.sharedInstance.currentUser.userId as AnyObject,"title": titleField.text! as AnyObject, "description": descriptionField.text as AnyObject , "address": fullAddressString as AnyObject, "date":date as AnyObject, "startTime":startTime as AnyObject, "endTime": endTime as AnyObject, "privacy": privacy as AnyObject, "inviteeEmail": inviteText.text as AnyObject,"eventId":ActivityController.sharedInstance.currentActivity.activityId as AnyObject], requestCompletionFunction: {responseCode, json in
+        apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/map/edit-event"), method: "POST", parameters: ["userId": UserController.sharedInstance.currentUser.userId as AnyObject,"title": titleField.text! as AnyObject, "description": descriptionField.text as AnyObject , "address": fullAddressString as AnyObject, "date":date as AnyObject, "startTime":startTime as AnyObject, "endTime": endTime as AnyObject, "privacy": privacy as AnyObject, "inviteeEmail": invites as AnyObject,"eventId":ActivityController.sharedInstance.currentActivity.activityId as AnyObject, "eventTag": "Social" as AnyObject], requestCompletionFunction: {responseCode, json in
             if responseCode/100 == 2{
                 print("update activity successfully")
                 ActivityController.sharedInstance.currentActivity.fullAddress = self.fullAddressString
@@ -425,6 +425,8 @@ class AddActivityViewController: UIViewController,UITableViewDelegate, UITableVi
                 self.dismiss(animated: true, completion: nil)
             }else{
                 print("error")
+                print(responseCode)
+                print(json)
                 let alert = UIAlertController(title: "Invalid", message: "Information you entered is incorrect", preferredStyle: .alert)
                 let alertAction = UIAlertAction(title: "Dismiss", style: .default, handler: nil)
                 alert.addAction(alertAction)

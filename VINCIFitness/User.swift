@@ -31,6 +31,7 @@ class User{
     
     var hostedActivities = [Activity]()
     var attendedActivities = [Activity]()
+    var calendarEventIds = [String]()
     
     init(emailAddress:String){
         self.emailAddress = emailAddress

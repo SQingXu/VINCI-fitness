@@ -36,7 +36,7 @@ class APIService{
                 //let alert = self.connectionErrorAlert()
                 //presentingViewController?.present(alert, animated: true, completion: nil)
                 //execute the completion function specified by the class that called this executeRequest function
-                requestCompletionFunction(0,JSON(""))
+                requestCompletionFunction(0,JSON(returnedData))
             }
             })
 
@@ -52,7 +52,7 @@ class APIService{
             met = .put
         }
         Alamofire.request(url, method: met, parameters: parameters, encoding: JSONEncoding.default, headers: ["Content-Type":"application/json"]).responseJSON(completionHandler: {returnedData -> Void in
-            //print(returnedData)
+            print(returnedData)
             let success = returnedData.result.isSuccess
             if (success)    {
                 
@@ -63,7 +63,7 @@ class APIService{
                 //let alert = self.connectionErrorAlert()
                 //presentingViewController?.present(alert, animated: true, completion: nil)
                 //execute the completion function specified by the class that called this executeRequest function
-                requestCompletionFunction(0,JSON(""))
+                requestCompletionFunction(0,JSON(returnedData))
             }
         })
     }

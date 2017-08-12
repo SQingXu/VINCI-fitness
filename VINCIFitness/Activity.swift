@@ -16,7 +16,7 @@ class Activity{
     var endTime = Date()
     var name = ""
     var hostId = ""
-    var participatiorsIds = [String]()
+    var participatorsIds = [String]()
     var description = ""
     var privacy = ""
     var invites = ""

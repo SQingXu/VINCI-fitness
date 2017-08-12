@@ -32,14 +32,18 @@ class ActivityProfileViewController: UIViewController,UICollectionViewDelegate, 
     var host = User(emailAddress: "")
     var dateFormatter = DateFormatter()
     var joined = false
-    
+    var apiService = APIService()
+    var attendeesIds = [String]()
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         for label in indicateLabels{
             label.textColor = UIColor.vinciRed()
         }
+        
         activity = ActivityController.sharedInstance.currentActivity
+        activity.participatorsIds = []
+        hostLabel.text = ""
         hostLabel.textColor = UIColor.vinciRed()
         titleLabel.textColor = UIColor.vinciRed()
         dateLabel.textColor = UIColor.vinciRed()
@@ -57,12 +61,9 @@ class ActivityProfileViewController: UIViewController,UICollectionViewDelegate, 
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
         flowLayout.itemSize = CGSize(width: 40, height: 40)
-        self.collectionView.setCollectionViewLayout(flowLayout, animated: true)
-        collectionView.register(UINib(nibName: "PartuicipatorCell",bundle: nil), forCellWithReuseIdentifier: "newCell")
-        collectionView.delegate = self
-        collectionView.dataSource = self
+
         
-        profileImageView.backgroundColor = UIColor.vinciRed()
+        profileImageView.backgroundColor = UIColor.white
         profileImageView.layer.cornerRadius = 50
         let gestureRec = UITapGestureRecognizer(target: self, action: #selector(self.knowHost))
         profileImageView.addGestureRecognizer(gestureRec)
@@ -70,24 +71,7 @@ class ActivityProfileViewController: UIViewController,UICollectionViewDelegate, 
         profileImageView.layer.borderWidth = 1
         profileImageView.layer.borderColor = UIColor.vinciRed().cgColor
         
-        for user in UserController.sharedInstance.users{
-            if activity.hostId == user.userId{
-                host = user
-                break
-            }
-        }
-        participators = [User]()
-        for id in activity.participatiorsIds{
-            for user in UserController.sharedInstance.users{
-                if id == user.userId{
-                    participators.append(user)
-                    break
-                }
-            }
-            if id == UserController.sharedInstance.currentUser.userId{
-                joined = true
-            }
-        }
+        
         descriptionLabel.text = activity.description
         addressLabel.text = activity.fullAddress
         dateFormatter.dateStyle = .long
@@ -96,24 +80,160 @@ class ActivityProfileViewController: UIViewController,UICollectionViewDelegate, 
         fromTimeLabel.text = dateFormatter.string(from: activity.startTime as Date)
         toTimeLabel.text = dateFormatter.string(from: activity.endTime as Date)
         titleLabel.text = activity.name
-        hostLabel.text = host.firstName + " " + host.lastName
-        if joined{
-            joinButton.setTitle("Leave", for: UIControlState())
-            //joinButton.isUserInteractionEnabled = false
-        }
         
-        if host.userId == UserController.sharedInstance.currentUser.userId{
-            joinButton.isHidden = true
-        }else{
-            editButton.isHidden = true
-            deleteButton.isHidden = true
-        }
-        let picurl = URL(string: host.profileImageURL)
-        profileImageView.downloadedFrom(url: picurl!, contentMode: .scaleAspectFill)
+        apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/map/get-event"), method: "POST", parameters: ["eventId": activity.activityId as AnyObject],requestCompletionFunction: {responseCode, json in
+            if responseCode/100 == 2{
+                print(json)
+                self.activity = ActivityController.sharedInstance.currentActivity
+                var counter = 0
+                var hostId = ""
+                var array = json["array"]
+                self.attendeesIds = array["attendeesIds"].stringValue.components(separatedBy: ",")
+                for userId in self.attendeesIds{
+                    let Id  = userId
+                    if counter == 0{
+                        self.activity.hostId = Id
+                        self.activity.participatorsIds.append(Id)
+                        hostId = Id
+                    }else{
+                        if(!self.activity.participatorsIds.contains(Id)){
+                            self.activity.participatorsIds.append(Id)
+                        }
+                    }
+                    print(userId)
+                    
+                    
+                    counter += 1
+                }
+
+                //user setup
+                if (!UserController.sharedInstance.userIds.contains(self.activity.hostId)){
+                    UserController.sharedInstance.userIds.append(self.activity.hostId)
+                    self.apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/app/id"), method: "POST", parameters: ["id": self.activity.hostId as AnyObject], requestCompletionFunction: {
+                        responseCode, json in
+                        if responseCode/100 == 2{
+                            let newUser = User(emailAddress: "")
+                            newUser.userId = self.activity.hostId
+                            newUser.bio = json["biography"].stringValue
+                            newUser.profileImageURL = json["imageProfile"].stringValue
+                            newUser.firstName = json["firstName"].stringValue
+                            newUser.lastName = json["lastName"].stringValue
+                            newUser.coverImageUrl = json["imageCover"].stringValue
+                            self.dateFormatter.dateFormat = "yyyy-MM-dd"
+                            newUser.birthday = self.dateFormatter.date(from: json["birthday"].stringValue)!
+                            newUser.homeAddressFull = json["address"].stringValue
+                            UserController.sharedInstance.users.append(newUser)
+                            for user in UserController.sharedInstance.users{
+                                if self.activity.hostId == user.userId{
+                                    self.host = user
+                                    break
+                                }
+                            }
+                            self.participators = [User]()
+                            for id in self.activity.participatorsIds{
+                                for user in UserController.sharedInstance.users{
+                                    if id == user.userId{
+                                        self.participators.append(user)
+                                        break
+                                    }
+                                }
+                                if id == UserController.sharedInstance.currentUser.userId{
+                                    self.joined = true
+                                }
+                            }
+                            self.hostLabel.text = self.host.firstName + " " + self.host.lastName
+                            if self.joined{
+                                self.joinButton.setTitle("Leave", for: UIControlState())
+                                //joinButton.isUserInteractionEnabled = false
+                            }
+                            
+                            if self.host.userId == UserController.sharedInstance.currentUser.userId{
+                                self.joinButton.isHidden = true
+                            }else{
+                                self.editButton.isHidden = true
+                                self.deleteButton.isHidden = true
+                            }
+                            self.joinButton.backgroundColor = UIColor.vinciRed()
+                            self.editButton.backgroundColor = UIColor.vinciRed()
+                            self.deleteButton.backgroundColor = UIColor.vinciRed()
+                            
+                            let picurl = URL(string: self.host.profileImageURL)
+                            self.profileImageView.downloadedFrom(url: picurl!, contentMode: .scaleAspectFill)
+                            self.downloadedFromHost(url: picurl!)
+                            
+                            self.collectionView.setCollectionViewLayout(flowLayout, animated: true)
+                            self.collectionView.register(UINib(nibName: "PartuicipatorCell",bundle: nil), forCellWithReuseIdentifier: "newCell")
+                            self.collectionView.delegate = self
+                            self.collectionView.dataSource = self
+                            self.collectionView.reloadData()
+                        }else{
+                            print(responseCode)
+                            print(json)
+                            print("error")
+                            
+                        }
+                    })
+
+                } else {
+
+                    for user in UserController.sharedInstance.users{
+                        if self.activity.hostId == user.userId{
+                            self.host = user
+                            break
+                        }
+                    }
+                    self.participators = [User]()
+                    for id in self.activity.participatorsIds{
+                        for user in UserController.sharedInstance.users{
+                            if id == user.userId{
+                                self.participators.append(user)
+                                break
+                            }
+                        }
+                        if id == UserController.sharedInstance.currentUser.userId{
+                            self.joined = true
+                        }
+                    }
+                    self.hostLabel.text = self.host.firstName + " " + self.host.lastName
+                    if self.joined{
+                        self.joinButton.setTitle("Leave", for: UIControlState())
+                        //joinButton.isUserInteractionEnabled = false
+                    }
+                    
+                    if self.host.userId == UserController.sharedInstance.currentUser.userId{
+                        self.joinButton.isHidden = true
+                    }else{
+                        self.editButton.isHidden = true
+                        self.deleteButton.isHidden = true
+                    }
+                    
+                    self.joinButton.backgroundColor = UIColor.vinciRed()
+                    self.editButton.backgroundColor = UIColor.vinciRed()
+                    self.deleteButton.backgroundColor = UIColor.vinciRed()
+                    self.profileImageView.image = self.host.imageData
+                    self.collectionView.setCollectionViewLayout(flowLayout, animated: true)
+                    self.collectionView.register(UINib(nibName: "PartuicipatorCell",bundle: nil), forCellWithReuseIdentifier: "newCell")
+                    self.collectionView.delegate = self
+                    self.collectionView.dataSource = self
+                    self.collectionView.reloadData()
+                    
+ 
+                }
+                
+
+              
+            }else{
+                print("error in getting event")
+            }
+        })
+
+        
+        
         
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print(participators.count)
         return participators.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -140,7 +260,7 @@ class ActivityProfileViewController: UIViewController,UICollectionViewDelegate, 
         let apiService = APIService()
         let userId = UserController.sharedInstance.currentUser.userId
         joinButton.isUserInteractionEnabled = false
-        apiService.createHeaderRequest(URL(string: "https://vincilive.herokuapp.com/map/app/unregister-event"), method: "POST", parameters: ["eventId": eventId as AnyObject, "userId": userId as AnyObject], requestCompletionFunction: {responseCode, json in
+        apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/map/app/unregister-event"), method: "POST", parameters: ["eventId": eventId as AnyObject, "userId": userId as AnyObject], requestCompletionFunction: {responseCode, json in
             self.joinButton.isUserInteractionEnabled = true
             if responseCode/100 == 2{
                 print(json)
@@ -167,7 +287,7 @@ class ActivityProfileViewController: UIViewController,UICollectionViewDelegate, 
         let apiService = APIService()
         let userId = UserController.sharedInstance.currentUser.userId
         joinButton.isUserInteractionEnabled = false
-        apiService.createHeaderRequest(URL(string: "https://vincilive.herokuapp.com/map/app/event-signup"), method: "PUT", parameters: ["eventId": eventId as AnyObject, "userId": userId as AnyObject], requestCompletionFunction: {responseCode, json in
+        apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/map/app/event-signup"), method: "PUT", parameters: ["eventId": eventId as AnyObject, "userId": userId as AnyObject], requestCompletionFunction: {responseCode, json in
             self.joinButton.isUserInteractionEnabled = true
             if responseCode/100 == 2{
                 print(json)
@@ -197,7 +317,7 @@ class ActivityProfileViewController: UIViewController,UICollectionViewDelegate, 
     
     @IBAction func deletePressed(_ sender: AnyObject) {
         let apiService = APIService()
-        apiService.createHeaderRequest(URL(string: "https://vincilive.herokuapp.com/map/app-delete-event"), method: "POST", parameters: ["eventId": activity.activityId as AnyObject], requestCompletionFunction: {responseCode, json in
+        apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/map/app-delete-event"), method: "POST", parameters: ["eventId": activity.activityId as AnyObject], requestCompletionFunction: {responseCode, json in
             if responseCode/100 == 2{
                 print(json)
                 UserController.sharedInstance.removeHostedActivity(eventId: self.activity.activityId)
@@ -226,6 +346,26 @@ class ActivityProfileViewController: UIViewController,UICollectionViewDelegate, 
         UserController.sharedInstance.viewedUser = host
         UserController.sharedInstance.isTabPresented = false
         self.present(ProfileViewController(), animated: true, completion: nil)
+    }
+    func downloadedFromHost(url: URL) {
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard
+                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                let data = data, error == nil,
+                let image = UIImage(data: data)
+                else {
+                    print("error in downloading image")
+                    print(error as Any)
+                    return }
+            DispatchQueue.main.async() { () -> Void in
+                self.host.imageData = image
+            }
+            }.resume()
+    }
+    func downloadedFromHost(link: String, contentMode mode: UIViewContentMode) {
+        guard let url = URL(string: link) else { return }
+        downloadedFromHost(url: url)
     }
     
 }

@@ -25,24 +25,25 @@ class OnboardViewController: UIViewController {
                 UserController.sharedInstance.currentUser.emailAddress = email
                 UserController.sharedInstance.currentUser.password = password
                 let apiService = APIService()
-                apiService.createMutableAnonRequest(URL(string:"https://vinci-server.herokuapp.com/login-app"), method: "POST", parameters: ["email":email as AnyObject,"pass":password as AnyObject], requestCompletionFunction: {responseCode, json in
-                    //print(json)
+                apiService.createMutableAnonRequest(URL(string:"https://vincilive2.herokuapp.com/login"), method: "POST", parameters: ["email":email as AnyObject,"pass":password as AnyObject], requestCompletionFunction: {responseCode, json in
+                    print(json)
                     if responseCode/100 == 2{
-                        if json["userId"].stringValue != ""{
+                        //if json["userId"].stringValue != ""{
                             self.dismiss(animated: true, completion: nil)
                             let appDelegate = UIApplication.shared.delegate as! AppDelegate
                             let application = UIApplication.shared
                             let window = application.keyWindow
-                            print(json["userId"].stringValue)
-                            //set user default
-                            UserController.sharedInstance.currentUser.userId = json["userId"].stringValue
-                            UserController.sharedInstance.viewedUser = UserController.sharedInstance.currentUser
-                            let userId = UserController.sharedInstance.currentUser.userId
-                            apiService.createHeaderRequest(URL(string: "https://vinci-server.herokuapp.com/profile/app/" + userId), method: "GET", parameters: nil, requestCompletionFunction: {
+                        
+                            //let userId = UserController.sharedInstance.currentUser.userId
+                            apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/app"), method: "POST", parameters: nil, requestCompletionFunction: {
                                 responseCode, json in
                                 self.loginButton.isEnabled = true
                                 self.signUpButton.isEnabled = true
                                 if responseCode/100 == 2{
+                                    print(json["publicUserId"].stringValue)
+                                    //set user default
+                                    UserController.sharedInstance.currentUser.userId = json["publicUserId"].stringValue
+                                    UserController.sharedInstance.viewedUser = UserController.sharedInstance.currentUser
                                     UserController.sharedInstance.currentUser.bio = json["biography"].stringValue
                                     UserController.sharedInstance.currentUser.profileImageURL = json["imageProfile"].stringValue
                                     UserController.sharedInstance.currentUser.firstName = json["firstName"].stringValue
@@ -57,13 +58,13 @@ class OnboardViewController: UIViewController {
                                     window?.rootViewController = appDelegate.initTabBarController()
                                 }else{
                                     print("error")
-                                    
+                                    print(json)
                                 }
                             })
 
-                        }else{
+                        //}else{
                             
-                        }
+                        //}
                         
                     }else{
                         self.loginButton.isEnabled = true

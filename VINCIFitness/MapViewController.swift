@@ -8,23 +8,39 @@
 
 import UIKit
 import MapKit
+import EventKit
 import GoogleMaps
 import GooglePlaces
 
-class MapViewController: UIViewController,GMSMapViewDelegate{
+class MapViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDelegate{
     var mapView = GMSMapView()
     var camera = GMSCameraPosition()
     var dateFormatter = DateFormatter()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         let mainScreen = UIScreen.main.bounds
-        camera = GMSCameraPosition.camera(withLatitude: 35.91, longitude: -79.056, zoom: 15.0)
+        
+        let locationManager = CLLocationManager()
+        locationManager.distanceFilter = kCLDistanceFilterNone
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.startUpdatingLocation()
+        var latitude = 35.91
+        var longitude = -79.056
+        if (locationManager.location != nil){
+            latitude = (locationManager.location?.coordinate.latitude)!
+            longitude = (locationManager.location?.coordinate.longitude)!
+        }
+        camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: 9.0)
+        locationManager.stopUpdatingLocation()
+        
         let mapFrame = CGRect(x: 0, y: 0, width: mainScreen.width, height: mainScreen.height - 44)
         mapView = GMSMapView.map(withFrame: mapFrame, camera: camera)
         mapView.isMyLocationEnabled = true
         mapView.settings.myLocationButton = true
         mapView.delegate = self
+        
 //        let positionButton = UIButton()
 //        let position_view = UIImageView()
 //        position_view.frame = CGRectMake(10, 10, 30, 30)
@@ -75,6 +91,8 @@ class MapViewController: UIViewController,GMSMapViewDelegate{
             
         }
         getActivities()
+        getCurrentUserEvents()
+        
     }
     func addOneLocation(){
         self.navigationController?.pushViewController(AddActivityViewController(), animated: true)
@@ -93,11 +111,271 @@ class MapViewController: UIViewController,GMSMapViewDelegate{
         ActivityController.sharedInstance.currentShownActivities = (MakerController.sharedInstance.currentMaker?.activityList)!
         self.present(ActivityListViewController(), animated: true, completion: nil)
     }
+    
+    func updateCalendarEvents() {
+        //UserController.sharedInstance.currentUser.calendarEventIds = []
+        let store : EKEventStore = EKEventStore()
+        let calendar = store.defaultCalendarForNewEvents
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd HH:mm"
+        let searchStartDate = formatter.date(from: "2016/10/08 22:31")
+        let searchEndDate = formatter.date(from: "2020/10/08 22:31")
+        let eventPredicate = store.predicateForEvents(withStart: searchStartDate!, end: searchEndDate!, calendars: [calendar])
+        var events = store.events(matching: eventPredicate)
+        store.requestAccess(to: .event) {(granted, error) in
+            if (!granted) || (error != nil) { return }
+            
+            for uEvent in UserController.sharedInstance.currentUser.attendedActivities{
+
+                if (!UserController.sharedInstance.currentUser.calendarEventIds.contains(uEvent.name)){
+                    let event = EKEvent.init(eventStore: store);
+                    event.title = uEvent.name
+                    print(event.title)
+                    event.startDate = self.combineDateWithTime(date: uEvent.date, time: uEvent.startTime)!
+                    print(event.startDate)
+                    event.endDate = self.combineDateWithTime(date: uEvent.date, time: uEvent.endTime)!
+                    print(event.endDate);
+                    event.notes = "Event ID: " + uEvent.activityId + "\nDescription:" + uEvent.description;
+                    print(event.notes as Any);
+                    event.calendar = store.defaultCalendarForNewEvents
+                    event.addAlarm(EKAlarm.init(relativeOffset: TimeInterval.init(600)))
+                    print(event.calendar.title)
+                    if(!events.isEmpty){
+                        if(!events.contains {element  in
+                            if ((element.calendar == event.calendar)
+                                && (element.hasNotes)
+                            ){
+                                if(element.notes!.contains(uEvent.activityId)){
+                                    return true
+                                }
+                                else{
+                                    return false
+                                }
+                            } else {
+                                return false
+                            }
+                        }){
+                            do {
+                                try store.save(event, span: .thisEvent, commit: true)
+                                
+                            } catch let error as NSError {
+                                print("failed to save event with error : \(error)")
+                            }
+                        } else{
+                            let index = events.index {element  in
+                                if ((element.calendar == event.calendar)
+                                    && (element.hasNotes)
+                                    ){
+                                    if(element.notes!.contains(uEvent.activityId)){
+                                        return true
+                                    }
+                                    else{
+                                        return false
+                                    }
+                                } else {
+                                    return false
+                                }
+                            }
+                            
+                            do {
+                                try store.remove(events[index!], span: EKSpan.thisEvent)
+                                
+                            } catch let error as NSError {
+                                print("failed to remove event with error : \(error)")
+                            }
+                            do {
+                                try store.save(event, span: .thisEvent, commit: true)
+                                
+                            } catch let error as NSError {
+                                print("failed to save event with error : \(error)")
+                            }
+                            
+                        }
+                    } else{
+                        do {
+                            try store.save(event, span: .thisEvent, commit: true)
+                            
+                        } catch let error as NSError {
+                            print("failed to save event with error : \(error)")
+                        }
+                    }
+                    UserController.sharedInstance.currentUser.calendarEventIds.append(uEvent.name)
+                    print("Saved event")
+                }
+            }
+            
+            for uEvent in UserController.sharedInstance.currentUser.hostedActivities{
+                
+                if (!UserController.sharedInstance.currentUser.calendarEventIds.contains(uEvent.name)){
+                    let event = EKEvent.init(eventStore: store);
+                    event.title = uEvent.name
+                    print(event.title)
+                    event.startDate = self.combineDateWithTime(date: uEvent.date, time: uEvent.startTime)!
+                    print(event.startDate)
+                    event.endDate = self.combineDateWithTime(date: uEvent.date, time: uEvent.endTime)!
+                    print(event.endDate);
+                    event.notes = "Event ID: " + uEvent.activityId + "\nDescription:" + uEvent.description;
+                    print(event.notes as Any);
+                    event.calendar = store.defaultCalendarForNewEvents
+                    event.addAlarm(EKAlarm.init(relativeOffset: TimeInterval.init(600)))
+                    print(event.calendar.title)
+                    if(!events.isEmpty){
+                        if(!events.contains {element  in
+                            if ((element.calendar == event.calendar)
+                                && (element.hasNotes)
+                                ){
+                                if(element.notes!.contains(uEvent.activityId)){
+                                    return true
+                                }
+                                else{
+                                    return false
+                                }
+                            } else {
+                                return false
+                            }
+                            }){
+                            do {
+                                try store.save(event, span: .thisEvent, commit: true)
+                                
+                            } catch let error as NSError {
+                                print("failed to save event with error : \(error)")
+                            }
+                        } else{
+                            let index = events.index {element  in
+                                if ((element.calendar == event.calendar)
+                                    && (element.hasNotes)
+                                    ){
+                                    if(element.notes!.contains(uEvent.activityId)){
+                                        return true
+                                    }
+                                    else{
+                                        return false
+                                    }
+                                } else {
+                                    return false
+                                }
+                            }
+                            
+                            do {
+                                try store.remove(events[index!], span: EKSpan.thisEvent)
+                                
+                            } catch let error as NSError {
+                                print("failed to remove event with error : \(error)")
+                            }
+                            do {
+                                try store.save(event, span: .thisEvent, commit: true)
+                                
+                            } catch let error as NSError {
+                                print("failed to save event with error : \(error)")
+                            }
+                            
+                        }
+                    } else{
+                        do {
+                            try store.save(event, span: .thisEvent, commit: true)
+                            
+                        } catch let error as NSError {
+                            print("failed to save event with error : \(error)")
+                        }
+                    }
+                    UserController.sharedInstance.currentUser.calendarEventIds.append(uEvent.name)
+                    print("Saved event")
+                }
+            }
+        }
+
+    }
+    
+    func combineDateWithTime(date: Date, time: Date) -> Date? {
+        let calendar = NSCalendar.current
+        
+        let dateComponents = calendar.dateComponents([.year, .month, .day], from: date)
+        let timeComponents = calendar.dateComponents([.hour, .minute, .second], from: time)
+        
+        var mergedComponments = DateComponents()
+        mergedComponments.year = dateComponents.year!
+        mergedComponments.month = dateComponents.month!
+        mergedComponments.day = dateComponents.day!
+        mergedComponments.hour = timeComponents.hour!
+        mergedComponments.minute = timeComponents.minute!
+        mergedComponments.second = timeComponents.second!
+        
+        return calendar.date(from: mergedComponments)
+    }
+    
+    func getCurrentUserEvents(){
+        let apiService = APIService()
+        apiService.createMutableAnonRequest(URL(string:"https://vincilive2.herokuapp.com/profile/users-events/"+UserController.sharedInstance.currentUser.userId), method: "GET", parameters: nil,requestCompletionFunction: {responseCode, json in
+            if responseCode/100 == 2 {
+                print(json)
+                var events = json["events"].arrayValue
+                let createdMarkers = events[1].dictionaryValue["createdMarkers"]?.arrayValue
+                let attendingMarkers = events[3].dictionaryValue["attendingMarkers"]?.arrayValue
+                
+                UserController.sharedInstance.currentUser.hostedActivities = []
+                UserController.sharedInstance.currentUser.attendedActivities = []
+                
+                for marker in createdMarkers!{
+                    let newActivity = Activity()
+                    newActivity.name = marker["title"].stringValue
+                    //activity id
+                    newActivity.activityId = marker["eventId"].stringValue
+                    //addressname
+                    newActivity.fullAddress = marker["address"].stringValue
+                    //date
+                    let dateString = marker["dateNoFormat"].stringValue
+                    self.dateFormatter.dateFormat = "yyyy-MM-dd"
+                    newActivity.date = self.dateFormatter.date(from: dateString)!
+                    //start time
+                    let startTimeString = marker["startTime"].stringValue
+                    self.dateFormatter.dateFormat = "hh:mm a"
+                    newActivity.startTime = self.dateFormatter.date(from: startTimeString)!
+                    //end time
+                    let endTimeString = marker["endTime"].stringValue
+                    newActivity.endTime = self.dateFormatter.date(from: endTimeString)!
+                    //description
+                    newActivity.description = marker["description"].stringValue
+                    UserController.sharedInstance.currentUser.hostedActivities.append(newActivity)
+                    
+                }
+                
+                for marker in attendingMarkers!{
+                    let newActivity = Activity()
+                    newActivity.name = marker["title"].stringValue
+                    //activity id
+                    newActivity.activityId = marker["eventId"].stringValue
+                    //addressname
+                    newActivity.fullAddress = marker["address"].stringValue
+                    //date
+                    let dateString = marker["dateNoFormat"].stringValue
+                    self.dateFormatter.dateFormat = "yyyy-MM-dd"
+                    newActivity.date = self.dateFormatter.date(from: dateString)!
+                    //start time
+                    let startTimeString = marker["startTime"].stringValue
+                    self.dateFormatter.dateFormat = "hh:mm a"
+                    newActivity.startTime = self.dateFormatter.date(from: startTimeString)!
+                    //end time
+                    let endTimeString = marker["endTime"].stringValue
+                    newActivity.endTime = self.dateFormatter.date(from: endTimeString)!
+                    //description
+                    newActivity.description = marker["description"].stringValue
+                    UserController.sharedInstance.currentUser.attendedActivities.append(newActivity)
+                }
+                self.updateCalendarEvents()
+            } else {
+                print(responseCode)
+                print(json)
+                print("error")
+            }
+            
+        })
+    }
+    
     func getActivities(){
         let apiService = APIService()
-        apiService.createMutableAnonRequest(URL(string:"https://vincilive.herokuapp.com/map/app-data"), method: "GET", parameters: nil,requestCompletionFunction: {responseCode, json in
+        apiService.createMutableAnonRequest(URL(string:"https://vincilive2.herokuapp.com/map/get-data"), method: "POST", parameters: ["range":"30" as AnyObject,"lat":"35.8" as AnyObject,"lng":"-78.775" as AnyObject],requestCompletionFunction: {responseCode, json in
             if responseCode/100 == 2{
-                //print(json)
+                print(json)
                 var updatedArray = [Maker]()
                 for (_,maker) in json["markerArray"]{
                     let newMaker = Maker()
@@ -118,7 +396,8 @@ class MapViewController: UIViewController,GMSMapViewDelegate{
                     //addressname
                     newActivity.fullAddress = maker["address"].stringValue
                     //date
-                    let dateString = maker["date"].stringValue
+                    let dateString = maker["dateNoFormat"].stringValue
+                    let dateString2 = maker["date"].stringValue
                     self.dateFormatter.dateFormat = "yyyy-MM-dd"
                     newActivity.date = self.dateFormatter.date(from: dateString)!
                     //start time
@@ -131,7 +410,7 @@ class MapViewController: UIViewController,GMSMapViewDelegate{
                     //description
                     newActivity.description = maker["description"].stringValue
                     //participators
-                    var counter = 0
+                    /*var counter = 0
                     var hostId = ""
                     for (_,userId) in maker["attendeesIds"]{
                         let Id  = userId.stringValue
@@ -178,7 +457,7 @@ class MapViewController: UIViewController,GMSMapViewDelegate{
                             }
                             
                         }
-                    }
+                    }*/
                     
                     var boolValue = false
                     var matchedMarker:Maker = Maker()
@@ -211,6 +490,7 @@ class MapViewController: UIViewController,GMSMapViewDelegate{
             }
             else {
                 print(responseCode)
+                print(json)
                 print("error")
             }
         })

@@ -16,9 +16,9 @@ class ActivityController{
     func removeParticipator(userId: String, eventId: String){
         for activity in currentShownActivities{
             if activity.activityId == eventId{
-                for (index,element) in activity.participatiorsIds.enumerated(){
+                for (index,element) in activity.participatorsIds.enumerated(){
                     if element == userId{
-                        activity.participatiorsIds.remove(at: index)
+                        activity.participatorsIds.remove(at: index)
                     }
                 }
             }
@@ -27,7 +27,7 @@ class ActivityController{
     func addParticipator(userId: String, eventId: String){
         for activity in currentShownActivities{
             if activity.activityId == eventId{
-                activity.participatiorsIds.append(userId)
+                activity.participatorsIds.append(userId)
             }
         }
     }

@@ -144,10 +144,10 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate,UI
         var fileName = ""
         if let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage{
             if picker == imagePicker_profile{
-                link = "https://vincilive.herokuapp.com/profile/app/upload-profile"
+                link = "https://vincilive2.herokuapp.com/profile/app/upload-profile"
                 fileName = "profilePic"
             }else{
-                link = "https://vincilive.herokuapp.com/profile/app/upload-cover"
+                link = "https://vincilive2.herokuapp.com/profile/app/upload-cover"
                 fileName = "coverPic"
             }
             UserController.sharedInstance.currentUser.imageData = selectedImage
