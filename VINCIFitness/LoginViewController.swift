@@ -90,7 +90,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                                     print(json["userId"].stringValue)
                                     UserController.sharedInstance.currentUser.userId = json["userId"].stringValue
                                     let userId = UserController.sharedInstance.currentUser.userId
-                                    self.apiService.createHeaderRequest(URL(string: "https://vinci-server.herokuapp.com/profile/app/" + userId), method: "GET", parameters: nil, requestCompletionFunction: {
+                                    self.apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/app/" + userId), method: "GET", parameters: nil, requestCompletionFunction: {
                                         responseCode, json in
                                         if responseCode/100 == 2{
                                             print(json)
@@ -161,6 +161,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                 //}
                 
             }else{
+                print(json)
                self.loginFailed()
             }
         })

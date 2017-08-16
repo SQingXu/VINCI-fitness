@@ -12,7 +12,7 @@ class UserController{
     var currentUser = User(emailAddress: "")
     var isTabPresented = true
     var viewedUser = User(emailAddress: "")
-    var users = [User]()
+    var users = [String: User]()
     var userIds = [String]()
     fileprivate init(){ }
     func removeJoinedActivity(eventId: String){
@@ -60,7 +60,7 @@ class UserController{
     func clearOut(){
         currentUser = User(emailAddress: "")
         viewedUser = User(emailAddress: "")
-        users = [User]()
+        users = [String: User]()
         userIds = [String]()
     }
 }

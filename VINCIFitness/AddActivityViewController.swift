@@ -43,15 +43,20 @@ class AddActivityViewController: UIViewController,UITableViewDelegate, UITableVi
     var tap:UITapGestureRecognizer = UITapGestureRecognizer()
     var cancelButton = UIBarButtonItem()
     var doneButton = UIBarButtonItem()
+    //var tagPicker = UIPickerView()
+    //var tagText = UITextField()
+    //var tagLabel = UILabel()
+    //var tagArray = [String]()
     var privacySwitch = UISwitch()
     var privacyText = UILabel()
     var inviteLabel = UILabel()
     var inviteText = UITextView()
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let mainScreenSize = UIScreen.main.bounds
-        showResultTable = false
+        //tagArray = []
+        //showResultTable = false
         //set navigation item
         activityIndicator.isHidden = true
         cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.cancelPressed(_:)))
@@ -69,6 +74,7 @@ class AddActivityViewController: UIViewController,UITableViewDelegate, UITableVi
         resultTable.delegate = self
         resultTable.dataSource = self
         descriptionField.delegate = self
+        //tagText.delegate = tagPicker as! UITextFieldDelegate
         //privacyText.delegate = self
         inviteText.delegate = self
         //set element frame

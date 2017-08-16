@@ -135,8 +135,8 @@ class APIServiceController{
     }
     func updatePersonalInfo(userId:String){
         if UserController.sharedInstance.userIds.contains(userId){
-            for (index, key) in UserController.sharedInstance.users.enumerated(){
-                if key.userId == userId{
+            for (key, value) in UserController.sharedInstance.users{
+                if key == userId{
                     apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/app/"+userId), method: "GET", parameters: nil, requestCompletionFunction: {
                         responseCode, json in
                         if responseCode/100 == 2{
@@ -150,7 +150,7 @@ class APIServiceController{
                             self.dateFormatter.dateFormat = "yyyy-MM-dd"
                             newUser.birthday = self.dateFormatter.date(from: json["birthday"].stringValue)!
                             newUser.homeAddressFull = json["address"].stringValue
-                            UserController.sharedInstance.users[index] = newUser
+                            UserController.sharedInstance.users[key] = newUser
                         }else{
                             print("error")
                             
@@ -175,7 +175,7 @@ class APIServiceController{
                     self.dateFormatter.dateFormat = "yyyy-MM-dd"
                     newUser.birthday = self.dateFormatter.date(from: json["birthday"].stringValue)!
                     newUser.homeAddressFull = json["address"].stringValue
-                    UserController.sharedInstance.users.append(newUser)
+                    UserController.sharedInstance.users[userId] = newUser
                 }else{
                     print("error")
                     
@@ -201,7 +201,11 @@ class APIServiceController{
                 self.dateFormatter.dateFormat = "yyyy-MM-dd"
                 newUser.birthday = self.dateFormatter.date(from: json["birthday"].stringValue)!
                 newUser.homeAddressFull = json["address"].stringValue
-                UserController.sharedInstance.users.append(newUser)
+                newUser.status = json["status"].stringValue
+                newUser.facebook = json["facebook"].stringValue
+                newUser.twitter = json["twitter"].stringValue
+                newUser.instagram = json["instagram"].stringValue
+                UserController.sharedInstance.users[userId] = newUser
             }else{
                 print(responseCode)
                 print(json)
@@ -226,6 +230,10 @@ class APIServiceController{
                 UserController.sharedInstance.currentUser.birthday = self.dateFormatter.date(from: json["birthday"].stringValue)!
                 UserController.sharedInstance.currentUser.coverImageUrl = json["imageCover"].stringValue
                 UserController.sharedInstance.currentUser.homeAddressFull = json["address"].stringValue
+                UserController.sharedInstance.currentUser.status = json["status"].stringValue
+                UserController.sharedInstance.currentUser.facebook = json["facebook"].stringValue
+                UserController.sharedInstance.currentUser.twitter = json["twitter"].stringValue
+                UserController.sharedInstance.currentUser.instagram = json["instagram"].stringValue
                 UserController.sharedInstance.viewedUser = UserController.sharedInstance.currentUser
             }else{
                 print("error")

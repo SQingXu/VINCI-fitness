@@ -21,6 +21,10 @@ class User{
     var facebookID: String = ""
     var profileImageURL: String = ""
     var bio: String = ""
+    var status: String = ""
+    var facebook: String = ""
+    var instagram: String = ""
+    var twitter: String = ""
     var emailAddress: String
     var homeAddressFull:String = ""
     var birthday = Date()

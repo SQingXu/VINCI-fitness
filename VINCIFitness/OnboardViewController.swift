@@ -52,6 +52,10 @@ class OnboardViewController: UIViewController {
                                     UserController.sharedInstance.currentUser.birthday = self.dateFormatter.date(from: json["birthday"].stringValue)!
                                     UserController.sharedInstance.currentUser.homeAddressFull = json["address"].stringValue
                                     UserController.sharedInstance.currentUser.coverImageUrl = json["imageCover"].stringValue
+                                    UserController.sharedInstance.currentUser.status = json["status"].stringValue
+                                    UserController.sharedInstance.currentUser.facebook = json["facebook"].stringValue
+                                    UserController.sharedInstance.currentUser.twitter = json["twitter"].stringValue
+                                    UserController.sharedInstance.currentUser.instagram = json["instagram"].stringValue
                                     UserController.sharedInstance.viewedUser = UserController.sharedInstance.currentUser
                                     self.activityIndicator.isHidden = true
                                     self.activityIndicator.stopAnimating()

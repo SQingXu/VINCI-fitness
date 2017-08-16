@@ -23,6 +23,11 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate,UI
     @IBOutlet weak var birthdayLabel: UILabel!
     @IBOutlet weak var homeAddressLabel: UILabel!
     @IBOutlet weak var bioLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var facebookLabel: UILabel!
+    @IBOutlet weak var twitterLabel: UILabel!
+    @IBOutlet weak var instagramLabel: UILabel!
+    
     var imagePicker_profile = UIImagePickerController()
     var imagePicker_cover = UIImagePickerController()
     let dateFormatter = DateFormatter()
@@ -45,6 +50,18 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate,UI
         bioLabel.lineBreakMode = .byWordWrapping
         bioLabel.numberOfLines = 0
         bioLabel.textColor = UIColor.vinciRed()
+        statusLabel.lineBreakMode = .byWordWrapping
+        statusLabel.numberOfLines = 0
+        statusLabel.textColor = UIColor.vinciRed()
+        facebookLabel.lineBreakMode = .byWordWrapping
+        facebookLabel.numberOfLines = 0
+        facebookLabel.textColor = UIColor.vinciRed()
+        twitterLabel.lineBreakMode = .byWordWrapping
+        twitterLabel.numberOfLines = 0
+        twitterLabel.textColor = UIColor.vinciRed()
+        instagramLabel.lineBreakMode = .byWordWrapping
+        instagramLabel.numberOfLines = 0
+        instagramLabel.textColor = UIColor.vinciRed()
         homeAddressLabel.lineBreakMode = .byWordWrapping
         homeAddressLabel.numberOfLines = 0
         homeAddressLabel.textColor = UIColor.vinciRed()
@@ -76,6 +93,24 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate,UI
         birthdayLabel.text = dateFormatter.string(from: user.birthday as Date)
         homeAddressLabel.text = user.homeAddressFull
         bioLabel.text = user.bio
+        statusLabel.text = user.status
+        if user.status.isEmpty {
+            statusLabel.text = "None"
+        }
+        facebookLabel.text = user.facebook
+        if user.facebook.isEmpty {
+            facebookLabel.text = "None"
+        }
+        twitterLabel.text = user.twitter
+        if user.twitter.isEmpty {
+            twitterLabel.text = "None"
+        }
+        instagramLabel.text = user.instagram
+        if user.instagram.isEmpty {
+            instagramLabel.text = "None"
+        }
+        
+        
         if user.emailAddress == ""{
             emailAddressLabel.text = "Unknown"
         }else{

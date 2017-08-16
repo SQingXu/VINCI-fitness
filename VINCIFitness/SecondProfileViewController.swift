@@ -298,6 +298,7 @@ class SecondProfileViewController: UIViewController,UITableViewDelegate, UITable
                             }
                         }else{
                             print("log in error")
+                            print(json2)
                             print(responseCode)
                             self.loginFailed()
                         }

@@ -16,8 +16,8 @@ class MapViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDe
     var mapView = GMSMapView()
     var camera = GMSCameraPosition()
     var dateFormatter = DateFormatter()
-    
-
+    var latitude = 0.0
+    var longitude = 0.0
     override func viewDidLoad() {
         super.viewDidLoad()
         let mainScreen = UIScreen.main.bounds
@@ -26,8 +26,8 @@ class MapViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDe
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.startUpdatingLocation()
-        var latitude = 35.91
-        var longitude = -79.056
+        self.latitude = 35.91
+        self.longitude = -79.056
         if (locationManager.location != nil){
             latitude = (locationManager.location?.coordinate.latitude)!
             longitude = (locationManager.location?.coordinate.longitude)!
@@ -373,7 +373,7 @@ class MapViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDe
     
     func getActivities(){
         let apiService = APIService()
-        apiService.createMutableAnonRequest(URL(string:"https://vincilive2.herokuapp.com/map/get-data"), method: "POST", parameters: ["range":"30" as AnyObject,"lat":"35.8" as AnyObject,"lng":"-78.775" as AnyObject],requestCompletionFunction: {responseCode, json in
+        apiService.createMutableAnonRequest(URL(string:"https://vincilive2.herokuapp.com/map/get-data"), method: "POST", parameters: ["range":"30" as AnyObject,"lat":self.latitude as AnyObject,"lng":self.longitude as AnyObject],requestCompletionFunction: {responseCode, json in
             if responseCode/100 == 2{
                 print(json)
                 var updatedArray = [Maker]()
@@ -408,57 +408,7 @@ class MapViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDe
                     let endTimeString = maker["endTime"].stringValue
                     newActivity.endTime = self.dateFormatter.date(from: endTimeString)!
                     //description
-                    newActivity.description = maker["description"].stringValue
-                    //participators
-                    /*var counter = 0
-                    var hostId = ""
-                    for (_,userId) in maker["attendeesIds"]{
-                        let Id  = userId.stringValue
-                        if counter == 0{
-                            newActivity.hostId = Id
-                            hostId = Id
-                        }else{
-                            newActivity.participatiorsIds.append(Id)
-                        }
-                        print(userId.stringValue)
-                        
-                        if (!UserController.sharedInstance.userIds.contains(Id)){
-                            APIServiceController.sharedInstance.loadingPersonInfo(Id)
-                        }
-                        counter += 1
-                    }
-                    //user setup
-                    if UserController.sharedInstance.currentUser.userId == hostId{
-                        var host_activity_matched = false
-                        for activity in UserController.sharedInstance.currentUser.hostedActivities{
-                            if activity.activityId == newActivity.activityId{
-                                host_activity_matched = true
-                                break
-                            }
-                        }
-                        if host_activity_matched{
-                        }else{
-                            UserController.sharedInstance.currentUser.hostedActivities.append(newActivity)
-                        }
-                    }
-                    for (_,userId) in maker["attendeesIds"]{
-                        let Id = userId.stringValue
-                        if Id == UserController.sharedInstance.currentUser.userId{
-                            var attend_activity_matched = false
-                            for activity in UserController.sharedInstance.currentUser.attendedActivities{
-                                if activity.activityId == newActivity.activityId{
-                                    attend_activity_matched = true
-                                    break
-                                }
-                            }
-                            if attend_activity_matched{
-                            }else{
-                                UserController.sharedInstance.currentUser.attendedActivities.append(newActivity)
-                            }
-                            
-                        }
-                    }*/
-                    
+                    newActivity.description = maker["description"].stringValue                    
                     var boolValue = false
                     var matchedMarker:Maker = Maker()
                     for almarker in updatedArray{
