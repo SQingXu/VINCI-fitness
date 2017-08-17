@@ -335,6 +335,7 @@ class MapViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDe
                     newActivity.endTime = self.dateFormatter.date(from: endTimeString)!
                     //description
                     newActivity.description = marker["description"].stringValue
+                    newActivity.tag = marker["tag"].stringValue
                     UserController.sharedInstance.currentUser.hostedActivities.append(newActivity)
                     
                 }
@@ -359,6 +360,7 @@ class MapViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDe
                     newActivity.endTime = self.dateFormatter.date(from: endTimeString)!
                     //description
                     newActivity.description = marker["description"].stringValue
+                    newActivity.tag = marker["tag"].stringValue
                     UserController.sharedInstance.currentUser.attendedActivities.append(newActivity)
                 }
                 self.updateCalendarEvents()
@@ -397,7 +399,6 @@ class MapViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDe
                     newActivity.fullAddress = maker["address"].stringValue
                     //date
                     let dateString = maker["dateNoFormat"].stringValue
-                    let dateString2 = maker["date"].stringValue
                     self.dateFormatter.dateFormat = "yyyy-MM-dd"
                     newActivity.date = self.dateFormatter.date(from: dateString)!
                     //start time
@@ -408,7 +409,8 @@ class MapViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDe
                     let endTimeString = maker["endTime"].stringValue
                     newActivity.endTime = self.dateFormatter.date(from: endTimeString)!
                     //description
-                    newActivity.description = maker["description"].stringValue                    
+                    newActivity.description = maker["description"].stringValue
+                    newActivity.tag = maker["tag"].stringValue
                     var boolValue = false
                     var matchedMarker:Maker = Maker()
                     for almarker in updatedArray{

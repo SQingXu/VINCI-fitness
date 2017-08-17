@@ -82,18 +82,17 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                                 print(json)
                                 UserDefaults.standard.set(data["email"] as! String, forKey: "email")
                                 UserDefaults.standard.set(data["id"] as! String, forKey: "password")
-                                if json["userId"].stringValue != ""{
+                                if json["error"].stringValue != ""{
                                     self.dismiss(animated: true, completion: nil)
                                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
                                     let application = UIApplication.shared
                                     let window = application.keyWindow
                                     print(json["userId"].stringValue)
-                                    UserController.sharedInstance.currentUser.userId = json["userId"].stringValue
-                                    let userId = UserController.sharedInstance.currentUser.userId
-                                    self.apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/app/" + userId), method: "GET", parameters: nil, requestCompletionFunction: {
+                                    self.apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/app"), method: "POST", parameters: nil, requestCompletionFunction: {
                                         responseCode, json in
                                         if responseCode/100 == 2{
                                             print(json)
+                                            UserController.sharedInstance.currentUser.userId = json["publicUserId"].stringValue
                                             UserController.sharedInstance.currentUser.bio = json["biography"].stringValue
                                             UserController.sharedInstance.currentUser.profileImageURL = json["imageProfile"].stringValue
                                             UserController.sharedInstance.currentUser.firstName = json["firstName"].stringValue
@@ -101,11 +100,17 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                                             self.dateFormatter.dateFormat = "yyyy-MM-dd"
                                             UserController.sharedInstance.currentUser.birthday = self.dateFormatter.date(from: json["birthday"].stringValue)!
                                             UserController.sharedInstance.currentUser.homeAddressFull = json["address"].stringValue
+                                            UserController.sharedInstance.currentUser.coverImageUrl = json["imageCover"].stringValue
+                                            UserController.sharedInstance.currentUser.status = json["status"].stringValue
+                                            UserController.sharedInstance.currentUser.facebook = json["facebook"].stringValue
+                                            UserController.sharedInstance.currentUser.twitter = json["twitter"].stringValue
+                                            UserController.sharedInstance.currentUser.instagram = json["instagram"].stringValue
                                             UserController.sharedInstance.viewedUser = UserController.sharedInstance.currentUser
+                                            
                                             window?.rootViewController = appDelegate.initTabBarController()
                                         }else{
                                             print("error")
-                                            
+                                            self.loginFailed()
                                         }
                                     })
                                 }else{
@@ -147,15 +152,43 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
                     let application = UIApplication.shared
                     let window = application.keyWindow
-                    print(json["userId"].stringValue)
+                    //print(json["userId"].stringValue)
                     //set user default
                     UserDefaults.standard.set(self.emailTextField.text!, forKey: "email")
                     UserDefaults.standard.set(self.passwordTextField.text!, forKey: "password")
-                    UserController.sharedInstance.currentUser.userId = json["userId"].stringValue
+                    //UserController.sharedInstance.currentUser.userId = json["userId"].stringValue
                     UserController.sharedInstance.currentUser.emailAddress = self.emailTextField.text!
                     UserController.sharedInstance.viewedUser = UserController.sharedInstance.currentUser
-                    APIServiceController.sharedInstance.loadCurrentInfo()
-                    window?.rootViewController = appDelegate.initTabBarController()
+                    self.apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/app"), method: "POST", parameters: nil, requestCompletionFunction: {
+                        responseCode, json in
+                        if responseCode/100 == 2{
+                            print(json["publicUserId"].stringValue)
+                            //set user default
+                            UserController.sharedInstance.currentUser.userId = json["publicUserId"].stringValue
+                            UserController.sharedInstance.viewedUser = UserController.sharedInstance.currentUser
+                            UserController.sharedInstance.currentUser.bio = json["biography"].stringValue
+                            UserController.sharedInstance.currentUser.profileImageURL = json["imageProfile"].stringValue
+                            UserController.sharedInstance.currentUser.firstName = json["firstName"].stringValue
+                            UserController.sharedInstance.currentUser.lastName = json["lastName"].stringValue
+                            self.dateFormatter.dateFormat = "yyyy-MM-dd"
+                            UserController.sharedInstance.currentUser.birthday = self.dateFormatter.date(from: json["birthday"].stringValue)!
+                            UserController.sharedInstance.currentUser.homeAddressFull = json["address"].stringValue
+                            UserController.sharedInstance.currentUser.coverImageUrl = json["imageCover"].stringValue
+                            UserController.sharedInstance.currentUser.status = json["status"].stringValue
+                            UserController.sharedInstance.currentUser.facebook = json["facebook"].stringValue
+                            UserController.sharedInstance.currentUser.twitter = json["twitter"].stringValue
+                            UserController.sharedInstance.currentUser.instagram = json["instagram"].stringValue
+                            UserController.sharedInstance.viewedUser = UserController.sharedInstance.currentUser
+                            self.activityIndicator.isHidden = true
+                            self.activityIndicator.stopAnimating()
+                            window?.rootViewController = appDelegate.initTabBarController()
+                        }
+                        else{
+                            print(responseCode)
+                            print(json)
+                            self.loginFailed()
+                        }
+                    })
                 //}else{
                 //    self.loginFailed()
                 //}

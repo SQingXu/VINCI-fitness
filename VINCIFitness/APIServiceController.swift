@@ -323,12 +323,13 @@ class APIServiceController{
         let description = activity.description
         let privacy = activity.privacy
         let invites = activity.invites
+        let tag = activity.tag
         dateFormatter.dateFormat = "HH:mm:ss"
         let startTime = dateFormatter.string(from: activity.startTime as Date)
         let endTime = dateFormatter.string(from: activity.endTime as Date)
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let date = dateFormatter.string(from: activity.date as Date)
-        apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/map/create"), method: "POST", parameters: ["title": title as AnyObject, "description": description as AnyObject, "address": address as AnyObject, "date":date as AnyObject, "startTime":startTime as AnyObject, "endTime": endTime as AnyObject, "eventPrivacy": privacy as AnyObject, "inviteeEmail": invites as AnyObject, "eventTag": "Social" as AnyObject], requestCompletionFunction: {responseCode, json in
+        apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/map/create"), method: "POST", parameters: ["title": title as AnyObject, "description": description as AnyObject, "address": address as AnyObject, "date":date as AnyObject, "startTime":startTime as AnyObject, "endTime": endTime as AnyObject, "eventPrivacy": privacy as AnyObject, "inviteeEmail": invites as AnyObject, "eventTag": tag as AnyObject], requestCompletionFunction: {responseCode, json in
             if responseCode/100 == 2{
                 print("create activity successfully")
                 completeClosure()

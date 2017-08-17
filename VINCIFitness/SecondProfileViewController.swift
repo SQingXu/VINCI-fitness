@@ -194,25 +194,26 @@ class SecondProfileViewController: UIViewController,UITableViewDelegate, UITable
             doneButton.isEnabled = false
             activityIndicator.isHidden = false
             activityIndicator.startAnimating()
-            apiService.createHeaderRequest(URL(string:"https://vinci-server.herokuapp.com/profile-creation/app-submit"), method: "POST", parameters: ["email": currentUser.emailAddress as AnyObject,"password":currentUser.password as AnyObject,"address":currentUser.homeAddressFull as AnyObject,"firstName":currentUser.firstName as AnyObject,"lastName":currentUser.lastName as AnyObject,"birthday":birthdayString as AnyObject], requestCompletionFunction: {
+            apiService.createHeaderRequest(URL(string:"https://vincilive2.herokuapp.com/profile-creation/app-submit"), method: "POST", parameters: ["email": currentUser.emailAddress as AnyObject,"password":currentUser.password as AnyObject,"address":currentUser.homeAddressFull as AnyObject,"firstName":currentUser.firstName as AnyObject,"lastName":currentUser.lastName as AnyObject,"birthday":birthdayString as AnyObject], requestCompletionFunction: {
                 responseCode, json1 in
                 if responseCode/100 == 2{
                     //log in with information
                     apiService.createMutableAnonRequest(URL(string:"https://vincilive2.herokuapp.com/login"), method: "POST", parameters: ["email":currentUser.emailAddress as AnyObject,"pass":currentUser.password as AnyObject], requestCompletionFunction: {responseCode, json2 in
                         if responseCode/100 == 2{
                             print(json2)
-                            if json2["userId"].stringValue != ""{
-                                print(json2["userId"].stringValue)
-                                UserController.sharedInstance.currentUser.userId = json2["userId"].stringValue
-                                currentUser.userId = json2["userId"].stringValue
+                            if json1["userId"] != nil{
+                                //print(json2["userId"].stringValue)
+                                //UserController.sharedInstance.currentUser.userId = json2["userId"].stringValue
+                                //currentUser.userId = json2["userId"].stringValue
                                 //upload image profile
+                                print(json1["userId"])
                                 if currentUser.imageData != nil{
                                     //user did select a image as profile
                                 let imageData = UIImageJPEGRepresentation(currentUser.imageData!,0.5)
                                 Alamofire.upload(multipartFormData:{multipartFormData in
                                     multipartFormData.append(imageData!, withName: "profilePic", fileName: "this_is_a_file", mimeType: "image/jpeg")
-                                    multipartFormData.append(json2["userId"].stringValue.data(using: String.Encoding.utf8)!, withName: "userId")
-                                    }, to: "https://vinci-server.herokuapp.com/profile/app/upload-profile", encodingCompletion: {
+                                    multipartFormData.append(json1["userId"].stringValue.data(using: String.Encoding.utf8)!, withName: "userId")
+                                    }, to: "https://vincilive2.herokuapp.com/profile/app/upload-profile", encodingCompletion: {
                                         
                                         encodingResult in
                                         
@@ -227,14 +228,17 @@ class SecondProfileViewController: UIViewController,UITableViewDelegate, UITable
                                                     print("json: \(JSON)")
                                                 }
                                                 //upload bio
-                                                apiService.createMutableAnonRequest(URL(string:"https://vinci-server.herokuapp.com/profile/app-upload-bio"), method: "POST", parameters: ["bio":currentUser.bio as AnyObject,"userId":currentUser.userId as AnyObject], requestCompletionFunction: {responseCode, json3 in
+                                                apiService.createMutableAnonRequest(URL(string:"https://vincilive2.herokuapp.com/profile/app-upload-bio"), method: "POST", parameters: ["bio":currentUser.bio as AnyObject,"userId":json1["userId"].stringValue as AnyObject], requestCompletionFunction: {responseCode, json3 in
                                                     if responseCode/100 == 2{
                                                         //log in
                                                         
-                                                        apiService.createHeaderRequest(URL(string: "https://vinci-server.herokuapp.com/profile/app/" + currentUser.userId), method: "GET", parameters: nil, requestCompletionFunction: {
+                                                        apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/app"), method: "POST", parameters: nil, requestCompletionFunction: {
                                                             responseCode, json in
                                                             if responseCode/100 == 2{
                                                                 print(json)
+                                                                print(json["publicUserId"].stringValue)
+                                                                UserController.sharedInstance.currentUser.userId = json["publicUserId"].stringValue
+                                                                currentUser.userId = json2["publicUserId"].stringValue
                                                                 UserController.sharedInstance.currentUser.bio = json["biography"].stringValue
                                                                 UserController.sharedInstance.currentUser.profileImageURL = json["imageProfile"].stringValue
                                                                 UserController.sharedInstance.currentUser.firstName = json["firstName"].stringValue
@@ -242,6 +246,11 @@ class SecondProfileViewController: UIViewController,UITableViewDelegate, UITable
                                                                 self.dateFormatter.dateFormat = "yyyy-MM-dd"
                                                                 UserController.sharedInstance.currentUser.birthday = self.dateFormatter.date(from: json["birthday"].stringValue)!
                                                                 UserController.sharedInstance.currentUser.homeAddressFull = json["address"].stringValue
+                                                                UserController.sharedInstance.currentUser.coverImageUrl = json["imageCover"].stringValue
+                                                                UserController.sharedInstance.currentUser.status = json["status"].stringValue
+                                                                UserController.sharedInstance.currentUser.facebook = json["facebook"].stringValue
+                                                                UserController.sharedInstance.currentUser.twitter = json["twitter"].stringValue
+                                                                UserController.sharedInstance.currentUser.instagram = json["instagram"].stringValue
                                                                 UserController.sharedInstance.viewedUser = UserController.sharedInstance.currentUser
                                                                 self.activityIndicator.stopAnimating()
                                                                 self.activityIndicator.isHidden = true

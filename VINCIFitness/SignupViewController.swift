@@ -121,7 +121,15 @@ class SignupViewController: UIViewController,UITextFieldDelegate {
                         if dict == nil{
                             print("nil")
                         }else{
+                            if ((dict?["min"] != nil) && (dict?["max"] != nil)){
                             UserController.sharedInstance.currentUser.age = Int((dict!["max"]! + dict!["min"]!)/2)
+                            } else if ((dict?["min"] != nil) && (dict?["max"] == nil)){
+                                UserController.sharedInstance.currentUser.age = Int(dict!["min"]!)
+                            } else if ((dict?["min"] == nil) && (dict?["max"] != nil)){
+                                UserController.sharedInstance.currentUser.age = Int(dict!["max"]!)
+                            } else{
+                                UserController.sharedInstance.currentUser.age = 0
+                            }
                         }
                         let gender = data["gender"]
                         if gender != nil{

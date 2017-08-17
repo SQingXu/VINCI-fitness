@@ -20,4 +20,5 @@ class Activity{
     var description = ""
     var privacy = ""
     var invites = ""
+    var tag = ""
 }

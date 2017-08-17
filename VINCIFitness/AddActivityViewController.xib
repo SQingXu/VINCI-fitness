@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -15,16 +15,17 @@
                 <outlet property="activityIndicator" destination="icB-kX-URz" id="vcy-kh-1f5"/>
                 <outlet property="cancelEditingButton" destination="QF0-9P-lvO" id="Ftb-ha-vD4"/>
                 <outlet property="finishEditingButton" destination="8dh-6U-Fsq" id="m2y-Ku-28v"/>
+                <outlet property="tagPicker" destination="B25-jd-aHi" id="i8I-nT-PrX"/>
                 <outlet property="toView" destination="6ay-QQ-lYQ" id="0AK-fT-zg2"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6ay-QQ-lYQ">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ay-QQ-lYQ">
                     <rect key="frame" x="280" y="291" width="40" height="40"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2sh-14-5bI">
@@ -57,7 +58,7 @@
                     </connections>
                 </button>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="icB-kX-URz">
-                    <rect key="frame" x="177" y="323.5" width="20" height="20"/>
+                    <rect key="frame" x="290" y="290" width="20" height="20"/>
                 </activityIndicatorView>
                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QF0-9P-lvO">
                     <rect key="frame" x="36" y="537" width="120" height="35"/>
@@ -73,18 +74,28 @@
                         <action selector="cancelEdPressed:" destination="-1" eventType="touchUpInside" id="A3M-QC-gIM"/>
                     </connections>
                 </button>
+                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B25-jd-aHi">
+                    <rect key="frame" x="0.0" y="43" width="375" height="620"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="375" id="1Q9-hq-lB5"/>
+                    </constraints>
+                </pickerView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="8dh-6U-Fsq" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" multiplier="1.35" id="2e1-GP-KDa"/>
                 <constraint firstItem="6ay-QQ-lYQ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="centerY" multiplier="0.97" id="3dK-bo-Lbv"/>
                 <constraint firstItem="QF0-9P-lvO" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" multiplier="1.85" id="Erp-8c-MJP"/>
+                <constraint firstItem="B25-jd-aHi" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="FDb-Ya-S9X"/>
                 <constraint firstItem="8dh-6U-Fsq" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" multiplier="1.85" id="Mlf-ol-RPk"/>
                 <constraint firstItem="6ay-QQ-lYQ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="VXS-6J-YrQ"/>
                 <constraint firstItem="icB-kX-URz" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="YTH-7t-KFg"/>
                 <constraint firstItem="QF0-9P-lvO" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" multiplier="0.65" id="YmO-Dh-Rg3"/>
                 <constraint firstItem="icB-kX-URz" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ahf-h3-79N"/>
+                <constraint firstItem="B25-jd-aHi" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="43" id="qeI-ct-m7n"/>
+                <constraint firstAttribute="bottom" secondItem="B25-jd-aHi" secondAttribute="bottom" constant="-63" id="wtc-hq-UUo"/>
             </constraints>
+            <point key="canvasLocation" x="35.5" y="84.5"/>
         </view>
     </objects>
 </document>

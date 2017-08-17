@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class ProfileViewController: UIViewController, UINavigationControllerDelegate,UIImagePickerControllerDelegate{
+class ProfileViewController: UIViewController, UINavigationControllerDelegate,UIImagePickerControllerDelegate, UITextFieldDelegate{
 
     @IBOutlet weak var coverImageView: UIImageView!
     @IBOutlet weak var signOutButton: UIButton!
@@ -22,14 +22,17 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate,UI
     @IBOutlet weak var firstNameLabel: UILabel!
     @IBOutlet weak var birthdayLabel: UILabel!
     @IBOutlet weak var homeAddressLabel: UILabel!
-    @IBOutlet weak var bioLabel: UILabel!
-    @IBOutlet weak var statusLabel: UILabel!
-    @IBOutlet weak var facebookLabel: UILabel!
-    @IBOutlet weak var twitterLabel: UILabel!
-    @IBOutlet weak var instagramLabel: UILabel!
+    @IBOutlet weak var bioTextField: UITextField!
+    @IBOutlet weak var statusTextField: UITextField!
+    @IBOutlet weak var facebookTextField: UITextField!
+    @IBOutlet weak var twitterTextField: UITextField!
+    @IBOutlet weak var instagramTextField: UITextField!
+    private var currentTextField: UITextField?
     
     var imagePicker_profile = UIImagePickerController()
     var imagePicker_cover = UIImagePickerController()
+    let apiService = APIService()
+    let user = UserController.sharedInstance.viewedUser
     let dateFormatter = DateFormatter()
     override func viewDidLoad() {
         let user = UserController.sharedInstance.viewedUser
@@ -47,21 +50,18 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate,UI
         super.viewWillAppear(animated)
         imagePicker_profile.delegate = self
         imagePicker_cover.delegate = self
-        bioLabel.lineBreakMode = .byWordWrapping
-        bioLabel.numberOfLines = 0
-        bioLabel.textColor = UIColor.vinciRed()
-        statusLabel.lineBreakMode = .byWordWrapping
-        statusLabel.numberOfLines = 0
-        statusLabel.textColor = UIColor.vinciRed()
-        facebookLabel.lineBreakMode = .byWordWrapping
-        facebookLabel.numberOfLines = 0
-        facebookLabel.textColor = UIColor.vinciRed()
-        twitterLabel.lineBreakMode = .byWordWrapping
-        twitterLabel.numberOfLines = 0
-        twitterLabel.textColor = UIColor.vinciRed()
-        instagramLabel.lineBreakMode = .byWordWrapping
-        instagramLabel.numberOfLines = 0
-        instagramLabel.textColor = UIColor.vinciRed()
+        
+        bioTextField.textColor = UIColor.vinciRed()
+        bioTextField.delegate = self
+        statusTextField.textColor = UIColor.vinciRed()
+        statusTextField.delegate = self
+        facebookTextField.textColor = UIColor.vinciRed()
+        facebookTextField.delegate = self
+        twitterTextField.textColor = UIColor.vinciRed()
+        twitterTextField.delegate = self
+        instagramTextField.textColor = UIColor.vinciRed()
+        instagramTextField.delegate = self
+        
         homeAddressLabel.lineBreakMode = .byWordWrapping
         homeAddressLabel.numberOfLines = 0
         homeAddressLabel.textColor = UIColor.vinciRed()
@@ -76,7 +76,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate,UI
         profileImageView.layer.borderWidth = 2
         profileImageView.layer.borderColor = UIColor.vinciRed().cgColor
         profileImageView.layer.cornerRadius = 90
-        let user = UserController.sharedInstance.viewedUser
+        //let user = UserController.sharedInstance.viewedUser
         firstNameLabel.text = "\(user.firstName) \(user.lastName)"
 //        if user.profileImageURL != ""{
 //            let picurl = URL(string: user.profileImageURL)
@@ -92,22 +92,25 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate,UI
         dateFormatter.dateStyle = .long
         birthdayLabel.text = dateFormatter.string(from: user.birthday as Date)
         homeAddressLabel.text = user.homeAddressFull
-        bioLabel.text = user.bio
-        statusLabel.text = user.status
+        bioTextField.text = user.bio
+        if user.bio.isEmpty {
+            bioTextField.text = ""
+        }
+        statusTextField.text = user.status
         if user.status.isEmpty {
-            statusLabel.text = "None"
+            statusTextField.text = ""
         }
-        facebookLabel.text = user.facebook
+        facebookTextField.text = user.facebook
         if user.facebook.isEmpty {
-            facebookLabel.text = "None"
+            facebookTextField.text = ""
         }
-        twitterLabel.text = user.twitter
+        twitterTextField.text = user.twitter
         if user.twitter.isEmpty {
-            twitterLabel.text = "None"
+            twitterTextField.text = ""
         }
-        instagramLabel.text = user.instagram
+        instagramTextField.text = user.instagram
         if user.instagram.isEmpty {
-            instagramLabel.text = "None"
+            instagramTextField.text = ""
         }
         
         
@@ -126,6 +129,17 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate,UI
             closeButton.tintColor = UIColor.vinciRed()
             coverImageView.isUserInteractionEnabled = false
             profileImageView.isUserInteractionEnabled = false
+            bioTextField.isUserInteractionEnabled = false
+            bioTextField.borderStyle = .none
+            statusTextField.isUserInteractionEnabled = false
+            statusTextField.borderStyle = .none
+            facebookTextField.isUserInteractionEnabled = false
+            facebookTextField.borderStyle = .none
+            twitterTextField.isUserInteractionEnabled = false
+            twitterTextField.borderStyle = .none
+            instagramTextField.isUserInteractionEnabled = false
+            instagramTextField.borderStyle = .none
+            
             hostActivityButton.isHidden = true
             joinActivityButton.isHidden = true
             signOutButton.isHidden = true
@@ -138,6 +152,122 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate,UI
         UserController.sharedInstance.isTabPresented = true
         UserController.sharedInstance.viewedUser = UserController.sharedInstance.currentUser
     }
+    
+    
+    
+    
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // User finished typing (hit return): hide the keyboard.
+        textField.resignFirstResponder()
+        
+        if(bioTextField.text != user.bio){
+            apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/upload-bio"), method: "POST", parameters: ["bio": bioTextField.text as AnyObject],requestCompletionFunction: {responseCode, json in
+                if responseCode/100 == 2{
+                    self.user.bio = json["biography"].stringValue
+                }
+                else{
+                    print(responseCode)
+                    print(json)
+                    self.bioTextField.text = self.user.bio
+                }
+            })
+        }
+        
+        if(statusTextField.text != user.status){
+            apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/upload-status"), method: "POST", parameters: ["status": statusTextField.text as AnyObject],requestCompletionFunction: {responseCode, json in
+                if responseCode/100 == 2{
+                    self.user.status = json["status"].stringValue
+                }
+                else{
+                    print(responseCode)
+                    print(json)
+                    self.statusTextField.text = self.user.status
+                }
+            })
+            
+        }
+        
+        if(facebookTextField.text != user.facebook || twitterTextField.text != user.twitter || instagramTextField.text != user.instagram){
+            
+            apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/update-socials"), method: "POST", parameters: ["facebook": facebookTextField.text as AnyObject, "twitter":twitterTextField.text as AnyObject,"instagram":instagramTextField.text as AnyObject],requestCompletionFunction: {responseCode, json in
+                if responseCode/100 == 2{
+                    self.user.facebook = json["facebook"].stringValue
+                    self.user.twitter = json["twitter"].stringValue
+                    self.user.instagram = json["instagram"].stringValue
+                }
+                else{
+                    print(responseCode)
+                    print(json)
+                    self.facebookTextField.text = self.user.facebook
+                    self.twitterTextField.text = self.user.twitter
+                    self.instagramTextField.text = self.user.instagram
+                }
+            })
+            
+        }
+        
+        return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        currentTextField = textField
+    }
+    
+    @IBAction func Submit(sender: UIButton) {
+        if let currentTextField = currentTextField {
+            currentTextField.resignFirstResponder()
+        }
+        
+        if(bioTextField.text != user.bio){
+            apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/upload-bio"), method: "POST", parameters: ["bio": bioTextField.text as AnyObject],requestCompletionFunction: {responseCode, json in
+                if responseCode/100 == 2{
+                    self.user.bio = json["biography"].stringValue
+                }
+                else{
+                    print(responseCode)
+                    print(json)
+                    self.bioTextField.text = self.user.bio
+                }
+            })
+        }
+        
+        if(statusTextField.text != user.status){
+            apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/upload-status"), method: "POST", parameters: ["status": statusTextField.text as AnyObject],requestCompletionFunction: {responseCode, json in
+                if responseCode/100 == 2{
+                    self.user.status = json["status"].stringValue
+                }
+                else{
+                    print(responseCode)
+                    print(json)
+                    self.statusTextField.text = self.user.status
+                }
+            })
+            
+        }
+        
+        if(facebookTextField.text != user.facebook || twitterTextField.text != user.twitter || instagramTextField.text != user.instagram){
+            
+            apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/update-socials"), method: "POST", parameters: ["facebook": facebookTextField.text as AnyObject, "twitter":twitterTextField.text as AnyObject,"instagram":instagramTextField.text as AnyObject],requestCompletionFunction: {responseCode, json in
+                if responseCode/100 == 2{
+                    self.user.facebook = json["facebook"].stringValue
+                    self.user.twitter = json["twitter"].stringValue
+                    self.user.instagram = json["instagram"].stringValue
+                }
+                else{
+                    print(responseCode)
+                    print(json)
+                    self.facebookTextField.text = self.user.facebook
+                    self.twitterTextField.text = self.user.twitter
+                    self.instagramTextField.text = self.user.instagram
+                }
+            })
+            
+        }
+    }
+    
+    
+    
     
     @IBAction func hostActivityButtonPressed(_ sender: UIButton) {
         ActivityController.sharedInstance.currentShownActivities = UserController.sharedInstance.currentUser.hostedActivities
