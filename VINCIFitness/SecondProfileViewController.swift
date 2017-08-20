@@ -213,7 +213,7 @@ class SecondProfileViewController: UIViewController,UITableViewDelegate, UITable
                                 Alamofire.upload(multipartFormData:{multipartFormData in
                                     multipartFormData.append(imageData!, withName: "profilePic", fileName: "this_is_a_file", mimeType: "image/jpeg")
                                     multipartFormData.append(json1["userId"].stringValue.data(using: String.Encoding.utf8)!, withName: "userId")
-                                    }, to: "https://vincilive2.herokuapp.com/profile/app/upload-profile", encodingCompletion: {
+                                    }, to: "https://vincilive2.herokuapp.com/profile/app-upload-profile", encodingCompletion: {
                                         
                                         encodingResult in
                                         
@@ -228,7 +228,7 @@ class SecondProfileViewController: UIViewController,UITableViewDelegate, UITable
                                                     print("json: \(JSON)")
                                                 }
                                                 //upload bio
-                                                apiService.createMutableAnonRequest(URL(string:"https://vincilive2.herokuapp.com/profile/app-upload-bio"), method: "POST", parameters: ["bio":currentUser.bio as AnyObject,"userId":json1["userId"].stringValue as AnyObject], requestCompletionFunction: {responseCode, json3 in
+                                                apiService.createMutableAnonRequest(URL(string:"https://vincilive2.herokuapp.com/profile/app-upload-bio"), method: "POST", parameters: ["bio":currentUser.bio as AnyObject], requestCompletionFunction: {responseCode, json3 in
                                                     if responseCode/100 == 2{
                                                         //log in
                                                         
@@ -258,6 +258,7 @@ class SecondProfileViewController: UIViewController,UITableViewDelegate, UITable
                                                                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                                                                 let application = UIApplication.shared
                                                                 let window = application.keyWindow
+                                                                //APIServiceController.sharedInstance.loadCurrentInfo()
                                                                 window?.rootViewController = appDelegate.initTabBarController()
                                                             }else{
                                                                 print("error")
@@ -280,7 +281,7 @@ class SecondProfileViewController: UIViewController,UITableViewDelegate, UITable
                                 })
                                 }else{
                                     //user did not select a picture
-                                    apiService.createMutableAnonRequest(URL(string:"https://vinci-server.herokuapp.com/profile/app-upload-bio"), method: "POST", parameters: ["bio":currentUser.bio as AnyObject,"userId":currentUser.userId as AnyObject], requestCompletionFunction: {responseCode, json3 in
+                                    apiService.createMutableAnonRequest(URL(string:"https://vinci-server.herokuapp.com/profile/upload-bio"), method: "POST", parameters: ["bio":currentUser.bio as AnyObject,"userId":currentUser.userId as AnyObject], requestCompletionFunction: {responseCode, json3 in
                                         if responseCode/100 == 2{
                                             //log in
                                             self.activityIndicator.stopAnimating()

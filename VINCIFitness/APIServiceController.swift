@@ -135,9 +135,9 @@ class APIServiceController{
     }
     func updatePersonalInfo(userId:String){
         if UserController.sharedInstance.userIds.contains(userId){
-            for (key, value) in UserController.sharedInstance.users{
+            for (key, _) in UserController.sharedInstance.users{
                 if key == userId{
-                    apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/app/"+userId), method: "GET", parameters: nil, requestCompletionFunction: {
+                    apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/app/"+userId), method: "POST", parameters: nil, requestCompletionFunction: {
                         responseCode, json in
                         if responseCode/100 == 2{
                             let newUser = User(emailAddress: "")
@@ -162,7 +162,7 @@ class APIServiceController{
         }else{
             //append
             UserController.sharedInstance.userIds.append(userId)
-            apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/app/"+userId), method: "GET", parameters: nil, requestCompletionFunction: {
+            apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/app/"+userId), method: "POST", parameters: nil, requestCompletionFunction: {
                 responseCode, json in
                 if responseCode/100 == 2{
                     let newUser = User(emailAddress: "")
@@ -188,7 +188,7 @@ class APIServiceController{
     
     func loadingPersonInfo(_ userId: String){
         UserController.sharedInstance.userIds.append(userId)
-        apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/app/:id"), method: "GET", parameters: ["id": userId as AnyObject], requestCompletionFunction: {
+        apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/app/"  + userId), method: "POST", parameters: nil, requestCompletionFunction: {
             responseCode, json in
             if responseCode/100 == 2{
                 let newUser = User(emailAddress: "")
@@ -218,7 +218,7 @@ class APIServiceController{
     }
     func loadCurrentInfo(){
         let userId = UserController.sharedInstance.currentUser.userId
-        apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/app/" + userId), method: "GET", parameters: nil, requestCompletionFunction: {
+        apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/app/" + userId), method: "POST", parameters: nil, requestCompletionFunction: {
             responseCode, json in
             if responseCode/100 == 2{
                 print(json)
@@ -256,7 +256,7 @@ class APIServiceController{
     }
     
     func getEvent(_ eventId:String, _ activity: Activity){
-        apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/map/get-event"), method: "Get", parameters: ["eventId": eventId as AnyObject],requestCompletionFunction: {responseCode, json in
+        apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/map/get-event"), method: "POST", parameters: ["eventId": eventId as AnyObject],requestCompletionFunction: {responseCode, json in
             if responseCode/100 == 2{
                 print(json)
                 

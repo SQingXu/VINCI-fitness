@@ -312,12 +312,13 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0800;
-				ORGANIZATIONNAME = "David Xu";
+				ORGANIZATIONNAME = "VINCI LLC";
 				TargetAttributes = {
 					487552781D61B7BB00754DAA = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = V4Q526CD3A;
+						DevelopmentTeam = D4T7P69BZ4;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -571,12 +572,14 @@
 				CODE_SIGN_ENTITLEMENTS = VINCIFitness/VINCIFitness.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = V4Q526CD3A;
+				DEVELOPMENT_TEAM = D4T7P69BZ4;
 				INFOPLIST_FILE = VINCIFitness/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = OscarBrennwald.VINCIFitness;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vinci.vinci;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -590,12 +593,14 @@
 				CODE_SIGN_ENTITLEMENTS = VINCIFitness/VINCIFitness.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = V4Q526CD3A;
+				DEVELOPMENT_TEAM = D4T7P69BZ4;
 				INFOPLIST_FILE = VINCIFitness/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = OscarBrennwald.VINCIFitness;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vinci.vinci;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

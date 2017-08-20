@@ -309,17 +309,17 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate,UI
         var fileName = ""
         if let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage{
             if picker == imagePicker_profile{
-                link = "https://vincilive2.herokuapp.com/profile/app/upload-profile"
+                link = "https://vincilive2.herokuapp.com/profile/app-upload-profile"
                 fileName = "profilePic"
             }else{
-                link = "https://vincilive2.herokuapp.com/profile/app/upload-cover"
+                link = "https://vincilive2.herokuapp.com/profile/app-upload-cover"
                 fileName = "coverPic"
             }
             UserController.sharedInstance.currentUser.imageData = selectedImage
                         let imageData = UIImageJPEGRepresentation(selectedImage,0.5)
                         Alamofire.upload(multipartFormData:{multipartFormData in
                             multipartFormData.append(imageData!, withName: fileName, fileName: "this_is_a_file", mimeType: "image/jpeg")
-                            multipartFormData.append(UserController.sharedInstance.currentUser.userId.data(using: String.Encoding.utf8)!, withName: "userId")
+                            //multipartFormData.append(UserController.sharedInstance.currentUser.userId.data(using: String.Encoding.utf8)!, withName: "userId")
                             }, to: link, encodingCompletion: {
             
                                 encodingResult in
@@ -333,8 +333,8 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate,UI
                                         print(response.response as Any) // URL response
                                         print(response.data as Any)     // server data
                                         print(response.result)   // result of response serialization
-                                        APIServiceController.sharedInstance.loadCurrentInfo()
-                                        APIServiceController.sharedInstance.updatePersonalInfo(userId: UserController.sharedInstance.currentUser.userId)
+                                        //APIServiceController.sharedInstance.loadCurrentInfo()
+                                        //APIServiceController.sharedInstance.updatePersonalInfo(userId: UserController.sharedInstance.currentUser.userId)
             
                                         if let JSON = response.result.value {
                                             print("json: \(JSON)")

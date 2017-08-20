@@ -72,13 +72,14 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                 graphRequest.start(completionHandler: {(connection, result, error) -> Void in
                     if error == nil{
                         let data:[String:AnyObject] = result as! [String : AnyObject]
-                        //print(result)
-                        //print(data["email"])
+                        print(result)
+                        print(data["email"]!)
                         self.apiService.createMutableAnonRequest(URL(string:"https://vincilive2.herokuapp.com/login"), method: "POST", parameters: ["email":data["email"]! as AnyObject,"pass":data["id"]! as AnyObject], requestCompletionFunction: {responseCode, json in
                             self.activityIndicator.isHidden = true
                             self.activityIndicator.stopAnimating()
                             if responseCode/100 == 2{
                                 //set user default
+                                UserController.sharedInstance.currentUser.emailAddress = data["email"]! as! String
                                 print(json)
                                 UserDefaults.standard.set(data["email"] as! String, forKey: "email")
                                 UserDefaults.standard.set(data["id"] as! String, forKey: "password")
@@ -92,6 +93,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                                         responseCode, json in
                                         if responseCode/100 == 2{
                                             print(json)
+                                            
                                             UserController.sharedInstance.currentUser.userId = json["publicUserId"].stringValue
                                             UserController.sharedInstance.currentUser.bio = json["biography"].stringValue
                                             UserController.sharedInstance.currentUser.profileImageURL = json["imageProfile"].stringValue
