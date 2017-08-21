@@ -116,7 +116,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VINCIFitness/AddActivityViewController.swift"
@@ -148,7 +148,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VINCIFitness/AddActivityViewController.swift"
@@ -228,7 +228,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VINCIFitness/AddActivityViewController.swift"
@@ -244,7 +244,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VINCIFitness/AddActivityViewController.swift"
@@ -568,12 +568,12 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/APIServiceController.swift"
-                  timestampString = "524892573.588439"
+                  timestampString = "524897300.917635"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "119"
                   endingLineNumber = "119"
-                  offsetFromSymbolStart = "472">
+                  offsetFromSymbolStart = "533">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -583,12 +583,12 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/APIServiceController.swift"
-                  timestampString = "524892573.595661"
+                  timestampString = "524897300.920704"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "119"
                   endingLineNumber = "119"
-                  offsetFromSymbolStart = "900">
+                  offsetFromSymbolStart = "1118">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -648,12 +648,12 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/LoginViewController.swift"
-                  timestampString = "524892573.611191"
+                  timestampString = "524897300.936335"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "77"
                   endingLineNumber = "77"
-                  offsetFromSymbolStart = "1080">
+                  offsetFromSymbolStart = "1353">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -663,12 +663,12 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/LoginViewController.swift"
-                  timestampString = "524892573.617073"
+                  timestampString = "524897300.938958"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "78"
                   endingLineNumber = "78"
-                  offsetFromSymbolStart = "124">
+                  offsetFromSymbolStart = "132">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1144,12 +1144,12 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/APIServiceController.swift"
-                  timestampString = "524892573.634255"
+                  timestampString = "524897300.954531"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "18"
                   endingLineNumber = "18"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "34">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -1159,12 +1159,12 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/APIServiceController.swift"
-                  timestampString = "524892573.636203"
+                  timestampString = "524897300.956832"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "19"
                   endingLineNumber = "19"
-                  offsetFromSymbolStart = "116">
+                  offsetFromSymbolStart = "153">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -2460,7 +2460,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VINCIFitness/AddActivityViewController.swift"
@@ -2576,12 +2576,12 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/ActivityProfileViewController.swift"
-                  timestampString = "524892573.717565"
+                  timestampString = "524897301.009296"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "307"
                   endingLineNumber = "307"
-                  offsetFromSymbolStart = "888">
+                  offsetFromSymbolStart = "1031">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -2591,12 +2591,12 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/ActivityProfileViewController.swift"
-                  timestampString = "524892573.723208"
+                  timestampString = "524897301.011748"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "307"
                   endingLineNumber = "307"
-                  offsetFromSymbolStart = "2860">
+                  offsetFromSymbolStart = "3629">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -4546,12 +4546,12 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/ActivityProfileViewController.swift"
-                  timestampString = "524892573.961576"
+                  timestampString = "524897301.068651"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "307"
                   endingLineNumber = "307"
-                  offsetFromSymbolStart = "888">
+                  offsetFromSymbolStart = "1031">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -4561,12 +4561,12 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/ActivityProfileViewController.swift"
-                  timestampString = "524892573.963181"
+                  timestampString = "524897301.071568"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "307"
                   endingLineNumber = "307"
-                  offsetFromSymbolStart = "2860">
+                  offsetFromSymbolStart = "3629">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -4738,12 +4738,12 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/SecondProfileViewController.swift"
-                  timestampString = "524892574.003632"
+                  timestampString = "524897301.111453"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "197"
                   endingLineNumber = "197"
-                  offsetFromSymbolStart = "2648">
+                  offsetFromSymbolStart = "3307">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -4753,12 +4753,12 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/SecondProfileViewController.swift"
-                  timestampString = "524892574.006503"
+                  timestampString = "524897301.114233"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "199"
                   endingLineNumber = "199"
-                  offsetFromSymbolStart = "128">
+                  offsetFromSymbolStart = "152">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -5090,12 +5090,12 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/ProfileViewController.swift"
-                  timestampString = "524892574.065177"
+                  timestampString = "524897301.147793"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "320"
                   endingLineNumber = "320"
-                  offsetFromSymbolStart = "836">
+                  offsetFromSymbolStart = "996">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -5105,12 +5105,12 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/ProfileViewController.swift"
-                  timestampString = "524892574.067733"
+                  timestampString = "524897301.150747"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "321"
                   endingLineNumber = "321"
-                  offsetFromSymbolStart = "32">
+                  offsetFromSymbolStart = "31">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -5154,12 +5154,12 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/ProfileViewController.swift"
-                  timestampString = "524892574.10326"
+                  timestampString = "524897301.163067"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "323"
                   endingLineNumber = "323"
-                  offsetFromSymbolStart = "956">
+                  offsetFromSymbolStart = "1141">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -5169,12 +5169,12 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/ProfileViewController.swift"
-                  timestampString = "524892574.106611"
+                  timestampString = "524897301.165776"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "323"
                   endingLineNumber = "323"
-                  offsetFromSymbolStart = "308">
+                  offsetFromSymbolStart = "311">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -5184,12 +5184,12 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/ProfileViewController.swift"
-                  timestampString = "524892574.110385"
+                  timestampString = "524897301.168511"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "327"
                   endingLineNumber = "327"
-                  offsetFromSymbolStart = "28">
+                  offsetFromSymbolStart = "23">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -5633,12 +5633,12 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/SecondProfileViewController.swift"
-                  timestampString = "524892574.584325"
+                  timestampString = "524897301.301889"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "231"
                   endingLineNumber = "231"
-                  offsetFromSymbolStart = "828">
+                  offsetFromSymbolStart = "1020">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -5648,12 +5648,12 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/SecondProfileViewController.swift"
-                  timestampString = "524892574.590429"
+                  timestampString = "524897301.304079"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "232"
                   endingLineNumber = "232"
-                  offsetFromSymbolStart = "224">
+                  offsetFromSymbolStart = "381">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -5809,12 +5809,12 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/LoginViewController.swift"
-                  timestampString = "524892574.737966"
+                  timestampString = "524897301.451095"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "92"
                   endingLineNumber = "92"
-                  offsetFromSymbolStart = "3880">
+                  offsetFromSymbolStart = "5057">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -5824,12 +5824,12 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/LoginViewController.swift"
-                  timestampString = "524892574.741517"
+                  timestampString = "524897301.453828"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "94"
                   endingLineNumber = "94"
-                  offsetFromSymbolStart = "128">
+                  offsetFromSymbolStart = "152">
                </Location>
             </Locations>
          </BreakpointContent>
