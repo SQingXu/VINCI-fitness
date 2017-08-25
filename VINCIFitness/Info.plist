@@ -25,16 +25,16 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb1068634126549438</string>
+				<string>fb116648678996532</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>2</string>
 	<key>FacebookAppID</key>
-	<string>1068634126549438</string>
+	<string>116648678996532</string>
 	<key>FacebookDisplayName</key>
-	<string>Vinci</string>
+	<string>VINCI</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
