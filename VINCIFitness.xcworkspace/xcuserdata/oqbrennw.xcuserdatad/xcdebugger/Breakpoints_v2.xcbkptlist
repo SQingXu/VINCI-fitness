@@ -120,11 +120,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VINCIFitness/AddActivityViewController.swift"
-            timestampString = "523938755.438445"
+            timestampString = "526423154.261711"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "380"
-            endingLineNumber = "380"
+            startingLineNumber = "386"
+            endingLineNumber = "386"
             landmarkName = "textFieldDidEndEditing(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -136,11 +136,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VINCIFitness/AddActivityViewController.swift"
-            timestampString = "523938755.438445"
+            timestampString = "526423154.261711"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "378"
-            endingLineNumber = "378"
+            startingLineNumber = "384"
+            endingLineNumber = "384"
             landmarkName = "textFieldDidEndEditing(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -152,11 +152,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VINCIFitness/AddActivityViewController.swift"
-            timestampString = "523938755.438445"
+            timestampString = "526423154.261711"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "379"
-            endingLineNumber = "379"
+            startingLineNumber = "385"
+            endingLineNumber = "385"
             landmarkName = "textFieldDidEndEditing(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -216,11 +216,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VINCIFitness/AddActivityViewController.swift"
-            timestampString = "523938755.438445"
+            timestampString = "526424305.43531"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "427"
-            endingLineNumber = "427"
+            startingLineNumber = "450"
+            endingLineNumber = "450"
             landmarkName = "donePressed(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -232,11 +232,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VINCIFitness/AddActivityViewController.swift"
-            timestampString = "523938755.438445"
+            timestampString = "526424305.43531"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "428"
-            endingLineNumber = "428"
+            startingLineNumber = "451"
+            endingLineNumber = "451"
             landmarkName = "donePressed(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -248,11 +248,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VINCIFitness/AddActivityViewController.swift"
-            timestampString = "523938755.438445"
+            timestampString = "526423154.261711"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "413"
-            endingLineNumber = "413"
+            startingLineNumber = "419"
+            endingLineNumber = "419"
             landmarkName = "animateViewMoving(_:moveValue:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -568,7 +568,7 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/APIServiceController.swift"
-                  timestampString = "526422269.817113"
+                  timestampString = "526424347.41912"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "119"
@@ -583,7 +583,7 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/APIServiceController.swift"
-                  timestampString = "526422269.820308"
+                  timestampString = "526424347.420666"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "119"
@@ -648,7 +648,7 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/LoginViewController.swift"
-                  timestampString = "526422269.833717"
+                  timestampString = "526424347.430646"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "77"
@@ -663,7 +663,7 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/LoginViewController.swift"
-                  timestampString = "526422269.835816"
+                  timestampString = "526424347.432249"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "78"
@@ -1144,7 +1144,7 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/APIServiceController.swift"
-                  timestampString = "526422269.848919"
+                  timestampString = "526424347.441713"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "18"
@@ -1159,7 +1159,7 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/APIServiceController.swift"
-                  timestampString = "526422269.851056"
+                  timestampString = "526424347.443463"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "19"
@@ -2464,11 +2464,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VINCIFitness/AddActivityViewController.swift"
-            timestampString = "524090840.946211"
+            timestampString = "526423154.261711"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "420"
-            endingLineNumber = "420"
+            startingLineNumber = "426"
+            endingLineNumber = "426"
             landmarkName = "animateViewMoving(_:moveValue:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2576,7 +2576,7 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/ActivityProfileViewController.swift"
-                  timestampString = "526422269.892344"
+                  timestampString = "526424347.472478"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "316"
@@ -2591,7 +2591,7 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/ActivityProfileViewController.swift"
-                  timestampString = "526422269.89454"
+                  timestampString = "526424347.474062"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "316"
@@ -4546,7 +4546,7 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/ActivityProfileViewController.swift"
-                  timestampString = "526422269.945562"
+                  timestampString = "526424347.50519"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "316"
@@ -4561,7 +4561,7 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/ActivityProfileViewController.swift"
-                  timestampString = "526422269.948192"
+                  timestampString = "526424347.507113"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "316"
@@ -4738,7 +4738,7 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/SecondProfileViewController.swift"
-                  timestampString = "526422269.982359"
+                  timestampString = "526424347.528387"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "197"
@@ -4753,7 +4753,7 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/SecondProfileViewController.swift"
-                  timestampString = "526422269.984329"
+                  timestampString = "526424347.529962"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "199"
@@ -5090,7 +5090,7 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/ProfileViewController.swift"
-                  timestampString = "526422270.003389"
+                  timestampString = "526424347.548788"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "320"
@@ -5105,7 +5105,7 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/ProfileViewController.swift"
-                  timestampString = "526422270.004894"
+                  timestampString = "526424347.550341"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "321"
@@ -5154,7 +5154,7 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/ProfileViewController.swift"
-                  timestampString = "526422270.011332"
+                  timestampString = "526424347.556831"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "323"
@@ -5169,7 +5169,7 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/ProfileViewController.swift"
-                  timestampString = "526422270.01301"
+                  timestampString = "526424347.558335"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "323"
@@ -5184,7 +5184,7 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/ProfileViewController.swift"
-                  timestampString = "526422270.015514"
+                  timestampString = "526424347.559882"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "327"
@@ -5633,7 +5633,7 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/SecondProfileViewController.swift"
-                  timestampString = "526422270.150667"
+                  timestampString = "526424347.636523"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "231"
@@ -5648,7 +5648,7 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/SecondProfileViewController.swift"
-                  timestampString = "526422270.152971"
+                  timestampString = "526424347.639014"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "232"
@@ -5809,7 +5809,7 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/LoginViewController.swift"
-                  timestampString = "526422270.17534"
+                  timestampString = "526424347.703254"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "92"
@@ -5824,7 +5824,7 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/LoginViewController.swift"
-                  timestampString = "526422270.176981"
+                  timestampString = "526424347.70488"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "94"
@@ -6113,11 +6113,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VINCIFitness/AddActivityViewController.swift"
-            timestampString = "525414660.37465"
+            timestampString = "526424305.43531"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "515"
-            endingLineNumber = "515"
+            startingLineNumber = "545"
+            endingLineNumber = "545"
             landmarkName = "finishEdPressed(_:)"
             landmarkType = "7">
             <Locations>
@@ -6129,12 +6129,12 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/AddActivityViewController.swift"
-                  timestampString = "526422270.227549"
+                  timestampString = "526424347.763794"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "515"
-                  endingLineNumber = "515"
-                  offsetFromSymbolStart = "4004">
+                  startingLineNumber = "545"
+                  endingLineNumber = "545"
+                  offsetFromSymbolStart = "4320">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -6144,11 +6144,11 @@
                   moduleName = "VINCIFitness"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oqbrennw/VINCI-fitness/VINCIFitness/AddActivityViewController.swift"
-                  timestampString = "526422270.229046"
+                  timestampString = "526424347.765271"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "516"
-                  endingLineNumber = "516"
+                  startingLineNumber = "546"
+                  endingLineNumber = "546"
                   offsetFromSymbolStart = "116">
                </Location>
             </Locations>
@@ -6161,11 +6161,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VINCIFitness/AddActivityViewController.swift"
-            timestampString = "525414660.37465"
+            timestampString = "526424305.43531"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "516"
-            endingLineNumber = "516"
+            startingLineNumber = "546"
+            endingLineNumber = "546"
             landmarkName = "finishEdPressed(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -6177,11 +6177,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VINCIFitness/AddActivityViewController.swift"
-            timestampString = "525414660.37465"
+            timestampString = "526424305.43531"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "506"
-            endingLineNumber = "506"
+            startingLineNumber = "536"
+            endingLineNumber = "536"
             landmarkName = "finishEdPressed(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -6209,11 +6209,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VINCIFitness/AddActivityViewController.swift"
-            timestampString = "525414660.37465"
+            timestampString = "526424305.43531"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "507"
-            endingLineNumber = "507"
+            startingLineNumber = "537"
+            endingLineNumber = "537"
             landmarkName = "finishEdPressed(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -6221,27 +6221,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VINCIFitness/AddActivityViewController.swift"
-            timestampString = "525630105.782569"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "246"
-            endingLineNumber = "246"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VINCIFitness/AddActivityViewController.swift"
-            timestampString = "525630106.590486"
+            timestampString = "526423154.261711"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "247"
@@ -6254,6 +6238,22 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VINCIFitness/AddActivityViewController.swift"
+            timestampString = "526423154.261711"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "253"
+            endingLineNumber = "253"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VINCIFitness/ActivityProfileViewController.swift"
@@ -6269,7 +6269,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VINCIFitness/ActivityProfileViewController.swift"
@@ -6285,15 +6285,31 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VINCIFitness/AddActivityViewController.swift"
-            timestampString = "526306410.821022"
+            timestampString = "526424305.43531"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "526"
-            endingLineNumber = "526"
+            startingLineNumber = "556"
+            endingLineNumber = "556"
+            landmarkName = "finishEdPressed(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VINCIFitness/AddActivityViewController.swift"
+            timestampString = "526424305.43531"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "557"
+            endingLineNumber = "557"
             landmarkName = "finishEdPressed(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -6305,12 +6321,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VINCIFitness/AddActivityViewController.swift"
-            timestampString = "526306975.929188"
+            timestampString = "526423192.854785"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "527"
-            endingLineNumber = "527"
-            landmarkName = "finishEdPressed(_:)"
+            startingLineNumber = "248"
+            endingLineNumber = "248"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VINCIFitness/AddActivityViewController.swift"
+            timestampString = "526423203.830305"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

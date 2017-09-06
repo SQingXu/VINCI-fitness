@@ -94,10 +94,10 @@ class ActivityProfileViewController: UIViewController,UICollectionViewDelegate, 
                 self.activity.tag = array["tag"].stringValue
                 let privacyTemp = array["privacy"].intValue
                 if (privacyTemp == 0){
-                    self.activity.privacy = "private"
+                    self.activity.privacy = "Private"
                 }
                 else{
-                    self.activity.privacy = "public"
+                    self.activity.privacy = "Public"
                 }
                 self.activity.participatorsIds.append(self.activity.hostId)
                 self.attendeesIds = array["attendeesIds"].stringValue.components(separatedBy: ",")

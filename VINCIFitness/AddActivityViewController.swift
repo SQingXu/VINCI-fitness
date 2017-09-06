@@ -244,6 +244,12 @@ class AddActivityViewController: UIViewController,UITableViewDelegate, UITableVi
             descriptionField.text = activity.description
             searchingField.text = activity.fullAddress
             privacyText.text = activity.privacy
+            if(privacyText.text == "Private"){
+                privacySwitch.setOn(false, animated: true)
+            }
+            else{
+                privacySwitch.setOn(true, animated: true)
+            }
             inviteText.text = activity.invites
             tagText.text = activity.tag
             fullAddressString = activity.fullAddress
@@ -423,6 +429,23 @@ class AddActivityViewController: UIViewController,UITableViewDelegate, UITableVi
         _ = self.navigationController?.popViewController(animated: true)
        //self.navigationController?.popToRootViewController(animated: true)
     }
+    
+    func combineDateWithTime(date: Date, time: Date) -> Date? {
+        let calendar = NSCalendar.current
+        
+        let dateComponents = calendar.dateComponents([.year, .month, .day], from: date)
+        let timeComponents = calendar.dateComponents([.hour, .minute, .second], from: time)
+        
+        var mergedComponments = DateComponents()
+        mergedComponments.year = dateComponents.year!
+        mergedComponments.month = dateComponents.month!
+        mergedComponments.day = dateComponents.day!
+        mergedComponments.hour = timeComponents.hour!
+        mergedComponments.minute = timeComponents.minute!
+        mergedComponments.second = timeComponents.second!
+        
+        return calendar.date(from: mergedComponments)
+    }
     func donePressed(_ sender:UIBarButtonItem){
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
@@ -431,6 +454,7 @@ class AddActivityViewController: UIViewController,UITableViewDelegate, UITableVi
         selectedDate = dateField.selectedDate as Date
         startTime = beginTimeField.selectedTime as Date
         endTime = endTimeField.selectedTime as Date
+        let eventTime = self.combineDateWithTime(date: selectedDate, time: startTime)
         
         if (dateField.text == "" || beginTimeField.text == "" || endTimeField.text == ""){
             let alert = UIAlertController(title: "Invalid", message: "Information you entered is incomplete", preferredStyle: .alert)
@@ -454,7 +478,7 @@ class AddActivityViewController: UIViewController,UITableViewDelegate, UITableVi
             activityIndicator.stopAnimating()
             return
         }
-        if (dateField.selectedDate.compare(Date()) == .orderedAscending){
+        if (eventTime?.compare(Date()) == .orderedAscending){
             let alert = UIAlertController(title: "Invalid", message: "The date your entered has already passed", preferredStyle: .alert)
             let alertAction = UIAlertAction(title: "Dismiss", style: .default, handler: nil)
             alert.addAction(alertAction)
@@ -499,6 +523,12 @@ class AddActivityViewController: UIViewController,UITableViewDelegate, UITableVi
         print(endTime)
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let privacy = self.privacyText.text
+        if(privacy == "Private"){
+            privacySwitch.setOn(false, animated: true)
+        }
+        else{
+            privacySwitch.setOn(true, animated: true)
+        }
         let inviteeEmail = self.inviteText.text
         let description = self.descriptionField.text
         let title = self.titleField.text
