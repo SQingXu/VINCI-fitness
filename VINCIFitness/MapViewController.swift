@@ -138,7 +138,7 @@ class MapViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDe
                     event.notes = "Event ID: " + uEvent.activityId + "\nDescription:" + uEvent.description;
                     print(event.notes as Any);
                     event.calendar = store.defaultCalendarForNewEvents
-                    event.addAlarm(EKAlarm.init(relativeOffset: TimeInterval.init(600)))
+                    event.addAlarm(EKAlarm.init(relativeOffset: TimeInterval.init(-600)))
                     print(event.calendar.title)
                     if(!events.isEmpty){
                         if(!events.contains {element  in

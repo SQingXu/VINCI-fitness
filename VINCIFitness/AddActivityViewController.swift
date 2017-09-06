@@ -491,13 +491,18 @@ class AddActivityViewController: UIViewController,UITableViewDelegate, UITableVi
         self.dismiss(animated: true, completion: nil)
     }
    
-    @IBAction func finishEdPressed(_ sender: AnyObject) {
+    @IBAction func finishEdPressed(_ sender: AnyObject) {    
         dateFormatter.dateFormat = "HH:mm:ss"
         let startTime = dateFormatter.string(from: beginTimeField.selectedTime as Date)
         print(startTime)
         let endTime = dateFormatter.string(from: endTimeField.selectedTime as Date)
         print(endTime)
         dateFormatter.dateFormat = "yyyy-MM-dd"
+        let privacy = self.privacyText.text
+        let inviteeEmail = self.inviteText.text
+        let description = self.descriptionField.text
+        let title = self.titleField.text
+        let tag = self.tagText.text
         let date = dateFormatter.string(from: dateField.selectedDate as Date)
         if (startTime == "" || endTime == "" || date == ""){
             let alert = UIAlertController(title: "Invalid", message: "Information you entered is incorrect", preferredStyle: .alert)
@@ -507,7 +512,7 @@ class AddActivityViewController: UIViewController,UITableViewDelegate, UITableVi
             return
         }
         let apiService = APIService()
-        apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/map/edit-event"), method: "POST", parameters: ["userId": UserController.sharedInstance.currentUser.userId as AnyObject,"title": titleField.text! as AnyObject, "description": descriptionField.text as AnyObject , "address": fullAddressString as AnyObject, "date":date as AnyObject, "startTime":startTime as AnyObject, "endTime": endTime as AnyObject, "privacy": privacy as AnyObject, "inviteeEmail": invites as AnyObject,"eventId":ActivityController.sharedInstance.currentActivity.activityId as AnyObject, "eventTag": ActivityController.sharedInstance.currentActivity.tag as AnyObject], requestCompletionFunction: {responseCode, json in
+        apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/map/edit-event"), method: "POST", parameters: ["title": title as AnyObject, "description": description as AnyObject , "address": fullAddressString as AnyObject, "date":date as AnyObject, "startTime":startTime as AnyObject, "endTime": endTime as AnyObject, "privacy": privacy as AnyObject, "inviteeEmail": inviteeEmail as AnyObject,"eventId": ActivityController.sharedInstance.currentActivity.activityId as AnyObject, "eventTag": tag as AnyObject], requestCompletionFunction: {responseCode, json in
             if responseCode/100 == 2{
                 print("update activity successfully")
                 ActivityController.sharedInstance.currentActivity.fullAddress = self.fullAddressString

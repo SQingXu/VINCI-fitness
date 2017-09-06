@@ -90,6 +90,15 @@ class ActivityProfileViewController: UIViewController,UICollectionViewDelegate, 
                 self.activity = ActivityController.sharedInstance.currentActivity
                 var array = json["array"]
                 self.activity.hostId = array["userIdPublic"].stringValue
+                self.activity.description = array["description"].stringValue
+                self.activity.tag = array["tag"].stringValue
+                let privacyTemp = array["privacy"].intValue
+                if (privacyTemp == 0){
+                    self.activity.privacy = "Private"
+                }
+                else{
+                    self.activity.privacy = "Public"
+                }
                 self.activity.participatorsIds.append(self.activity.hostId)
                 self.attendeesIds = array["attendeesIds"].stringValue.components(separatedBy: ",")
                 for userId in self.attendeesIds{
@@ -98,7 +107,7 @@ class ActivityProfileViewController: UIViewController,UICollectionViewDelegate, 
                     }
                     print(userId)
                 }
-
+                
                 self.collectionView.setCollectionViewLayout(flowLayout, animated: true)
                 self.collectionView.delegate = self
                 self.collectionView.dataSource = self
