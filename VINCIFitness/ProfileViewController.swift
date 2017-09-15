@@ -162,7 +162,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate,UI
         textField.resignFirstResponder()
         
         if(bioTextField.text != user.bio){
-            apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/upload-bio"), method: "POST", parameters: ["bio": bioTextField.text as AnyObject],requestCompletionFunction: {responseCode, json in
+            apiService.createHeaderRequest(URL(string: "https://vincilive.com/profile/upload-bio"), method: "POST", parameters: ["bio": bioTextField.text as AnyObject],requestCompletionFunction: {responseCode, json in
                 if responseCode/100 == 2{
                     self.user.bio = json["biography"].stringValue
                 }
@@ -175,7 +175,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate,UI
         }
         
         if(statusTextField.text != user.status){
-            apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/upload-status"), method: "POST", parameters: ["status": statusTextField.text as AnyObject],requestCompletionFunction: {responseCode, json in
+            apiService.createHeaderRequest(URL(string: "https://vincilive.com/profile/upload-status"), method: "POST", parameters: ["status": statusTextField.text as AnyObject],requestCompletionFunction: {responseCode, json in
                 if responseCode/100 == 2{
                     self.user.status = json["status"].stringValue
                 }
@@ -190,7 +190,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate,UI
         
         if(facebookTextField.text != user.facebook || twitterTextField.text != user.twitter || instagramTextField.text != user.instagram){
             
-            apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/update-socials"), method: "POST", parameters: ["facebook": facebookTextField.text as AnyObject, "twitter":twitterTextField.text as AnyObject,"instagram":instagramTextField.text as AnyObject],requestCompletionFunction: {responseCode, json in
+            apiService.createHeaderRequest(URL(string: "https://vincilive.com/profile/update-socials"), method: "POST", parameters: ["facebook": facebookTextField.text as AnyObject, "twitter":twitterTextField.text as AnyObject,"instagram":instagramTextField.text as AnyObject],requestCompletionFunction: {responseCode, json in
                 if responseCode/100 == 2{
                     self.user.facebook = json["facebook"].stringValue
                     self.user.twitter = json["twitter"].stringValue
@@ -220,7 +220,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate,UI
         }
         
         if(bioTextField.text != user.bio){
-            apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/upload-bio"), method: "POST", parameters: ["bio": bioTextField.text as AnyObject],requestCompletionFunction: {responseCode, json in
+            apiService.createHeaderRequest(URL(string: "https://vincilive.com/profile/upload-bio"), method: "POST", parameters: ["bio": bioTextField.text as AnyObject],requestCompletionFunction: {responseCode, json in
                 if responseCode/100 == 2{
                     self.user.bio = json["biography"].stringValue
                 }
@@ -233,7 +233,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate,UI
         }
         
         if(statusTextField.text != user.status){
-            apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/upload-status"), method: "POST", parameters: ["status": statusTextField.text as AnyObject],requestCompletionFunction: {responseCode, json in
+            apiService.createHeaderRequest(URL(string: "https://vincilive.com/profile/upload-status"), method: "POST", parameters: ["status": statusTextField.text as AnyObject],requestCompletionFunction: {responseCode, json in
                 if responseCode/100 == 2{
                     self.user.status = json["status"].stringValue
                 }
@@ -248,7 +248,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate,UI
         
         if(facebookTextField.text != user.facebook || twitterTextField.text != user.twitter || instagramTextField.text != user.instagram){
             
-            apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/update-socials"), method: "POST", parameters: ["facebook": facebookTextField.text as AnyObject, "twitter":twitterTextField.text as AnyObject,"instagram":instagramTextField.text as AnyObject],requestCompletionFunction: {responseCode, json in
+            apiService.createHeaderRequest(URL(string: "https://vincilive.com/profile/update-socials"), method: "POST", parameters: ["facebook": facebookTextField.text as AnyObject, "twitter":twitterTextField.text as AnyObject,"instagram":instagramTextField.text as AnyObject],requestCompletionFunction: {responseCode, json in
                 if responseCode/100 == 2{
                     self.user.facebook = json["facebook"].stringValue
                     self.user.twitter = json["twitter"].stringValue
@@ -309,10 +309,10 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate,UI
         var fileName = ""
         if let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage{
             if picker == imagePicker_profile{
-                link = "https://vincilive2.herokuapp.com/profile/app-upload-profile"
+                link = "https://vincilive.com/profile/app-upload-profile"
                 fileName = "profilePic"
             }else{
-                link = "https://vincilive2.herokuapp.com/profile/app-upload-cover"
+                link = "https://vincilive.com/profile/app-upload-cover"
                 fileName = "coverPic"
             }
             UserController.sharedInstance.currentUser.imageData = selectedImage

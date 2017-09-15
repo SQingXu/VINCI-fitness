@@ -305,7 +305,7 @@ class MapViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDe
     
     func getCurrentUserEvents(){
         let apiService = APIService()
-        apiService.createMutableAnonRequest(URL(string:"https://vincilive2.herokuapp.com/profile/users-events/"+UserController.sharedInstance.currentUser.userId), method: "GET", parameters: nil,requestCompletionFunction: {responseCode, json in
+        apiService.createMutableAnonRequest(URL(string:"https://vincilive.com/profile/users-events/"+UserController.sharedInstance.currentUser.userId), method: "GET", parameters: nil,requestCompletionFunction: {responseCode, json in
             if responseCode/100 == 2 {
                 print(json)
                 var events = json["events"].arrayValue
@@ -375,7 +375,7 @@ class MapViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDe
     
     func getActivities(){
         let apiService = APIService()
-        apiService.createMutableAnonRequest(URL(string:"https://vincilive2.herokuapp.com/map/get-data"), method: "POST", parameters: ["range":"30" as AnyObject,"lat":self.latitude as AnyObject,"lng":self.longitude as AnyObject],requestCompletionFunction: {responseCode, json in
+        apiService.createMutableAnonRequest(URL(string:"https://vincilive.com/map/get-data"), method: "POST", parameters: ["range":"30" as AnyObject,"lat":self.latitude as AnyObject,"lng":self.longitude as AnyObject],requestCompletionFunction: {responseCode, json in
             if responseCode/100 == 2{
                 print(json)
                 var updatedArray = [Maker]()

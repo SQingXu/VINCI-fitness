@@ -25,7 +25,7 @@ class OnboardViewController: UIViewController {
                 UserController.sharedInstance.currentUser.emailAddress = email
                 UserController.sharedInstance.currentUser.password = password
                 let apiService = APIService()
-                apiService.createMutableAnonRequest(URL(string:"https://vincilive2.herokuapp.com/login"), method: "POST", parameters: ["email":email as AnyObject,"pass":password as AnyObject], requestCompletionFunction: {responseCode, json in
+                apiService.createMutableAnonRequest(URL(string:"https://vincilive.com/login"), method: "POST", parameters: ["email":email as AnyObject,"pass":password as AnyObject], requestCompletionFunction: {responseCode, json in
                     print(json)
                     if responseCode/100 == 2{
                         //if json["userId"].stringValue != ""{
@@ -35,7 +35,7 @@ class OnboardViewController: UIViewController {
                             let window = application.keyWindow
                         
                             //let userId = UserController.sharedInstance.currentUser.userId
-                            apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/app"), method: "POST", parameters: nil, requestCompletionFunction: {
+                            apiService.createHeaderRequest(URL(string: "https://vincilive.com/profile/app"), method: "POST", parameters: nil, requestCompletionFunction: {
                                 responseCode, json in
                                 self.loginButton.isEnabled = true
                                 self.signUpButton.isEnabled = true

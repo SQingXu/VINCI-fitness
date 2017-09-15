@@ -74,7 +74,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                         let data:[String:AnyObject] = result as! [String : AnyObject]
                         print(result)
                         print(data["email"]!)
-                        self.apiService.createMutableAnonRequest(URL(string:"https://vincilive2.herokuapp.com/login"), method: "POST", parameters: ["email":data["email"]! as AnyObject,"pass":data["id"]! as AnyObject], requestCompletionFunction: {responseCode, json in
+                        self.apiService.createMutableAnonRequest(URL(string:"https://vincilive.com/login"), method: "POST", parameters: ["email":data["email"]! as AnyObject,"pass":data["id"]! as AnyObject], requestCompletionFunction: {responseCode, json in
                             self.activityIndicator.isHidden = true
                             self.activityIndicator.stopAnimating()
                             if responseCode/100 == 2{
@@ -89,7 +89,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                                     let application = UIApplication.shared
                                     let window = application.keyWindow
                                     print(json["userId"].stringValue)
-                                    self.apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/app"), method: "POST", parameters: nil, requestCompletionFunction: {
+                                    self.apiService.createHeaderRequest(URL(string: "https://vincilive.com/profile/app"), method: "POST", parameters: nil, requestCompletionFunction: {
                                         responseCode, json in
                                         if responseCode/100 == 2{
                                             print(json)
@@ -144,7 +144,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
 //        window?.rootViewController = appDelegate.initTabBarController()
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
-        apiService.createMutableAnonRequest(URL(string:"https://vincilive2.herokuapp.com/login"), method: "POST", parameters: ["email":emailTextField.text! as AnyObject,"pass":passwordTextField.text! as AnyObject], requestCompletionFunction: {responseCode, json in
+        apiService.createMutableAnonRequest(URL(string:"https://vincilive.com/login"), method: "POST", parameters: ["email":emailTextField.text! as AnyObject,"pass":passwordTextField.text! as AnyObject], requestCompletionFunction: {responseCode, json in
             if responseCode/100 == 2{
                 print(json)
                 self.activityIndicator.isHidden = true
@@ -161,7 +161,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                     //UserController.sharedInstance.currentUser.userId = json["userId"].stringValue
                     UserController.sharedInstance.currentUser.emailAddress = self.emailTextField.text!
                     UserController.sharedInstance.viewedUser = UserController.sharedInstance.currentUser
-                    self.apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/app"), method: "POST", parameters: nil, requestCompletionFunction: {
+                    self.apiService.createHeaderRequest(URL(string: "https://vincilive.com/profile/app"), method: "POST", parameters: nil, requestCompletionFunction: {
                         responseCode, json in
                         if responseCode/100 == 2{
                             print(json["publicUserId"].stringValue)

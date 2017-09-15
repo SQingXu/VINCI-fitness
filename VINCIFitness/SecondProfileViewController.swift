@@ -194,11 +194,11 @@ class SecondProfileViewController: UIViewController,UITableViewDelegate, UITable
             doneButton.isEnabled = false
             activityIndicator.isHidden = false
             activityIndicator.startAnimating()
-            apiService.createHeaderRequest(URL(string:"https://vincilive2.herokuapp.com/profile-creation/app-submit"), method: "POST", parameters: ["email": currentUser.emailAddress as AnyObject,"password":currentUser.password as AnyObject,"address":currentUser.homeAddressFull as AnyObject,"firstName":currentUser.firstName as AnyObject,"lastName":currentUser.lastName as AnyObject,"birthday":birthdayString as AnyObject], requestCompletionFunction: {
+            apiService.createHeaderRequest(URL(string:"https://vincilive.com/profile-creation/app-submit"), method: "POST", parameters: ["email": currentUser.emailAddress as AnyObject,"password":currentUser.password as AnyObject,"address":currentUser.homeAddressFull as AnyObject,"firstName":currentUser.firstName as AnyObject,"lastName":currentUser.lastName as AnyObject,"birthday":birthdayString as AnyObject], requestCompletionFunction: {
                 responseCode, json1 in
                 if responseCode/100 == 2{
                     //log in with information
-                    apiService.createMutableAnonRequest(URL(string:"https://vincilive2.herokuapp.com/login"), method: "POST", parameters: ["email":currentUser.emailAddress as AnyObject,"pass":currentUser.password as AnyObject], requestCompletionFunction: {responseCode, json2 in
+                    apiService.createMutableAnonRequest(URL(string:"https://vincilive.com/login"), method: "POST", parameters: ["email":currentUser.emailAddress as AnyObject,"pass":currentUser.password as AnyObject], requestCompletionFunction: {responseCode, json2 in
                         if responseCode/100 == 2{
                             print(json2)
                             if json1["userId"] != nil{
@@ -213,7 +213,7 @@ class SecondProfileViewController: UIViewController,UITableViewDelegate, UITable
                                 Alamofire.upload(multipartFormData:{multipartFormData in
                                     multipartFormData.append(imageData!, withName: "profilePic", fileName: "this_is_a_file", mimeType: "image/jpeg")
                                     multipartFormData.append(json1["userId"].stringValue.data(using: String.Encoding.utf8)!, withName: "userId")
-                                    }, to: "https://vincilive2.herokuapp.com/profile/app-upload-profile", encodingCompletion: {
+                                    }, to: "https://vincilive.com/profile/app-upload-profile", encodingCompletion: {
                                         
                                         encodingResult in
                                         
@@ -228,11 +228,11 @@ class SecondProfileViewController: UIViewController,UITableViewDelegate, UITable
                                                     print("json: \(JSON)")
                                                 }
                                                 //upload bio
-                                                apiService.createMutableAnonRequest(URL(string:"https://vincilive2.herokuapp.com/profile/app-upload-bio"), method: "POST", parameters: ["bio":currentUser.bio as AnyObject], requestCompletionFunction: {responseCode, json3 in
+                                                apiService.createMutableAnonRequest(URL(string:"https://vincilive.com/profile/app-upload-bio"), method: "POST", parameters: ["bio":currentUser.bio as AnyObject], requestCompletionFunction: {responseCode, json3 in
                                                     if responseCode/100 == 2{
                                                         //log in
                                                         
-                                                        apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/profile/app"), method: "POST", parameters: nil, requestCompletionFunction: {
+                                                        apiService.createHeaderRequest(URL(string: "https://vincilive.com/profile/app"), method: "POST", parameters: nil, requestCompletionFunction: {
                                                             responseCode, json in
                                                             if responseCode/100 == 2{
                                                                 print(json)

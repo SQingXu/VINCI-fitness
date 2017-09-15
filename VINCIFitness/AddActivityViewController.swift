@@ -542,7 +542,7 @@ class AddActivityViewController: UIViewController,UITableViewDelegate, UITableVi
             return
         }
         let apiService = APIService()
-        apiService.createHeaderRequest(URL(string: "https://vincilive2.herokuapp.com/map/edit-event"), method: "POST", parameters: ["title": title as AnyObject, "description": description as AnyObject , "address": fullAddressString as AnyObject, "date":date as AnyObject, "startTime":startTime as AnyObject, "endTime": endTime as AnyObject, "privacy": privacy?.lowercased() as AnyObject, "inviteeEmail": inviteeEmail as AnyObject,"eventId": ActivityController.sharedInstance.currentActivity.activityId as AnyObject, "tag": tag as AnyObject], requestCompletionFunction: {responseCode, json in
+        apiService.createHeaderRequest(URL(string: "https://vincilive.com/map/edit-event"), method: "POST", parameters: ["title": title as AnyObject, "description": description as AnyObject , "address": fullAddressString as AnyObject, "date":date as AnyObject, "startTime":startTime as AnyObject, "endTime": endTime as AnyObject, "privacy": privacy?.lowercased() as AnyObject, "inviteeEmail": inviteeEmail as AnyObject,"eventId": ActivityController.sharedInstance.currentActivity.activityId as AnyObject, "tag": tag as AnyObject], requestCompletionFunction: {responseCode, json in
             if responseCode/100 == 2{
                 print("update activity successfully")
                 ActivityController.sharedInstance.currentActivity.fullAddress = self.fullAddressString
