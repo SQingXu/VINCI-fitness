@@ -102,6 +102,7 @@ class MapViewController: UIViewController,GMSMapViewDelegate{
                 for (_,maker) in json["markerArray"]{
                     let newMaker = Maker()
                     newMaker.placeName = maker["address"].stringValue
+                    newMaker.markerIcon = maker["pinFile"].stringValue
                     let latitude = Double(maker["position"]["lat"].stringValue)
                     if latitude != nil{
                         newMaker.position.latitude = latitude!
